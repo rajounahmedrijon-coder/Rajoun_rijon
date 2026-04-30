@@ -3,64 +3,52 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Rajoun Ahmed Rijon | 3D Portfolio</title>
+<title>Rajoun Ahmed Rijon | World Class Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 <style>
+
+/* ================= RESET ================= */
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
+font-family:'Space Grotesk',sans-serif;
 }
 
 body{
-font-family:'Space Grotesk',sans-serif;
-background:#050505;
-color:white;
+background:#070707;
+color:#fff;
 overflow-x:hidden;
 }
 
-/* BACKGROUND */
+/* ================= BACKGROUND ================= */
 .bg{
 position:fixed;
 inset:0;
 background:
-radial-gradient(circle at 20% 20%, rgba(255,0,0,0.25), transparent 40%),
-radial-gradient(circle at 80% 70%, rgba(100,0,0,0.2), transparent 45%),
-#050505;
-z-index:-3;
+radial-gradient(circle at 20% 20%, rgba(255,0,0,0.18), transparent 40%),
+radial-gradient(circle at 80% 70%, rgba(100,0,0,0.15), transparent 45%);
+z-index:-2;
 }
 
+/* subtle noise grid */
 .grid{
 position:fixed;
 inset:0;
 background-image:
 linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
 linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-background-size:80px 80px;
-opacity:0.25;
-z-index:-2;
+background-size:90px 90px;
+opacity:0.2;
+z-index:-1;
 }
 
-/* CURSOR */
-.cursor{
-position:fixed;
-width:18px;
-height:18px;
-border-radius:50%;
-background:red;
-filter:blur(12px);
-pointer-events:none;
-transform:translate(-50%,-50%);
-z-index:9999;
-}
-
-/* NAV */
+/* ================= NAV ================= */
 nav{
 position:fixed;
 top:0;
@@ -70,13 +58,14 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 backdrop-filter:blur(20px);
-background:rgba(0,0,0,0.35);
+background:rgba(0,0,0,0.4);
 z-index:1000;
 }
 
 .logo{
-font-size:24px;
 font-weight:700;
+font-size:20px;
+letter-spacing:1px;
 }
 
 .logo span{color:#ff1e1e;}
@@ -90,36 +79,47 @@ list-style:none;
 nav a{
 color:#aaa;
 text-decoration:none;
+font-size:14px;
+transition:0.3s;
 }
 
 nav a:hover{color:#ff1e1e;}
 
-/* HERO */
+/* ================= HERO ================= */
 section{
 min-height:100vh;
+padding:120px 8%;
 display:flex;
 align-items:center;
-padding:120px 8%;
 }
 
-.hero h1{
-font-size:90px;
-line-height:0.9;
+.hero{
+justify-content:space-between;
+gap:60px;
 }
 
-.hero h1 span{
+.hero-text{
+max-width:650px;
+}
+
+.hero-text h1{
+font-size:80px;
+line-height:0.95;
+}
+
+.hero-text h1 span{
 color:#ff1e1e;
 }
 
-.hero p{
+.hero-text p{
 margin-top:20px;
 color:#aaa;
-max-width:600px;
-line-height:1.7;
+line-height:1.8;
+font-size:15px;
 }
 
-/* BUTTONS */
-.btns{
+/* buttons */
+.buttons{
 margin-top:30px;
 display:flex;
 gap:15px;
@@ -127,113 +127,148 @@ gap:15px;
 
 .btn{
 padding:12px 26px;
-border-radius:50px;
+border-radius:30px;
 text-decoration:none;
 font-weight:600;
+font-size:14px;
+transition:0.3s;
 }
 
 .primary{
 background:#ff1e1e;
-color:white;
-box-shadow:0 0 30px red;
+color:#fff;
+box-shadow:0 0 20px rgba(255,0,0,0.25);
 }
 
 .secondary{
 border:1px solid #333;
-color:white;
+color:#fff;
 }
 
-/* CARD */
+.primary:hover,
+.secondary:hover{
+transform:translateY(-3px);
+}
+
+/* ================= PROFILE ================= */
 .card{
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(20px);
+width:380px;
+background:rgba(255,255,255,0.04);
 border:1px solid rgba(255,255,255,0.08);
-border-radius:25px;
-padding:20px;
-max-width:400px;
+border-radius:20px;
+padding:18px;
+backdrop-filter:blur(20px);
 transition:0.4s;
 }
 
 .card:hover{
-transform:rotateY(6deg) rotateX(4deg);
+transform:translateY(-8px);
 }
 
-.profile img{
+.card img{
 width:100%;
-border-radius:15px;
+height:320px;
+object-fit:cover;
+border-radius:14px;
 }
 
+.card h2{
+margin-top:10px;
+font-size:20px;
+}
+
+.card p{
+color:#aaa;
+font-size:13px;
+margin-top:5px;
+}
+
+/* skills */
 .skills{
+margin-top:12px;
 display:flex;
 flex-wrap:wrap;
-gap:8px;
-margin-top:15px;
+gap:6px;
 }
 
 .skill{
-padding:6px 12px;
+padding:5px 10px;
+font-size:11px;
 background:#111;
 border-radius:20px;
-font-size:12px;
+border:1px solid #222;
 }
 
-.skill:hover{background:#ff1e1e;}
+.skill:hover{
+background:#ff1e1e;
+}
 
+/* stats */
 .stats{
+margin-top:12px;
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin-top:15px;
+gap:8px;
 }
 
 .stat{
 background:#111;
-padding:10px;
+padding:8px;
 border-radius:10px;
 text-align:center;
 }
 
-.stat h3{color:#ff1e1e;}
+.stat h3{color:#ff1e1e;font-size:14px;}
 
-/* PROJECTS */
-.projects h2{
-font-size:45px;
+/* ================= SECTIONS ================= */
+.title{
+font-size:42px;
 margin-bottom:30px;
 }
 
-.project-grid{
+/* projects */
+.projects-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:15px;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
 }
 
 .project{
 background:#111;
 padding:20px;
-border-radius:15px;
+border-radius:14px;
 transition:0.3s;
+border:1px solid #151515;
 }
 
 .project:hover{
 transform:translateY(-8px);
-background:#1a1a1a;
+border-color:#ff1e1e;
 }
 
-/* CONTACT */
+/* contact */
 .contact{
 text-align:center;
+flex-direction:column;
 }
 
 .contact a{
 color:#ff1e1e;
-font-size:18px;
 text-decoration:none;
 }
 
+/* footer */
 footer{
 text-align:center;
-padding:25px;
-color:#777;
+padding:30px;
+color:#666;
+border-top:1px solid #111;
+}
+
+/* animation base */
+.fade{
+opacity:0;
+transform:translateY(30px);
 }
 
 </style>
@@ -243,7 +278,6 @@ color:#777;
 
 <div class="bg"></div>
 <div class="grid"></div>
-<div class="cursor" id="cursor"></div>
 
 <nav>
 <div class="logo">Rajoun<span>.</span></div>
@@ -254,43 +288,41 @@ color:#777;
 </ul>
 </nav>
 
-<canvas id="webgl"></canvas>
-
 <!-- HERO -->
 <section id="hero" class="hero">
 
-<div>
-<h1>CREATIVE <span>3D</span><br>DEV</h1>
+<div class="hero-text fade">
+<h1>Creative <span>Designer</span><br>& Developer</h1>
 
 <p>
-Cinematic portfolio with WebGL, motion design and immersive UI experience.
+I build clean, modern and high-performance digital experiences with focus on clarity, design system and user experience.
 </p>
 
-<div class="btns">
+<div class="buttons">
 <a class="btn primary" href="#contact">Hire Me</a>
-<a class="btn secondary" href="#projects">Projects</a>
+<a class="btn secondary" href="#projects">View Work</a>
 </div>
 </div>
 
-<div class="card">
+<!-- PROFILE -->
+<div class="card fade">
 
-<div class="profile">
-<img src="IMG_20250914_191146 (1).jpg" />
-</div>
+<img src="IMG_20250914_191146 (1).jpg"/>
 
-<h3>Rajoun Ahmed Rijon</h3>
+<h2>Rajoun Ahmed Rijon</h2>
+<p>UI/UX Designer • Developer • Mentor</p>
 
 <div class="skills">
-<div class="skill">Design</div>
-<div class="skill">3D Web</div>
-<div class="skill">Motion</div>
-<div class="skill">UI/UX</div>
+<div class="skill">UI Design</div>
+<div class="skill">Frontend</div>
+<div class="skill">Creative</div>
+<div class="skill">Mentor</div>
 </div>
 
 <div class="stats">
 <div class="stat"><h3>50+</h3><p>Students</p></div>
 <div class="stat"><h3>3+</h3><p>Years</p></div>
-<div class="stat"><h3>100%</h3><p>Passion</p></div>
+<div class="stat"><h3>100%</h3><p>Focus</p></div>
 </div>
 
 </div>
@@ -298,79 +330,46 @@ Cinematic portfolio with WebGL, motion design and immersive UI experience.
 </section>
 
 <!-- PROJECTS -->
-<section id="projects" class="projects">
+<section id="projects">
 <div>
-<h2>Projects</h2>
+<h2 class="title fade">Selected Work</h2>
 
-<div class="project-grid">
-<div class="project">Cinematic UI</div>
-<div class="project">Landing Page</div>
-<div class="project">3D Experience</div>
+<div class="projects-grid">
+<div class="project fade">Portfolio System</div>
+<div class="project fade">Landing Page UI</div>
+<div class="project fade">Brand Design</div>
+<div class="project fade">Web Experience</div>
 </div>
+
 </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="contact">
-<div>
-<h2>Contact</h2>
+<section id="contact" class="contact fade">
+<h2 class="title">Let's Work Together</h2>
 <a href="mailto:rajounahmedrijon@gmail.com">
 rajounahmedrijon@gmail.com
 </a>
-</div>
 </section>
 
-<footer>© 2026 Rajoun Ahmed Rijon</footer>
+<footer>
+© 2026 Rajoun Ahmed Rijon | World Class Portfolio
+</footer>
 
 <script>
 
-/* CURSOR */
-const cursor=document.getElementById("cursor");
-
-document.addEventListener("mousemove",(e)=>{
-cursor.style.left=e.clientX+"px";
-cursor.style.top=e.clientY+"px";
-});
-
-/* THREE.JS */
-const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-
-const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("webgl"),alpha:true});
-renderer.setSize(window.innerWidth,window.innerHeight);
-
-const geometry=new THREE.BufferGeometry();
-const count=1200;
-const pos=new Float32Array(count*3);
-
-for(let i=0;i<count*3;i++){
-pos[i]=(Math.random()-0.5)*10;
+/* smooth reveal */
+gsap.utils.toArray(".fade").forEach(el=>{
+gsap.to(el,{
+opacity:1,
+y:0,
+duration:1,
+scrollTrigger:{
+trigger:el,
+start:"top 85%"
 }
-
-geometry.setAttribute("position",new THREE.BufferAttribute(pos,3));
-
-const material=new THREE.PointsMaterial({
-color:0xff1e1e,
-size:0.02
 });
-
-const points=new THREE.Points(geometry,material);
-scene.add(points);
-
-camera.position.z=4;
-
-function animate(){
-requestAnimationFrame(animate);
-points.rotation.y+=0.002;
-renderer.render(scene,camera);
-}
-animate();
-
-/* GSAP */
-gsap.from("#hero h1",{y:80,opacity:0,duration:1});
-gsap.from("#hero p",{y:40,opacity:0,duration:1,delay:0.2});
-gsap.from(".btns",{y:40,opacity:0,duration:1,delay:0.4});
-gsap.from(".card",{scale:0.8,opacity:0,duration:1,delay:0.5});
+});
 
 </script>
 
