@@ -1,68 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>RAJOUN AI CINEMATIC PORTFOLIO</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-<style>
-
-:root{
---bg:#040404;
---card:rgba(255,255,255,.05);
---border:rgba(255,255,255,.08);
---text:#fff;
---muted:#a5a5a5;
---red:#ff1e1e;
-}
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-scroll-behavior:smooth;
-}
-
-body{
-font-family:'Outfit',sans-serif;
-background:var(--bg);
-color:white;
-overflow-x:hidden;
-}
-
-/* background FX (KEEP SAME) */
-body::before{
-content:'';
+<!DOCTYPE html><html lang="en">  <head>    <meta charset="UTF-8" />      <meta name="viewport" content="width=device-width, initial-scale=1.0" />        <title>RAJOUN Ahmed Rijon</title><link rel="preconnect" href="https://fonts.googleapis.com">          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>            <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">            
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script><style>  :root{          
+--bg:#040404;          
+--card:rgba(255,255,255,.05);          
+--border:rgba(255,255,255,.08);          
+--text:#fff;          
+--muted:#a5a5a5;          
+--red:#ff1e1e;          
+}  *{        
+margin:0;        
+padding:0;        
+box-sizing:border-box;        
+scroll-behavior:smooth;        
+}  body{      
+font-family:'Outfit',sans-serif;      
+background:var(--bg);      
+color:white;      
+overflow-x:hidden;      
+}  body::before{    
+content:'';    
+position:fixed;    
+inset:0;    
+background:    
+radial-gradient(circle at top right, rgba(255,0,0,.15), transparent 30%),    
+radial-gradient(circle at bottom left, rgba(255,0,0,.1), transparent 30%);    
+pointer-events:none;    
+z-index:-1;    
+}  #particles{  
+position:fixed;  
+inset:0;  
+z-index:-3;  
+opacity:.7;  
+}  .matrix{
 position:fixed;
 inset:0;
-background:
-radial-gradient(circle at top right, rgba(255,0,0,.15), transparent 30%),
-radial-gradient(circle at bottom left, rgba(255,0,0,.1), transparent 30%);
 pointer-events:none;
-z-index:-1;
-}
-
-/* canvases */
-#particles,.matrix{
-position:fixed;
-inset:0;
-z-index:-3;
-}
-
-.matrix{
 opacity:.08;
 z-index:-2;
 }
 
-/* loader */
 .loader{
 position:fixed;
 inset:0;
@@ -71,29 +47,33 @@ display:flex;
 align-items:center;
 justify-content:center;
 flex-direction:column;
-z-index:99999;
+z-index:999999;
 }
 
 .loader h1{
-font-size:6vw;
+font-size:7vw;
 color:var(--red);
 letter-spacing:10px;
 }
 
-/* cursor */
+.loader p{
+margin-top:20px;
+letter-spacing:5px;
+color:#777;
+}
+
 .cursor{
 width:18px;
 height:18px;
 background:var(--red);
-border-radius:50%;
 position:fixed;
+border-radius:50%;
 pointer-events:none;
-z-index:99999;
-box-shadow:0 0 25px var(--red);
+z-index:999999;
+box-shadow:0 0 30px var(--red);
 transform:translate(-50%,-50%);
 }
 
-/* progress */
 .progress{
 position:fixed;
 top:0;
@@ -105,7 +85,6 @@ z-index:99999;
 box-shadow:0 0 20px var(--red);
 }
 
-/* NAV (UNCHANGED STRUCTURE) */
 nav{
 position:fixed;
 top:0;
@@ -127,7 +106,9 @@ font-weight:900;
 letter-spacing:3px;
 }
 
-.logo span{color:var(--red);}
+.logo span{
+color:var(--red);
+}
 
 nav ul{
 display:flex;
@@ -141,19 +122,23 @@ color:white;
 font-size:13px;
 letter-spacing:3px;
 font-weight:600;
-transition:.3s;
+transition:.4s;
 }
 
-nav a:hover{color:var(--red);}
+nav a:hover{
+color:var(--red);
+}
 
-/* HERO (KEEP + ENHANCE ONLY) */
+section{
+padding:120px 7%;
+}
+
 .hero{
 min-height:100vh;
 display:grid;
 grid-template-columns:1.2fr .8fr;
 align-items:center;
 gap:70px;
-padding:120px 7%;
 }
 
 .hero-sub{
@@ -164,7 +149,7 @@ margin-bottom:20px;
 }
 
 .hero h1{
-font-size:7vw;
+font-size:8vw;
 line-height:.9;
 font-weight:900;
 text-transform:uppercase;
@@ -177,12 +162,12 @@ color:transparent;
 
 .hero p{
 margin-top:30px;
-font-size:18px;
+font-size:19px;
 line-height:1.8;
+max-width:700px;
 color:var(--muted);
 }
 
-/* buttons */
 .buttons{
 display:flex;
 gap:20px;
@@ -195,6 +180,7 @@ padding:18px 35px;
 border-radius:60px;
 text-decoration:none;
 font-weight:700;
+letter-spacing:1px;
 transition:.4s;
 }
 
@@ -204,13 +190,22 @@ color:white;
 box-shadow:0 0 30px rgba(255,0,0,.4);
 }
 
+.primary:hover{
+transform:translateY(-5px);
+}
+
 .outline{
 border:1px solid var(--border);
 background:rgba(255,255,255,.04);
 color:white;
 }
 
-/* IMAGE (UPDATED ONLY) */
+.hero-img-wrap{
+position:relative;
+display:flex;
+justify-content:center;
+}
+
 .hero-img{
 width:420px;
 height:560px;
@@ -218,7 +213,6 @@ border-radius:35px;
 overflow:hidden;
 border:1px solid rgba(255,0,0,.3);
 box-shadow:0 0 50px rgba(255,0,0,.2);
-transition:.3s;
 }
 
 .hero-img img{
@@ -227,13 +221,21 @@ height:100%;
 object-fit:cover;
 }
 
-/* sections */
-section{padding:120px 7%;}
+.glow-circle{
+position:absolute;
+width:500px;
+height:500px;
+background:rgba(255,0,0,.15);
+filter:blur(120px);
+border-radius:50%;
+z-index:-1;
+}
 
 .title{
 font-size:4vw;
 font-weight:900;
 margin-bottom:60px;
+text-transform:uppercase;
 }
 
 .title span{
@@ -241,7 +243,6 @@ color:transparent;
 -webkit-text-stroke:1px var(--red);
 }
 
-/* ABOUT */
 .grid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
@@ -254,12 +255,20 @@ border:1px solid var(--border);
 padding:35px;
 border-radius:30px;
 backdrop-filter:blur(12px);
-transition:.4s;
+transition:.5s;
 }
 
-.card:hover{transform:translateY(-10px);}
+.card:hover{
+transform:translateY(-10px);
+border-color:rgba(255,0,0,.4);
+}
 
-/* SERVICES */
+.card p{
+margin-top:15px;
+line-height:1.8;
+color:var(--muted);
+}
+
 .services{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -271,7 +280,7 @@ background:var(--card);
 padding:40px;
 border-radius:30px;
 border:1px solid var(--border);
-transition:.4s;
+transition:.5s;
 }
 
 .service:hover{
@@ -285,7 +294,12 @@ margin-bottom:25px;
 color:var(--red);
 }
 
-/* PROJECTS */
+.service p{
+margin-top:15px;
+line-height:1.8;
+color:var(--muted);
+}
+
 .projects{
 display:flex;
 flex-direction:column;
@@ -310,8 +324,122 @@ object-fit:cover;
 border-radius:25px;
 }
 
-/* CONTACT */
-.contact{text-align:center;}
+.project p{
+line-height:1.8;
+color:var(--muted);
+margin:20px 0;
+}
+
+.tech{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+margin-top:30px;
+}
+
+.tech div{
+padding:10px 18px;
+background:#111;
+border-radius:40px;
+border:1px solid var(--border);
+font-size:13px;
+}
+
+.chat-btn,
+.terminal-btn,
+.music-btn{
+position:fixed;
+z-index:9999;
+border:none;
+background:var(--red);
+color:white;
+font-weight:700;
+cursor:pointer;
+}
+
+.chat-btn{
+right:25px;
+bottom:25px;
+width:70px;
+height:70px;
+border-radius:50%;
+}
+
+.terminal-btn{
+left:25px;
+bottom:25px;
+padding:16px 24px;
+border-radius:40px;
+}
+
+.music-btn{
+left:25px;
+top:100px;
+padding:16px 24px;
+border-radius:40px;
+}
+
+.chat-box,
+.terminal{
+position:fixed;
+background:rgba(0,0,0,.8);
+backdrop-filter:blur(20px);
+border:1px solid var(--border);
+border-radius:30px;
+padding:25px;
+z-index:99999;
+display:none;
+}
+
+.chat-box{
+right:25px;
+bottom:110px;
+width:360px;
+height:500px;
+}
+
+.chat-box input{
+width:100%;
+margin-top:20px;
+padding:15px;
+background:#111;
+border:none;
+outline:none;
+color:white;
+border-radius:20px;
+}
+
+.terminal{
+left:25px;
+bottom:100px;
+width:500px;
+height:400px;
+color:#00ff66;
+font-family:monospace;
+line-height:2;
+overflow:auto;
+}
+
+.theme{
+position:fixed;
+right:25px;
+top:100px;
+display:flex;
+flex-direction:column;
+gap:12px;
+z-index:9999;
+}
+
+.theme div{
+width:22px;
+height:22px;
+border-radius:50%;
+cursor:pointer;
+}
+
+.contact{
+text-align:center;
+}
 
 .email{
 font-size:5vw;
@@ -322,11 +450,11 @@ margin:40px 0;
 display:inline-block;
 }
 
-/* SOCIAL */
 .socials{
 display:flex;
 justify-content:center;
 gap:20px;
+margin-top:30px;
 }
 
 .socials a{
@@ -338,7 +466,10 @@ justify-content:center;
 border-radius:50%;
 background:var(--card);
 border:1px solid var(--border);
-transition:.3s;
+text-decoration:none;
+color:white;
+font-size:22px;
+transition:.4s;
 }
 
 .socials a:hover{
@@ -346,223 +477,387 @@ background:var(--red);
 transform:translateY(-8px);
 }
 
-/* FLOATING UI (ADDED SYSTEMS, NOT REMOVED ANYTHING) */
-.chat-btn,.terminal-btn,.music-btn{
-position:fixed;
-z-index:9999;
-border:none;
-background:var(--red);
-color:white;
-font-weight:700;
-cursor:pointer;
+footer{
+padding:50px 7%;
+border-top:1px solid var(--border);
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:20px;
+color:#666;
 }
 
-.chat-btn{right:25px;bottom:25px;width:70px;height:70px;border-radius:50%;}
-.terminal-btn{left:25px;bottom:25px;padding:16px 24px;border-radius:40px;}
-.music-btn{left:25px;top:100px;padding:16px 24px;border-radius:40px;}
+@media(max-width:1000px){
 
-/* panels */
-.chat-box,.terminal{
-position:fixed;
-background:rgba(0,0,0,.8);
-backdrop-filter:blur(20px);
-border:1px solid var(--border);
-border-radius:30px;
-padding:25px;
-z-index:99999;
+.hero,
+.grid,
+.services,
+.project{
+grid-template-columns:1fr;
+}
+
+.hero h1{
+font-size:18vw;
+}
+
+.title{
+font-size:12vw;
+}
+
+.hero-img{
+width:100%;
+height:500px;
+}
+
+.email{
+font-size:10vw;
+word-break:break-all;
+}
+
+nav ul{
 display:none;
 }
 
-.chat-box{right:25px;bottom:110px;width:360px;height:500px;}
-
 .terminal{
-left:25px;bottom:100px;width:500px;height:400px;
-color:#00ff66;
-font-family:monospace;
-overflow:auto;
+width:90%;
+left:5%;
 }
 
-/* THEME SYSTEM IMPROVED */
-.theme{
-position:fixed;
-right:25px;
-top:120px;
-display:flex;
-flex-direction:column;
-gap:12px;
-z-index:9999;
+.chat-box{
+width:90%;
+right:5%;
 }
 
-.theme div{
-width:20px;
-height:20px;
-border-radius:50%;
-cursor:pointer;
 }
 
-/* RESPONSIVE */
-@media(max-width:900px){
-.hero{grid-template-columns:1fr;}
-.grid,.services,.project{grid-template-columns:1fr;}
-.hero h1{font-size:12vw;}
-}
+</style></head>
 
-</style>
-</head>
+<body><div class="loader">            
+<h1>RAJOUN</h1>            
+<p>INITIALIZING SYSTEM</p>            
+</div><div class="cursor"></div>            
+<div class="progress"></div>            
+<canvas id="particles"></canvas>            
+<canvas class="matrix"></canvas><button class="music-btn">MUSIC</button> <button class="terminal-btn">TERMINAL</button> <button class="chat-btn">AI</button>  <div class="chat-box">            
+<h2 style="color:var(--red);margin-bottom:20px;">AI ASSISTANT</h2>            
+<p>Hello! I'm Rajoun.<br><br>Ask about projects, skills, services or contact.</p>            
+<input placeholder="Ask something...">            
+</div><div class="terminal">            
+> help            
+<br>            
+about - about me            
+<br>            
+projects - view projects            
+<br>            
+skills - view skills            
+<br>            
+contact - contact section            
+<br>            
+clear - clear terminal            
+</div><div class="theme">            
+<div style="background:#ff1e1e" onclick="theme('#ff1e1e')"></div>            
+<div style="background:#00ffff" onclick="theme('#00ffff')"></div>            
+<div style="background:#00ff66" onclick="theme('#00ff66')"></div>            
+<div style="background:#8b5cf6" onclick="theme('#8b5cf6')"></div>            
+</div><nav>            
+<div class="logo">RAJOUN<span>.</span>RIJON</div>            
+<ul>            
+<li><a href="#home">HOME</a></li>            
+<li><a href="#about">ABOUT</a></li>   
+  <li><a href="#home">SKILL</a></li>
+<li><a href="#services">SERVICES</a></li>            
+<li><a href="#projects">PROJECTS</a></li>            
+<li><a href="#contact">CONTACT</a></li>            
+</ul>            
+</nav><section class="hero" id="home"><div>            
+<div class="hero-sub">AI POWERED FRONTEND ENGINEER</div><h1>            
+RAJOUN <br>            
+AHMED <br>            
+<span>RIJON</span>            
+</h1><p>            
+I create futuristic cinematic websites with AI systems, advanced motion design, 3D experiences, hologram interactions and premium frontend architecture.            
+</p><div class="buttons">            
+<a href="#projects" class="btn primary">VIEW PROJECTS</a>            
+<a href="#contact" class="btn outline">CONTACT ME</a>            
+</div><div class="tech">            
+<div>REACT</div>            
+<div>THREE.JS</div>            
+<div>GSAP</div>            
+<div>FRAMER</div>            
+<div>FIREBASE</div>            
+<div>SPLINE</div>            
+</div></div><div class="hero-img-wrap">            
+<div class="glow-circle"></div>            
+<div class="hero-img" id="tilt">            
+<img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop">            
+</div>            
+</div></section><section id="about">            
+<h1 class="title">ABOUT <span>ME</span></h1><div class="grid"><div class="card">            
+<h2>THE DIGITAL ARCHITECT</h2>            
+<p>            
+I focus on futuristic interface systems, cinematic motion design, immersive frontend experiences and AI-powered interaction systems.            
+</p>            
+</div><div class="card">            
+<h2>CORE PHILOSOPHY</h2>            
+<p>            
+Minimal structure. Maximum impact. Every pixel and animation is carefully crafted to feel premium and unforgettable.            
+</p>            
+</div></div>            
+</section><section id="services">            
+<h1 class="title">MY <span>SERVICES</span></h1><div class="services"><div class="service">            
+<i class="fa-solid fa-layer-group"></i>            
+<h2>Premium UI Design</h2>            
+<p>Modern cinematic interface systems with futuristic layouts.</p>            
+</div><div class="service">            
+<i class="fa-solid fa-code"></i>            
+<h2>Creative Development</h2>            
+<p>Advanced frontend engineering with smooth animations.</p>            
+</div><div class="service">            
+<i class="fa-solid fa-cube"></i>            
+<h2>3D Web Experience</h2>            
+<p>Immersive Three.js and WebGL premium experiences.</p>            
+</div></div>            
+</section><section id="projects">            
+<h1 class="title">FEATURED <span>PROJECTS</span></h1><div class="projects"><div class="project">            
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop"><div>            
+<h2 style="font-size:42px;">CYBER CORE</h2>            
+<p>            
+AI dashboard system with futuristic dark architecture, motion design and neural interface system.            
+</p>            
+<a href="#" class="btn primary">VIEW CASE STUDY</a>            
+</div>            
+</div><div class="project">            
+<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop"><div>            
+<h2 style="font-size:42px;">NEURAL UI</h2>            
+<p>            
+Glassmorphism based operating system concept with hologram interactions and futuristic animation systems.            
+</p>            
+<a href="#" class="btn primary">VIEW CASE STUDY</a>            
+</div>            
+</div></div>            
+</section><section class="contact" id="contact">            
+<h1 class="title">LET'S BUILD <span>THE FUTURE</span></h1><a href="mailto:rajounahmedrijon@gmail.com" class="email">            
+rajounahmedrijon@gmail.com            
+</a><div class="socials">            
+<a href="#"><i class="fab fa-github"></i></a>            
+<a href="#"><i class="fab fa-linkedin"></i></a>            
+<a href="#"><i class="fab fa-facebook"></i></a>            
+<a href="#"><i class="fab fa-instagram"></i></a>            
+</div></section><footer>            
+<div>© 2026 RAJOUN AHMED RIJON</div>            
+<div>DHAKA / BANGLADESH</div>            
+<div> CINEMATIC PORTFOLIO SYSTEM</div>            
+</footer><script>  setTimeout(()=>{  gsap.to('.loader',{        
+opacity:0,        
+duration:1,        
+onComplete:()=>{        
+document.querySelector('.loader').style.display='none'        
+}        
+})  },2000)  const progress=document.querySelector('.progress')  window.addEventListener('scroll',()=>{  const total=document.body.scrollHeight-window.innerHeight
+const current=(window.pageYOffset/total)*100
+progress.style.width=current+'%'
 
-<body>
+})
 
-<div class="loader">
-<h1>RAJOUN SYSTEM</h1>
-</div>
-
-<div class="cursor"></div>
-<div class="progress"></div>
-
-<canvas id="particles"></canvas>
-<canvas class="matrix"></canvas>
-
-<nav>
-<div class="logo">RAJOUN<span>.</span>AI</div>
-<ul>
-<li><a href="#home">HOME</a></li>
-<li><a href="#about">ABOUT</a></li>
-<li><a href="#services">SERVICES</a></li>
-<li><a href="#projects">PROJECTS</a></li>
-<li><a href="#contact">CONTACT</a></li>
-</ul>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="home">
-
-<div>
-<div class="hero-sub">AI CINEMATIC ENGINEER</div>
-
-<h1>RAJOUN<br><span>RIJON</span></h1>
-
-<p>Futuristic digital architect system with UI, motion & AI design.</p>
-
-<div class="buttons">
-<a class="btn primary">VIEW PROJECTS</a>
-<a class="btn outline">CONTACT</a>
-</div>
-</div>
-
-<div class="hero-img" id="tilt">
-<!-- IMAGE FIXED -->
-<img src="IMG_20250914_191146 (1).jpg">
-</div>
-
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-<h1 class="title">ABOUT <span>ME</span></h1>
-
-<div class="grid">
-<div class="card">Digital Architect System</div>
-<div class="card">Cinematic UI Designer</div>
-</div>
-</section>
-
-<!-- SERVICES -->
-<section id="services">
-<h1 class="title">SERVICES</h1>
-
-<div class="services">
-<div class="service"><i class="fa fa-code"></i>Web Dev</div>
-<div class="service"><i class="fa fa-cube"></i>3D UI</div>
-<div class="service"><i class="fa fa-layer-group"></i>UI Design</div>
-</div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-<h1 class="title">PROJECTS</h1>
-
-<div class="projects">
-<div class="project">
-<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3">
-<div>
-<h2>CYBER CORE</h2>
-<p>AI dashboard system</p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-<h1 class="title">CONTACT</h1>
-<a class="email">rajounahmedrijon@gmail.com</a>
-
-<div class="socials">
-<a><i class="fab fa-github"></i></a>
-<a><i class="fab fa-facebook"></i></a>
-<a><i class="fab fa-instagram"></i></a>
-</div>
-</section>
-
-<footer style="text-align:center;padding:40px;color:#666;">
-© 2026 RAJOUN AI SYSTEM
-</footer>
-
-<script>
-
-/* loader */
-setTimeout(()=>document.querySelector('.loader').style.display='none',2000)
-
-/* cursor */
 const cursor=document.querySelector('.cursor')
+
 window.addEventListener('mousemove',e=>{
+
 cursor.style.left=e.clientX+'px'
 cursor.style.top=e.clientY+'px'
+
 })
 
-/* progress */
-window.addEventListener('scroll',()=>{
-let h=document.body.scrollHeight-window.innerHeight
-document.querySelector('.progress').style.width=(window.scrollY/h)*100+'%'
-})
+const tilt=document.getElementById('tilt')
 
-/* FIXED TILT */
-const img=document.querySelector('.hero-img')
 window.addEventListener('mousemove',e=>{
-let x=(window.innerWidth/2-e.clientX)/35
-let y=(window.innerHeight/2-e.clientY)/35
-img.style.transform=`rotateY(${x}deg) rotateX(${-y}deg)`
+
+const x=(window.innerWidth/2-e.pageX)/35
+const y=(window.innerHeight/2-e.pageY)/35
+
+tilt.style.transform=rotateY(${x}deg) rotateX(${-y}deg)
+
 })
 
-/* particles */
-const c=document.getElementById('particles')
-const ctx=c.getContext('2d')
-c.width=window.innerWidth
-c.height=window.innerHeight
+const scene=new THREE.Scene()
 
-let chars="RAJOUNAI1010"
-let size=14
-let cols=c.width/size
-let drops=Array(cols).fill(1)
+const camera=new THREE.PerspectiveCamera(
+75,
+window.innerWidth/window.innerHeight,
+0.1,
+1000
+)
+
+const renderer=new THREE.WebGLRenderer({
+canvas:document.getElementById('particles'),
+alpha:true
+})
+
+renderer.setSize(window.innerWidth,window.innerHeight)
+
+const geometry=new THREE.BufferGeometry()
+const vertices=[]
+
+for(let i=0;i<6000;i++){
+
+vertices.push(
+THREE.MathUtils.randFloatSpread(2000),
+THREE.MathUtils.randFloatSpread(2000),
+THREE.MathUtils.randFloatSpread(2000)
+)
+
+}
+
+geometry.setAttribute(
+'position',
+new THREE.Float32BufferAttribute(vertices,3)
+)
+
+const material=new THREE.PointsMaterial({
+color:0xff1e1e,
+size:1.5
+})
+
+const particles=new THREE.Points(geometry,material)
+scene.add(particles)
+
+camera.position.z=500
+
+function animate(){
+requestAnimationFrame(animate)
+particles.rotation.y+=0.0005
+particles.rotation.x+=0.0002
+renderer.render(scene,camera)
+}
+
+animate()
+
+window.addEventListener('resize',()=>{
+
+camera.aspect=window.innerWidth/window.innerHeight
+camera.updateProjectionMatrix()
+renderer.setSize(window.innerWidth,window.innerHeight)
+
+})
+
+const matrix=document.querySelector('.matrix')
+const ctx=matrix.getContext('2d')
+
+matrix.width=window.innerWidth
+matrix.height=window.innerHeight
+
+const letters='RAJOUNAI1010101'
+const size=14
+const cols=matrix.width/size
+const drops=[]
+
+for(let x=0;x<cols;x++){
+drops[x]=1
+}
 
 function draw(){
-ctx.fillStyle="rgba(0,0,0,0.05)"
-ctx.fillRect(0,0,c.width,c.height)
 
-ctx.fillStyle="red"
-ctx.font=size+"px monospace"
+ctx.fillStyle='rgba(0,0,0,.05)'
+ctx.fillRect(0,0,matrix.width,matrix.height)
+
+ctx.fillStyle='red'
+ctx.font=size+'px monospace'
 
 for(let i=0;i<drops.length;i++){
-let t=chars[Math.floor(Math.random()*chars.length)]
-ctx.fillText(t,i*size,drops[i]*size)
 
-if(drops[i]*size>c.height && Math.random()>0.975) drops[i]=0
+const text=letters[Math.floor(Math.random()*letters.length)]
+
+ctx.fillText(text,i*size,drops[i]*size)
+
+if(drops[i]*size>matrix.height && Math.random()>0.975){
+drops[i]=0
+}
+
 drops[i]++
+
 }
+
 }
+
 setInterval(draw,35)
 
-</script>
+const chatBtn=document.querySelector('.chat-btn')
+const chatBox=document.querySelector('.chat-box')
 
-</body>
-  </html>
+chatBtn.onclick=()=>{
+chatBox.style.display=
+chatBox.style.display==='block' ? 'none' : 'block'
+}
+
+const terminalBtn=document.querySelector('.terminal-btn')
+const terminal=document.querySelector('.terminal')
+
+terminalBtn.onclick=()=>{
+terminal.style.display=
+terminal.style.display==='block' ? 'none' : 'block'
+}
+
+function theme(color){
+document.documentElement.style.setProperty('--red',color)
+}
+
+const SpeechRecognition=
+window.SpeechRecognition || window.webkitSpeechRecognition
+
+if(SpeechRecognition){
+
+const recognition=new SpeechRecognition()
+recognition.continuous=true
+
+recognition.onresult=(e)=>{
+
+const text=e.results[e.results.length-1][0].transcript.toLowerCase()
+
+if(text.includes('projects')){
+window.location='#projects'
+}
+
+if(text.includes('contact')){
+window.location='#contact'
+}
+
+if(text.includes('about')){
+window.location='#about'
+}
+
+}
+
+recognition.start()
+
+}
+
+gsap.from('.hero-sub',{
+y:50,
+opacity:0,
+duration:1
+})
+
+gsap.from('.hero h1',{
+y:80,
+opacity:0,
+duration:1.2,
+delay:.2
+})
+
+gsap.from('.hero p',{
+y:50,
+opacity:0,
+duration:1,
+delay:.5
+})
+
+gsap.from('.buttons',{
+y:50,
+opacity:0,
+duration:1,
+delay:.8
+})
+
+</script></body>
+
+</html> 
