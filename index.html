@@ -272,6 +272,57 @@ border-top:1px solid #111;
 opacity:0;
 transform:translateY(25px);
 }
+    /* Hacker Terminal Styling */
+.terminal-window {
+    background: rgba(10, 10, 10, 0.9);
+    border: 1px solid #ff1e1e;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(255, 30, 30, 0.15);
+    overflow: hidden;
+    font-family: 'Courier New', Courier, monospace;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.terminal-header {
+    background: #1a1a1a;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.dots { display: flex; gap: 8px; margin-right: 20px; }
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+.terminal-title { color: #888; font-size: 12px; flex-grow: 1; text-align: center; }
+
+.terminal-body {
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ddd;
+}
+
+.prompt { color: #ff1e1e; font-weight: bold; margin-right: 10px; }
+.command { color: #fff; }
+.response { color: #888; margin-bottom: 15px; padding-left: 15px; }
+
+.cursor {
+    display: inline-block;
+    width: 10px;
+    height: 18px;
+    background: #ff1e1e;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
 
 </style>
 </head>
