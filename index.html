@@ -13,7 +13,45 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+/* কাস্টম কার্সার ডিজাইন */
+#cursor {
+    width: 20px; height: 20px; border: 2px solid #ff4d4d;
+    border-radius: 50%; position: fixed; pointer-events: none;
+    z-index: 9999; transition: transform 0.1s ease;
+}
 
+/* ডার্ক মোড ভেরিয়েবল */
+:root { --bg: #ffffff; --text: #333; }
+.dark-mode { --bg: #121212; --text: #ffffff; }
+body { background-color: var(--bg); color: var(--text); transition: 0.5s; }
+
+/* ডার্ক মোড বাটন */
+#theme-toggle {
+    position: fixed; top: 20px; right: 20px; z-index: 1000;
+    padding: 10px; border-radius: 50%; cursor: pointer; border: none;
+}
+
+/* ব্যাক-টু-টপ বাটন */
+#backToTop {
+    display: none; position: fixed; bottom: 30px; right: 30px;
+    background: #ff4d4d; color: white; border: none;
+    padding: 15px; border-radius: 5px; cursor: pointer;
+}
+
+/* টাইপিং টেক্সট স্টাইল */
+#typing-text { color: #ff4d4d; font-weight: bold; border-right: 2px solid; }
+
+/* স্কিল বার অ্যানিমেশন */
+.skill-bar { width: 100%; background: #ddd; border-radius: 10px; margin-bottom: 10px; }
+.skill-fill { background: #ff4d4d; color: white; padding: 5px; border-radius: 10px; text-align: center; font-size: 12px; }
+
+/* গ্লাস-মরফিজম ইফেক্ট (যে কোনো কার্ডে ব্যবহার করুন) */
+.glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px; padding: 20px;
+}
 <style>
   /* Digital & Architecture Vibe Styles */
 :root {
@@ -838,9 +876,33 @@ I create futuristic premium websites with cinematic animations, immersive UI sys
 <div>UI/UX</div>
 <div>FRAMER</div>
 </div>
+  <div id="cursor"></div>
 
+<button id="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+<div style="text-align:center; padding: 20px;">
+    <h2 id="greeting"></h2>
+    <p>I am a <span id="typing-text"></span></p>
 </div>
 
+<button id="backToTop" onclick="scrollToTop()">↑</button>
+
+<div class="skills-section">
+    <h3>My Skills</h3>
+    <div class="skill-container">
+        <p>HTML/CSS</p>
+        <div class="skill-bar"><div class="skill-fill" style="width:95%">95%</div></div>
+    </div>
+    <div class="skill-container">
+        <p>JavaScript</p>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%">85%</div></div>
+    </div>
+</div>
+
+<div style="position:fixed; bottom:10px; left:10px; font-size:12px; color:gray;">
+    Visitors: <span id="count">1,240</span>
+</div> 
+  
 <div class="hero-img-wrap">
 
 <div class="float-card float1">
@@ -1350,6 +1412,69 @@ function raf(time){
 requestAnimationFrame(raf)
 
 </script>
+  // ১. কাস্টম কার্সার মুভমেন্ট
+document.addEventListener('mousemove', e => {
+    const cursor = document.getElementById('cursor');
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+
+// ২. ডার্ক মোড ফাংশন
+function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+}
+
+// ৩. ডাইনামিক গ্রেটিং (সকাল/বিকাল অনুযায়ী)
+const hour = new Date().getHours();
+let greeting = hour < 12 ? "Good Morning!" : hour < 18 ? "Good Afternoon!" : "Good Evening!";
+document.getElementById('greeting').innerText = greeting;
+
+// ৪. টাইপিং অ্যানিমেশন (৫০টি ফিচারের একটি)
+const words = ["Web Developer", "Programmer", "Tech Lover", "Engineering Student"];
+let wordIndex = 0; let charIndex = 0;
+function typeEffect() {
+    if (charIndex < words[wordIndex].length) {
+        document.getElementById("typing-text").innerHTML += words[wordIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(typeEffect, 150);
+    } else {
+        setTimeout(eraseEffect, 2000);
+    }
+}
+function eraseEffect() {
+    if (charIndex > 0) {
+        let str = words[wordIndex].substring(0, charIndex - 1);
+        document.getElementById("typing-text").innerHTML = str;
+        charIndex--;
+        setTimeout(eraseEffect, 100);
+    } else {
+        wordIndex = (wordIndex + 1) % words.length;
+        setTimeout(typeEffect, 500);
+    }
+}
+typeEffect();
+
+// ৫. ব্যাক-টু-টপ লজিক
+window.onscroll = function() {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        document.getElementById("backToTop").style.display = "block";
+    } else {
+        document.getElementById("backToTop").style.display = "none";
+    }
+};
+function scrollToTop() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// ৬. ট্যাব টাইটেল চেইঞ্জার (ট্যাব পাল্টলে মেসেজ দেখাবে)
+window.onblur = () => document.title = "Hey! Come back ";
+window.onfocus = () => document.title = "Rajoun Ahmed | Portfolio";
+
+// ৭. রাইট ক্লিক ডিজেবল (প্রোটেকশন)
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+// ৮. কপিরাইট বছর অটো-আপডেট
+// document.getElementById('year').innerText = new Date().getFullYear();
   <script>
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
