@@ -15,6 +15,62 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <style>
+  /* Digital & Architecture Vibe Styles */
+:root {
+    --digital-blue: #00f2ff;
+    --dark-bg: #0a0b10;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Glassmorphism Card for Projects and Skills */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    transition: 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card:hover {
+    border-color: var(--digital-blue);
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+/* Architecture Line Effect */
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px; height: 100%;
+    background: var(--digital-blue);
+}
+
+/* Modern Skill Bar */
+.skill-logic-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.logic-badge {
+    background: #1a1b23;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    border-left: 3px solid var(--digital-blue);
+    margin-bottom: 10px;
+}
 
 :root{
 --bg:#050505;
@@ -716,7 +772,38 @@ Minimal structure. Maximum impact. Every pixel, every animation and every intera
 </div>
 
 </div>
+  
+<!-- New Digital Logic & Skills Section -->
+<section id="digital-presence" class="container mt-5">
+    <h2 class="text-center mb-4" style="color: var(--digital-blue);">Architecture & Logics</h2>
+    
+    <div class="row">
+        <!-- Logic Section -->
+        <div class="col-md-6 mb-4">
+            <div class="glass-card">
+                <h4><i class="fas fa-brain"></i> Programming Logics</h4>
+                <div class="logic-badge">Object Oriented Programming (OOP)</div>
+                <div class="logic-badge">Data Structures & Algorithms</div>
+                <div class="logic-badge">Clean Code Architecture</div>
+                <div class="logic-badge">Problem Solving Mindset</div>
+            </div>
+        </div>
 
+        <!-- Tech Stack / Skills Section -->
+        <div class="col-md-6 mb-4">
+            <div class="glass-card">
+                <h4><i class="fas fa-microchip"></i> Digital Tech Stack</h4>
+                <div class="d-flex flex-wrap gap-2">
+                    <span class="badge bg-info p-2">HTML5 / CSS3</span>
+                    <span class="badge bg-info p-2">JavaScript (ES6+)</span>
+                    <span class="badge bg-info p-2">Responsive Design</span>
+                    <span class="badge bg-info p-2">Git & GitHub</span>
+                    <span class="badge bg-info p-2">Web Optimization</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <div class="skills">
 
 <div class="skill-box reveal">
@@ -863,7 +950,7 @@ rajounahmedrijon@gmail.com
 
 <footer>
 <div>© 2026 RAJOUN AHMED RIJON</div>
-<div>MYMENSINGH / BANGLADESH</div>
+<div>DHAKA / BANGLADESH</div>
 <div>ELITE PORTFOLIO SYSTEM V6.0</div>
 </footer>
 
