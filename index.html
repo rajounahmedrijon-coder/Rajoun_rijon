@@ -3,332 +3,342 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAJ_RIJON | Neural Architect Zenith Build v12.0</title>
+    <title>Rajoun Ahmed Rijon | Zenith Sovereign Elite v15.0</title>
     
-    <!-- Enterprise Grade Frameworks -->
+    <!-- God-Tier Frameworks -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Syncopate:wght@400;700&family=Michroma&family=Bebas+Neue&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Observer.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Syncopate:wght@400;700&family=Outfit:wght@100;400;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary: #ff0000;
-            --primary-glow: rgba(255, 0, 0, 0.4);
+            --primary: #ff1e1e;
+            --primary-rgb: 255, 30, 30;
             --bg: #000000;
-            --surface: #0a0a0a;
+            --surface: #070707;
+            --border: rgba(255, 30, 30, 0.15);
+            --text: #ffffff;
             --font-mono: 'JetBrains Mono', monospace;
         }
 
-        /* Essential System Reset */
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; outline: none; }
-        body { background: var(--bg); color: #fff; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
+        body { background: var(--bg); color: var(--text); font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-        /* The Custom Cursor Engine (Triple Layer) */
-        #c-dot { position: fixed; width: 6px; height: 6px; background: #fff; border-radius: 50%; z-index: 10000000; pointer-events: none; }
-        #c-ring { position: fixed; width: 40px; height: 40px; border: 1px solid var(--primary); border-radius: 50%; z-index: 10000000; pointer-events: none; }
-        #c-glow { position: fixed; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,0,0,0.08) 0%, transparent 70%); z-index: 9999999; pointer-events: none; transform: translate(-50%, -50%); }
+        /* Smooth Custom Scrollbar */
+        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); box-shadow: 0 0 15px var(--primary); }
 
-        /* Huge Loader System */
-        #heavy-loader { position: fixed; inset: 0; background: #000; z-index: 999999999; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .loader-h1 { font-family: 'Syncopate'; font-size: 3vw; letter-spacing: 20px; color: var(--primary); margin-bottom: 20px; }
-        .loading-data { width: 500px; font-family: var(--font-mono); font-size: 10px; color: #333; height: 100px; overflow: hidden; }
-        .progress-mega { width: 500px; height: 2px; background: #111; position: relative; margin-top: 20px; }
-        .progress-fill { position: absolute; width: 0; height: 100%; background: var(--primary); box-shadow: 0 0 15px var(--primary); }
+        /* Global Cursor Core */
+        #cursor-main { position: fixed; width: 40px; height: 40px; border: 1px solid var(--primary); border-radius: 50%; pointer-events: none; z-index: 999999; transition: transform 0.15s cubic-bezier(0.17, 0.67, 0.83, 0.67); mix-blend-mode: exclusion; }
+        #cursor-dot { position: fixed; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; pointer-events: none; z-index: 999999; box-shadow: 0 0 20px var(--primary); }
 
-        /* Header Engine - Based on SS Screenshot_20260503_163226_3.jpg */
-        header { position: fixed; top: 0; width: 100%; padding: 45px 6%; display: flex; justify-content: space-between; align-items: center; z-index: 100000; mix-blend-mode: difference; }
-        .logo-block { display: flex; align-items: center; gap: 15px; }
-        .circle-fx { width: 42px; height: 42px; border: 1px solid var(--primary); border-radius: 50%; position: relative; }
-        .circle-fx::before { content: ''; position: absolute; top: -4px; left: -4px; width: 8px; height: 8px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 10px var(--primary); }
-        .nav-logo { font-family: 'Syncopate'; font-size: 26px; font-weight: 700; letter-spacing: 12px; color: #fff; text-decoration: none; }
-        .nav-logo span { color: var(--primary); }
+        /* Matrix Overlay */
+        #canvas-webgl { position: fixed; top: 0; left: 0; z-index: -1; }
+        .scanlines { position: fixed; inset: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)); background-size: 100% 2px, 3px 100%; pointer-events: none; z-index: 9999; opacity: 0.1; }
 
-        /* Floating Sidebar Terminal */
-        .terminal-side { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); width: 200px; font-family: var(--font-mono); font-size: 9px; color: var(--primary); pointer-events: none; z-index: 100; opacity: 0.5; }
+        /* Professional Nav */
+        nav { position: fixed; top: 0; width: 100%; padding: 30px 8%; display: flex; justify-content: space-between; align-items: center; z-index: 10000; background: rgba(0,0,0,0.8); backdrop-filter: blur(30px); border-bottom: 1px solid var(--border); }
+        .logo { font-family: 'Syncopate', sans-serif; font-size: 24px; font-weight: 700; letter-spacing: 6px; text-decoration: none; color: #fff; }
+        .logo span { color: var(--primary); animation: glow 2s infinite alternate; }
+        @keyframes glow { from { text-shadow: 0 0 5px var(--primary); } to { text-shadow: 0 0 20px var(--primary); } }
+        nav ul { display: flex; gap: 50px; list-style: none; }
+        nav a { text-decoration: none; color: #888; font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; transition: 0.4s; }
+        nav a:hover { color: var(--primary); }
 
-        /* The Hero Engine v12 */
-        .hero { height: 160vh; padding: 0 8%; display: flex; align-items: center; position: relative; }
-        .hero-title-wrap { z-index: 10; }
-        .hero-big { font-family: 'Bebas Neue'; font-size: 20vw; line-height: 0.8; letter-spacing: -10px; }
-        .hero-big span { -webkit-text-stroke: 1px var(--primary); -webkit-text-fill-color: transparent; }
-        .hero-sub { font-family: 'Michroma'; font-size: 10px; letter-spacing: 10px; color: #444; margin-top: 40px; text-transform: uppercase; }
+        /* Hero v15 Extreme */
+        .hero { min-height: 140vh; display: flex; align-items: center; padding: 0 8%; position: relative; }
+        .hero-content { flex: 1.5; z-index: 10; }
+        .hero-tag { display: inline-block; padding: 8px 15px; border: 1px solid var(--primary); color: var(--primary); font-family: var(--font-mono); font-size: 10px; margin-bottom: 30px; letter-spacing: 4px; border-radius: 4px; }
+        .hero-title { font-family: 'Outfit', sans-serif; font-size: 9vw; line-height: 0.8; font-weight: 900; }
+        .hero-title span { -webkit-text-stroke: 1px var(--primary); -webkit-text-fill-color: transparent; }
+        
+        .hero-img-box { flex: 1; position: relative; perspective: 1000px; }
+        .floating-frame { width: 100%; height: 600px; border: 1px solid var(--border); border-radius: 30px; overflow: hidden; transform: rotateY(-15deg) rotateX(5deg); transition: 0.5s; box-shadow: 0 50px 100px rgba(0,0,0,0.5); }
+        .floating-frame img { width: 100%; height: 100%; object-fit: cover; }
+        .floating-frame:hover { transform: rotateY(0) rotateX(0); border-color: var(--primary); }
 
-        /* Matrix Grid Expertise */
-        .matrix-section { padding: 150px 8%; display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; }
-        .card-expert { grid-column: span 2; height: 350px; background: var(--surface); border: 1px solid rgba(255,0,0,0.1); padding: 40px; position: relative; overflow: hidden; transition: 0.6s; }
-        .card-expert:hover { border-color: var(--primary); transform: translateY(-15px); }
-        .card-expert i { font-size: 35px; color: var(--primary); margin-bottom: 25px; }
-        .card-expert h3 { font-family: 'Syncopate'; font-size: 12px; margin-bottom: 15px; }
-        .card-expert p { font-size: 13px; color: #666; line-height: 1.6; }
-        .wide { grid-column: span 3; }
-        .full { grid-column: span 6; display: flex; align-items: center; gap: 50px; height: auto; }
+        /* Massive Technical Grid (20+ Experts) */
+        .grid-master { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 100px 8%; }
+        .grid-item { background: var(--surface); border: 1px solid var(--border); padding: 45px; border-radius: 30px; position: relative; transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1); overflow: hidden; }
+        .grid-item:hover { transform: scale(1.02) translateY(-10px); border-color: var(--primary); background: #0c0000; }
+        .grid-item i { font-size: 40px; color: var(--primary); margin-bottom: 25px; }
+        .grid-item h3 { font-family: 'Syncopate'; font-size: 12px; margin-bottom: 15px; letter-spacing: 2px; }
+        .grid-item p { color: #666; font-size: 14px; line-height: 1.6; }
+        .span-2 { grid-column: span 2; }
+        .expert-num { position: absolute; top: 20px; right: 30px; font-family: var(--font-mono); color: #1a1a1a; font-size: 50px; z-index: -1; }
 
-        /* Mega Horizontal Scroll Project Gallery */
-        .horizontal-wrap { height: 100vh; background: #000; overflow: hidden; }
-        .horizontal-inner { display: flex; height: 100vh; width: 800vw; will-change: transform; }
-        .panel { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; align-items: center; padding: 0 8%; gap: 100px; }
-        .panel-img { flex: 1.5; height: 70%; border-radius: 40px; overflow: hidden; border: 1px solid var(--primary-glow); position: relative; }
-        .panel-img img { width: 100%; height: 100%; object-fit: cover; transition: 2s cubic-bezier(0.16, 1, 0.3, 1); }
-        .panel-img:hover img { transform: scale(1.1); filter: contrast(1.2); }
-        .panel-txt h2 { font-family: 'Bebas Neue'; font-size: 12vw; line-height: 0.9; }
+        /* Project Cinema */
+        .cinema { padding: 150px 8%; }
+        .pj-wrap { display: flex; flex-direction: column; gap: 200px; }
+        .pj-row { display: flex; align-items: center; gap: 100px; }
+        .pj-row:nth-child(even) { flex-direction: row-reverse; }
+        .pj-preview { flex: 1.5; height: 600px; border-radius: 40px; overflow: hidden; position: relative; border: 1px solid var(--border); }
+        .pj-preview img { width: 100%; height: 100%; object-fit: cover; transition: 2s cubic-bezier(0.16, 1, 0.3, 1); filter: grayscale(1); }
+        .pj-row:hover .pj-preview img { filter: grayscale(0); transform: scale(1.05); }
+        .pj-meta { flex: 1; }
+        .pj-meta h2 { font-size: 6vw; font-family: 'Outfit'; line-height: 1; margin-bottom: 30px; }
+        .pj-meta p { font-size: 18px; color: #555; margin-bottom: 40px; max-width: 400px; }
 
-        /* The Heartbeat v3 (Ultimate) */
-        .contact-core { height: 120vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: radial-gradient(circle, #1a0000 0%, #000 80%); }
-        .gmail-mega { font-family: 'Syncopate'; font-size: 6vw; font-weight: 700; color: var(--primary); text-decoration: none; position: relative; animation: heartbeat-v12 1.5s infinite alternate ease-in-out; }
-        @keyframes heartbeat-v12 {
-            0% { transform: scale(1); filter: drop-shadow(0 0 20px var(--primary)); }
-            100% { transform: scale(1.08); filter: drop-shadow(0 0 80px var(--primary)); }
-        }
+        /* Terminal Component */
+        .terminal { background: #050505; border: 1px solid #1a1a1a; padding: 40px; border-radius: 20px; font-family: var(--font-mono); font-size: 13px; color: #333; position: relative; overflow: hidden; }
+        .terminal-header { display: flex; gap: 8px; margin-bottom: 20px; }
+        .dot-t { width: 10px; height: 10px; border-radius: 50%; }
 
-        /* Tech Background Layer */
-        #bg-canvas { position: fixed; inset: 0; z-index: -1; }
-        .vignette { position: fixed; inset: 0; background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.9) 100%); pointer-events: none; z-index: 1; }
+        /* Red Fusion Contact */
+        .fusion-contact { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: radial-gradient(circle at center, #1a0000 0%, #000 70%); }
+        .email-fusion { font-family: 'Syncopate'; font-size: 6vw; color: var(--primary); text-decoration: none; position: relative; z-index: 10; animation: fusion-glow 1.5s infinite alternate; }
+        @keyframes fusion-glow { from { text-shadow: 0 0 20px var(--primary-glow); transform: scale(1); } to { text-shadow: 0 0 60px var(--primary); transform: scale(1.05); } }
 
-        footer { padding: 60px 8%; border-top: 1px solid rgba(255,0,0,0.1); display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 9px; color: #333; }
+        .btn-elite { padding: 25px 60px; border: 1px solid var(--primary); color: #fff; text-decoration: none; font-size: 12px; font-weight: 700; letter-spacing: 5px; border-radius: 100px; transition: 0.5s; position: relative; overflow: hidden; }
+        .btn-elite::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--primary); transition: 0.5s; z-index: -1; }
+        .btn-elite:hover::before { left: 0; }
+        .btn-elite:hover { color: #000; box-shadow: 0 0 50px var(--primary-glow); }
+
+        footer { padding: 80px 8%; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-family: var(--font-mono); color: #444; }
+        
+        .reveal { opacity: 0; transform: translateY(80px); transition: 1.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
-<body data-scroll-container>
+<body>
 
-    <!-- Multi-Layer Cursor -->
-    <div id="c-dot"></div>
-    <div id="c-ring"></div>
-    <div id="c-glow"></div>
+    <div class="scanlines"></div>
+    <div id="cursor-main"></div>
+    <div id="cursor-dot"></div>
+    <canvas id="canvas-webgl"></canvas>
 
-    <!-- Huge System Loader -->
-    <div id="heavy-loader">
-        <div class="loader-h1">RAJ_RIJON</div>
-        <div class="loading-data" id="log-console"></div>
-        <div class="progress-mega"><div class="progress-fill"></div></div>
-    </div>
-
-    <!-- Tech HUD -->
-    <div class="terminal-side" id="tech-hud">
-        SYSTEM: ONLINE<br>
-        LOCATION: 24.7471° N<br>
-        SECURITY: AES_256<br>
-        CORE: ZENITH_V12<br>
-        STABILITY: 100%
-    </div>
-
-    <div class="vignette"></div>
-    <canvas id="bg-canvas"></canvas>
-
-    <header>
-        <div class="logo-block">
-            <div class="circle-fx"></div>
-            <!-- Fixed Brand Name -->
-            <a href="#" class="nav-logo">RAJ<span>_</span>RIJON</a>
-        </div>
-        <div style="display: flex; gap: 40px; font-family: var(--font-mono); font-size: 10px;">
-            <a href="#projects" style="color: #fff; text-decoration: none;">[ ARCHIVES ]</a>
-            <a href="#expertise" style="color: #fff; text-decoration: none;">[ EXPERTISE ]</a>
-            <a href="#contact" style="color: var(--primary); text-decoration: none;">[ CONTACT ]</a>
-        </div>
-    </header>
+    <nav>
+        <a href="#" class="logo">RAJ<span>_</span>RIJON</a>
+        <ul>
+            <li><a href="#hero">System</a></li>
+            <li><a href="#experts">Logic</a></li>
+            <li><a href="#archives">Archives</a></li>
+            <li><a href="#contact">Terminal</a></li>
+        </ul>
+        <a href="mailto:rajounahmedrijon@gmail.com" class="btn-elite" style="padding: 15px 30px;">LINK_INIT</a>
+    </nav>
 
     <main>
-        <!-- HERO V12 -->
-        <section class="hero" data-scroll-section>
-            <div class="hero-title-wrap" data-scroll data-scroll-speed="-4">
-                <p style="font-family: var(--font-mono); color: var(--primary); font-size: 10px; margin-bottom: 20px;">[ INITIALIZING CREATIVE DRIVE ]</p>
-                <h1 class="hero-big">RAJOUN_<br><span>RIJON</span></h1>
-                <div class="hero-sub">Creative Engineer & System Architect</div>
+        <!-- HERO SECTION EXTREME -->
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <span class="hero-tag" data-scroll data-scroll-speed="2">[ SYSTEM_TYPE: SOVEREIGN_V15 ]</span>
+                <h1 class="hero-title">Rajoun<br>Ahmed<br><span>Rijon</span></h1>
+                <p style="font-size: 20px; color: #666; margin: 40px 0; max-width: 600px; line-height: 1.8;">
+                    Architecting the future of digital interaction. Specialized in high-stakes creative development where mathematics meets aesthetic dominance.
+                </p>
+                <div style="display: flex; gap: 30px; align-items: center;">
+                    <a href="#archives" class="btn-elite">VIEW_DECOY_SYSTEMS</a>
+                    <div style="font-family: var(--font-mono); font-size: 12px; color: var(--primary);">
+                        STATUS: ONLINE <br> LATENCY: 0.02ms
+                    </div>
+                </div>
+            </div>
+            <div class="hero-img-box">
+                <div class="floating-frame">
+                    <!-- Your Image File -->
+                    <img src="IMG_20250914_191146 (1).jpg" alt="Rijon Profile">
+                </div>
             </div>
         </section>
 
-        <!-- EXPERTISE GRID (THE HUGE MODULE) -->
-        <section class="matrix-section" id="expertise" data-scroll-section>
-            <div class="card-expert wide">
-                <i class="fas fa-code-branch"></i>
-                <h3>SYSTEMS_ARCHITECT</h3>
-                <p>Designing decentralized server structures and high-load backend pipelines with Node.js and Rust environments.</p>
+        <!-- DATA TERMINAL MARQUEE -->
+        <div style="background: var(--surface); padding: 30px 0; border-y: 1px solid var(--border); overflow: hidden; white-space: nowrap;">
+            <div style="display: inline-block; animation: marquee 30s linear infinite;">
+                <span style="font-family: var(--font-mono); font-size: 40px; color: #111; letter-spacing: 20px;"> 
+                    REACT GSAP THREE.JS WEBGL NEXT.JS FIGMA TAILWIND REDUX REACT GSAP THREE.JS WEBGL NEXT.JS FIGMA TAILWIND REDUX
+                </span>
             </div>
-            <div class="card-expert">
+        </div>
+
+        <!-- 20+ EXPERT MODULES -->
+        <section id="experts" class="grid-master">
+            <div class="span-2" style="padding-right: 50px;">
+                <h2 style="font-family: 'Syncopate'; font-size: 4vw; line-height: 1; margin-bottom: 40px;" class="reveal">MISSION_<span>CAPABILITIES</span></h2>
+                <p style="color: #444; font-size: 18px;">Executing high-end digital deployments through a multi-threaded expertise stack. Every module is optimized for peak performance.</p>
+            </div>
+            
+            <div class="grid-item reveal">
+                <div class="expert-num">01</div>
+                <i class="fas fa-microchip"></i>
+                <h3>Core Architecture</h3>
+                <p>Developing scalable React/Next.js systems with modular efficiency.</p>
+            </div>
+            <div class="grid-item reveal">
+                <div class="expert-num">02</div>
                 <i class="fas fa-bezier-curve"></i>
-                <h3>MOTION_MATH</h3>
-                <p>Developing physics-based UI interactions using mathematical Euler integration.</p>
+                <h3>Physics UI</h3>
+                <p>Implementing mathematical motion curves for organic interactions.</p>
             </div>
-            <div class="card-expert">
+            <div class="grid-item reveal">
+                <div class="expert-num">03</div>
                 <i class="fas fa-cube"></i>
-                <h3>WEBGL_3D</h3>
-                <p>Crafting immersive browser simulations with custom GLSL shaders and Three.js.</p>
+                <h3>3D Shaders</h3>
+                <p>Custom GLSL fragment shaders for immersive browser visuals.</p>
             </div>
-            <div class="card-expert full">
-                <div style="flex: 1;"><i class="fas fa-shield-alt" style="font-size: 80px;"></i></div>
-                <div style="flex: 4;">
-                    <h3 style="font-size: 24px;">CYBER_SECURITY_EXPERT</h3>
-                    <p>Implementing military-grade encryption protocols and secure-tunnel communication layers for enterprise-level web applications. My systems are built for 99.9% uptime and zero-vulnerability deployment.</p>
-                </div>
-            </div>
-            <div class="card-expert">
-                <i class="fab fa-react"></i>
-                <h3>REACT_MASTERY</h3>
-                <p>Building complex state-driven SPAs with redundant rendering logic.</p>
-            </div>
-            <div class="card-expert">
-                <i class="fas fa-database"></i>
-                <h3>DATABASE_OPS</h3>
-                <p>Optimizing SQL/NoSQL clusters for micro-second query responses.</p>
-            </div>
-            <div class="card-expert wide">
+            <div class="grid-item reveal">
+                <div class="expert-num">04</div>
                 <i class="fas fa-terminal"></i>
-                <h3>LINUX_OPS</h3>
-                <p>Mastering Debian/CentOS kernel management and automated CI/CD pipeline deployment.</p>
+                <h3>Backend Logic</h3>
+                <p>Secure Node.js deployment with real-time data streaming.</p>
+            </div>
+            <div class="grid-item span-2 reveal">
+                <div class="expert-num">05</div>
+                <i class="fas fa-eye"></i>
+                <h3>Visual Dominance</h3>
+                <p>UI/UX design systems that prioritize psychological impact and brand authority in the competitive digital space.</p>
+            </div>
+            <div class="grid-item reveal">
+                <div class="expert-num">06</div>
+                <i class="fas fa-bolt"></i>
+                <h3>Byte-Optimization</h3>
+                <p>Achieving 100/100 Lighthouse performance scores consistently.</p>
+            </div>
+            <div class="grid-item reveal">
+                <div class="expert-num">07</div>
+                <i class="fas fa-shield-alt"></i>
+                <h3>Identity Security</h3>
+                <p>Deploying AES-256 equivalent UI security patterns.</p>
+            </div>
+            <!-- Additional Modules... (Code continues to expand) -->
+            <div class="grid-item reveal">
+                <div class="expert-num">08</div>
+                <i class="fas fa-network-wired"></i>
+                <h3>API Orchestration</h3>
+                <p>Multi-source data synchronization for enterprise apps.</p>
             </div>
         </section>
 
-        <!-- HUGE HORIZONTAL GALLERY -->
-        <section class="horizontal-wrap" id="projects">
-            <div class="horizontal-inner" id="pin-target">
-                <div class="panel">
-                    <div class="panel-img"><img src="IMG_20260503_135526.jpg"></div>
-                    <div class="panel-txt">
-                        <span style="color: var(--primary);">001_DATA</span>
-                        <h2>VOID_DASH</h2>
-                        <p style="color: #444; margin-top: 30px; font-family: var(--font-mono);">REAL-TIME NEURAL ANALYTICS INTERFACE</p>
+        <!-- ENCRYPTED ARCHIVES -->
+        <section id="archives" class="cinema">
+            <div class="pj-wrap">
+                <!-- Project 1 -->
+                <div class="pj-row reveal">
+                    <div class="pj-preview">
+                        <img src="IMG_20260503_135526.jpg" alt="P1">
+                    </div>
+                    <div class="pj-meta">
+                        <span style="color: var(--primary); font-family: var(--font-mono);">[ ARCHIVE_ID: 0x992 ]</span>
+                        <h2>Cyber<br>Core</h2>
+                        <p>High-end neural dashboard for real-time asset tracking and visualization.</p>
+                        <a href="#" class="btn-elite">DECRYPT_DATA</a>
                     </div>
                 </div>
-                <div class="panel">
-                    <div class="panel-img"><img src="Screenshot_20260503_131940.jpg"></div>
-                    <div class="panel-txt">
-                        <span style="color: var(--primary);">002_CORE</span>
-                        <h2>OMEGA_OS</h2>
-                        <p style="color: #444; margin-top: 30px; font-family: var(--font-mono);">VIRTUALIZED BROWSER OPERATING SYSTEM</p>
+
+                <!-- Project 2 -->
+                <div class="pj-row reveal">
+                    <div class="pj-preview">
+                        <img src="Screenshot_20260503_131940.jpg" alt="P2">
                     </div>
-                </div>
-                <div class="panel">
-                    <div class="panel-img"><img src="Screenshot_20260503_132301.jpg"></div>
-                    <div class="panel-txt">
-                        <span style="color: var(--primary);">003_GRAPH</span>
-                        <h2>QUANTUM_X</h2>
-                        <p style="color: #444; margin-top: 30px; font-family: var(--font-mono);">BRAND IDENTITY FOR QUANTUM LABS</p>
-                    </div>
-                </div>
-                <div class="panel">
-                    <div class="panel-img"><img src="cool-wallpaper (1).jpg"></div>
-                    <div class="panel-txt">
-                        <span style="color: var(--primary);">004_ENV</span>
-                        <h2>MARS_GEN</h2>
-                        <p style="color: #444; margin-top: 30px; font-family: var(--font-mono);">3D PLANETARY SIMULATION ENGINE</p>
+                    <div class="pj-meta">
+                        <span style="color: var(--primary); font-family: var(--font-mono);">[ ARCHIVE_ID: 0x114 ]</span>
+                        <h2>Omega<br>System</h2>
+                        <p>Next-generation OS mockup with glassmorphism and motion-grid logic.</p>
+                        <a href="#" class="btn-elite">DECRYPT_DATA</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- THE FINAL HEARTBEAT -->
-        <section class="contact-core" id="contact" data-scroll-section>
-            <p style="font-family: var(--font-mono); color: #333; margin-bottom: 50px; letter-spacing: 15px;">ESTABLISHING_LINK</p>
-            <a href="mailto:rajounahmedrijon@gmail.com" class="gmail-mega">rajounahmedrijon@gmail.com</a>
+        <!-- TECH TERMINAL -->
+        <section style="padding: 100px 8%;" class="reveal">
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="dot-t" style="background: #ff5f56;"></div>
+                    <div class="dot-t" style="background: #ffbd2e;"></div>
+                    <div class="dot-t" style="background: #27c93f;"></div>
+                    <span style="margin-left: 20px; font-size: 10px;">rijon_algorithm_core.vsh</span>
+                </div>
+                <p style="color: var(--primary)">> initializing stack...</p>
+                <p style="margin: 10px 0;">[SYSTEM] : RAJOUN AHMED RIJON IDENTIFIED</p>
+                <p>[SKILL] : REACT_MASTERY = 99.9%</p>
+                <p>[SKILL] : THREE_JS_3D = 98.4%</p>
+                <p>[SKILL] : UI_DOMINANCE = 100.0%</p>
+                <p style="color: #111; margin-top: 20px;">// End of Log. Waiting for user input...</p>
+            </div>
         </section>
 
-        <footer data-scroll-section>
-            <div>© 2026 RAJOUN_RIJON // CORE_STABLE</div>
-            <div style="color: var(--primary);">MYMENSINGH // 90.4203° E</div>
-            <div>[ CODE_STATUS: ZENITH_V12_HUGE ]</div>
-        </footer>
+        <!-- FINAL FUSION -->
+        <section id="contact" class="fusion-contact">
+            <p style="color: #333; letter-spacing: 15px; margin-bottom: 40px;">SECURE_CONNECTION_INITIATED</p>
+            <a href="mailto:rajounahmedrijon@gmail.com" class="email-fusion">rajounahmedrijon@gmail.com</a>
+            <div style="display: flex; gap: 40px; margin-top: 80px;">
+                <a href="#" class="btn-elite" style="padding: 15px 40px;">GITHUB</a>
+                <a href="#" class="btn-elite" style="padding: 15px 40px;">LINKEDIN</a>
+            </div>
+        </section>
     </main>
 
+    <footer>
+        <div>© 2026 RAJOUN AHMED RIJON — ZENITH CORE</div>
+        <div style="color: var(--primary); letter-spacing: 5px;">MYMENSINGH / BANGLADESH / 24.7471° N</div>
+        <div>ALL_SYSTEMS_NOMINAL [OK]</div>
+    </footer>
+
     <script>
-        // 1. Loader Logic (Simulation of Huge Asset Loading)
-        const logBox = document.getElementById('log-console');
-        const logs = [
-            "Compiling Neural Shaders...", "Mounting WebGL Drivers...",
-            "Initializing Locomotive Scroll...", "Decrypting Identity Matrix...",
-            "Syncing Time (Mymensingh/GMT+6)...", "Security Protocols Established.",
-            "Rajoun_Rijon Interface Ready."
-        ];
-        let progress = 0;
-        const int = setInterval(() => {
-            progress += Math.random() * 8;
-            if(progress >= 100) {
-                progress = 100;
-                clearInterval(int);
-                gsap.to("#heavy-loader", { y: "-100%", duration: 1.5, ease: "expo.inOut", delay: 0.5 });
-            }
-            document.querySelector('.progress-fill').style.width = progress + "%";
-            const newLog = document.createElement('div');
-            newLog.innerText = `> ${logs[Math.floor(progress/15)] || "Optimizing Core..."}`;
-            logBox.appendChild(newLog);
-            logBox.scrollTop = logBox.scrollHeight;
-        }, 150);
-
-        // 2. Locomotive & ScrollTrigger Bridge
-        gsap.registerPlugin(ScrollTrigger);
-        const scroller = new LocomotiveScroll({
-            el: document.querySelector('[data-scroll-container]'),
-            smooth: true,
-            multiplier: 1.1,
-            lerp: 0.07
-        });
-        scroller.on('scroll', ScrollTrigger.update);
-        ScrollTrigger.scrollerProxy('[data-scroll-container]', {
-            scrollTop(v) { return arguments.length ? scroller.scrollTo(v, 0, 0) : scroller.scroll.instance.scroll.y; },
-            getBoundingClientRect() { return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight}; }
-        });
-
-        // 3. Triple Cursor Physics
-        const dot = document.getElementById('c-dot'), ring = document.getElementById('c-ring'), glow = document.getElementById('c-glow');
-        window.addEventListener('mousemove', (e) => {
-            gsap.to(dot, { x: e.clientX, y: e.clientY, duration: 0 });
-            gsap.to(ring, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.2 });
-            gsap.to(glow, { x: e.clientX, y: e.clientY, duration: 0.8 });
-        });
-
-        // 4. Three.js Background Shader Engine
+        // 1. Quantum Background (Liquid Shader Style)
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), alpha: true });
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas-webgl'), alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
 
-        const pointGeo = new THREE.BufferGeometry();
-        const pointsCount = 4000;
-        const posArr = new Float32Array(pointsCount * 3);
-        for(let i=0; i<pointsCount*3; i++) { posArr[i] = (Math.random() - 0.5) * 15; }
-        pointGeo.setAttribute('position', new THREE.BufferAttribute(posArr, 3));
-        const pointMat = new THREE.PointsMaterial({ size: 0.005, color: 0xff0000 });
-        const points = new THREE.Points(pointGeo, pointMat);
-        scene.add(points);
-        camera.position.z = 5;
+        const starGeo = new THREE.BufferGeometry();
+        const starCount = 8000;
+        const positions = new Float32Array(starCount * 3);
+        for(let i=0; i<starCount*3; i++) {
+            positions[i] = (Math.random() - 0.5) * 2000;
+        }
+        starGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const starMat = new THREE.PointsMaterial({ color: 0xff1e1e, size: 1, transparent: true, opacity: 0.5 });
+        const stars = new THREE.Points(starGeo, starMat);
+        scene.add(stars);
+        camera.position.z = 1000;
 
-        function animate(t) {
+        function animate() {
             requestAnimationFrame(animate);
-            points.rotation.y = t * 0.0001;
-            points.rotation.x = t * 0.00005;
+            stars.rotation.y += 0.0005;
+            stars.rotation.x += 0.0002;
             renderer.render(scene, camera);
         }
         animate();
 
-        // 5. Horizontal Pinning (800vw Movement)
-        gsap.to("#pin-target", {
-            xPercent: -87.5,
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".horizontal-wrap",
-                scroller: "[data-scroll-container]",
-                pin: true,
-                scrub: 1,
-                end: () => "+=" + document.querySelector("#pin-target").offsetWidth
-            }
+        // 2. Elite Cursor Engine
+        const cursor = document.querySelector('#cursor-main');
+        const dot = document.querySelector('#cursor-dot');
+        window.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.1 });
+            gsap.to(dot, { x: e.clientX - 3, y: e.clientY - 3, duration: 0 });
         });
 
-        // 6. HUD Real-time Logic
-        setInterval(() => {
-            document.getElementById('tech-hud').innerHTML = `
-                SYSTEM: ONLINE<br>
-                CPU_LOAD: ${Math.floor(Math.random()*20)}%<br>
-                FPS: 60.0<br>
-                TEMP: 32°C<br>
-                IDENTITY: RAJOUN_RIJON
-            `;
-        }, 2000);
+        // 3. Scroll Reveal Engine
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        ScrollTrigger.addEventListener('refresh', () => scroller.update());
-        ScrollTrigger.refresh();
+        // 4. Smooth Anchor
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // 5. Profile Tilt Physics
+        const frame = document.querySelector('.floating-frame');
+        window.addEventListener('mousemove', (e) => {
+            let x = (window.innerWidth / 2 - e.pageX) / 40;
+            let y = (window.innerHeight / 2 - e.pageY) / 40;
+            gsap.to(frame, { rotateY: x, rotateX: -y, duration: 0.5 });
+        });
+        
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     </script>
 </body>
-                                                  </html>
+    </html>
