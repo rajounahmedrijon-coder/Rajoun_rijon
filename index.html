@@ -511,6 +511,28 @@ gsap.utils.toArray(".fade").forEach(el => {
         }
     });
 }); 
+    // 3D Tilt Effect Logic
+const card = document.querySelector('.tilt-card');
+
+document.addEventListener('mousemove', (e) => {
+    let xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+    let yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+    
+    // শুধু যদি প্রোফাইল কার্ডটি স্ক্রিনে থাকে তবেই কাজ করবে
+    if(card) {
+        card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+    }
+});
+
+// Reset when mouse leaves
+document.addEventListener('mouseenter', () => {
+    card.style.transition = "none";
+});
+
+document.addEventListener('mouseleave', () => {
+    card.style.transition = "all 0.5s ease";
+    card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+});
 </script>
 
 </body>
