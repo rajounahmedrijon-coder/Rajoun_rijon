@@ -148,7 +148,12 @@ body {
 }
 
 /* 14. Section Transition */
-section { padding: 80px 0; opacity: 0; transform: translateY(20px); transition: 1s; }
+section {
+    padding: 80px 0;
+    opacity: 1; /* ০ থেকে ১ করে দিন */
+    transform: translateY(0); /* ২০ থেকে ০ করে দিন */
+    transition: 1s;
+}
 section.visible { opacity: 1; transform: translateY(0); }
 
 /* 15. Logic Gradient */
@@ -1346,19 +1351,18 @@ requestAnimationFrame(raf)
 
 </script>
   <script>
-// Scroll Reveal Animation
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach((section) => {
+        observer.observe(section);
     });
-});
-
-document.querySelectorAll('section').forEach((section) => {
-    observer.observe(section);
-});
   </script>
-
 </body>
   </html>
