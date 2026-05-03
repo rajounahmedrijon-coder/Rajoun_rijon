@@ -3,265 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>rajoun_rijon | Digital Mastermind</title>
+    <title>RAJ_RIJON | Neural Architect Zenith Build v12.0</title>
     
-    <!-- Power Tools -->
+    <!-- Enterprise Grade Frameworks -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&family=Michroma&family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Syncopate:wght@400;700&family=Michroma&family=Bebas+Neue&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
             --primary: #ff0000;
-            --primary-glow: rgba(255, 0, 0, 0.7);
+            --primary-glow: rgba(255, 0, 0, 0.4);
             --bg: #000000;
-            --surface: #080808;
-            --border: rgba(255, 0, 0, 0.15);
-            --text-main: #ffffff;
-            --text-dim: #555555;
+            --surface: #0a0a0a;
+            --font-mono: 'JetBrains Mono', monospace;
         }
 
-        /* Essential System Setup */
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
-        body { background: var(--bg); color: var(--text-main); font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
+        /* Essential System Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; outline: none; }
+        body { background: var(--bg); color: #fff; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
 
-        /* The Mega Loader */
-        #loader { position: fixed; inset: 0; background: #000; z-index: 9999999; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .loader-brand { font-family: 'Syncopate'; font-size: 2vw; letter-spacing: 15px; color: var(--primary); text-shadow: 0 0 30px var(--primary); margin-bottom: 20px; }
-        .loader-line { width: 300px; height: 1px; background: #111; position: relative; overflow: hidden; }
-        .loader-fill { position: absolute; height: 100%; width: 0%; background: var(--primary); box-shadow: 0 0 15px var(--primary); }
+        /* The Custom Cursor Engine (Triple Layer) */
+        #c-dot { position: fixed; width: 6px; height: 6px; background: #fff; border-radius: 50%; z-index: 10000000; pointer-events: none; }
+        #c-ring { position: fixed; width: 40px; height: 40px; border: 1px solid var(--primary); border-radius: 50%; z-index: 10000000; pointer-events: none; }
+        #c-glow { position: fixed; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,0,0,0.08) 0%, transparent 70%); z-index: 9999999; pointer-events: none; transform: translate(-50%, -50%); }
 
-        /* Hybrid Cursor */
-        #c-main { position: fixed; width: 8px; height: 8px; background: var(--primary); border-radius: 50%; z-index: 1000000; pointer-events: none; }
-        #c-aura { position: fixed; width: 40px; height: 40px; border: 1px solid var(--primary); border-radius: 50%; z-index: 999999; pointer-events: none; }
+        /* Huge Loader System */
+        #heavy-loader { position: fixed; inset: 0; background: #000; z-index: 999999999; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .loader-h1 { font-family: 'Syncopate'; font-size: 3vw; letter-spacing: 20px; color: var(--primary); margin-bottom: 20px; }
+        .loading-data { width: 500px; font-family: var(--font-mono); font-size: 10px; color: #333; height: 100px; overflow: hidden; }
+        .progress-mega { width: 500px; height: 2px; background: #111; position: relative; margin-top: 20px; }
+        .progress-fill { position: absolute; width: 0; height: 100%; background: var(--primary); box-shadow: 0 0 15px var(--primary); }
 
-        /* Navigation - SS Screenshot_20260503_163226_2.jpg Fix */
-        nav { position: fixed; top: 0; width: 100%; padding: 40px 6%; display: flex; justify-content: space-between; align-items: center; z-index: 100000; background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent); }
-        .logo { font-family: 'Syncopate', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: 12px; text-decoration: none; color: #ffffff; text-transform: uppercase; }
-        .logo span { color: var(--primary); margin: 0 -2px; }
+        /* Header Engine - Based on SS Screenshot_20260503_163226_3.jpg */
+        header { position: fixed; top: 0; width: 100%; padding: 45px 6%; display: flex; justify-content: space-between; align-items: center; z-index: 100000; mix-blend-mode: difference; }
+        .logo-block { display: flex; align-items: center; gap: 15px; }
+        .circle-fx { width: 42px; height: 42px; border: 1px solid var(--primary); border-radius: 50%; position: relative; }
+        .circle-fx::before { content: ''; position: absolute; top: -4px; left: -4px; width: 8px; height: 8px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 10px var(--primary); }
+        .nav-logo { font-family: 'Syncopate'; font-size: 26px; font-weight: 700; letter-spacing: 12px; color: #fff; text-decoration: none; }
+        .nav-logo span { color: var(--primary); }
 
-        /* Hero Engine */
-        .hero { height: 120vh; display: flex; align-items: center; padding: 0 8%; position: relative; }
-        .hero-title { font-family: 'Bebas Neue'; font-size: 18vw; line-height: 0.75; letter-spacing: -5px; }
-        .hero-title span { -webkit-text-stroke: 2px var(--primary); -webkit-text-fill-color: transparent; }
-        .profile-container { position: absolute; right: 10%; width: 350px; height: 500px; border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
-        .profile-container img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: 0.8s; }
-        .profile-container:hover img { filter: grayscale(0); transform: scale(1.05); }
+        /* Floating Sidebar Terminal */
+        .terminal-side { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); width: 200px; font-family: var(--font-mono); font-size: 9px; color: var(--primary); pointer-events: none; z-index: 100; opacity: 0.5; }
 
-        /* Marquee Engine */
-        .marquee { background: var(--primary); color: #000; padding: 15px 0; overflow: hidden; white-space: nowrap; font-family: 'Syncopate'; font-weight: 700; font-size: 10px; margin-top: -10vh; }
-        .marquee-inner { display: inline-block; animation: marquee 30s linear infinite; }
-        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        /* The Hero Engine v12 */
+        .hero { height: 160vh; padding: 0 8%; display: flex; align-items: center; position: relative; }
+        .hero-title-wrap { z-index: 10; }
+        .hero-big { font-family: 'Bebas Neue'; font-size: 20vw; line-height: 0.8; letter-spacing: -10px; }
+        .hero-big span { -webkit-text-stroke: 1px var(--primary); -webkit-text-fill-color: transparent; }
+        .hero-sub { font-family: 'Michroma'; font-size: 10px; letter-spacing: 10px; color: #444; margin-top: 40px; text-transform: uppercase; }
 
-        /* Bio & Skills Bento */
-        .grid-section { padding: 150px 8%; display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 220px; gap: 20px; }
-        .bento-card { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; position: relative; transition: 0.5s; overflow: hidden; }
-        .bento-card:hover { border-color: var(--primary); transform: translateY(-10px); box-shadow: 0 10px 40px rgba(255,0,0,0.05); }
-        .bento-card i { font-size: 30px; color: var(--primary); margin-bottom: 20px; display: block; }
-        .large { grid-column: span 2; }
-        .tall { grid-row: span 2; }
-        .bio-txt { font-size: 35px; line-height: 1.1; font-weight: 300; }
+        /* Matrix Grid Expertise */
+        .matrix-section { padding: 150px 8%; display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; }
+        .card-expert { grid-column: span 2; height: 350px; background: var(--surface); border: 1px solid rgba(255,0,0,0.1); padding: 40px; position: relative; overflow: hidden; transition: 0.6s; }
+        .card-expert:hover { border-color: var(--primary); transform: translateY(-15px); }
+        .card-expert i { font-size: 35px; color: var(--primary); margin-bottom: 25px; }
+        .card-expert h3 { font-family: 'Syncopate'; font-size: 12px; margin-bottom: 15px; }
+        .card-expert p { font-size: 13px; color: #666; line-height: 1.6; }
+        .wide { grid-column: span 3; }
+        .full { grid-column: span 6; display: flex; align-items: center; gap: 50px; height: auto; }
 
-        /* Horizontal Pin Gallery */
-        .pin-wrapper { display: flex; width: 400vw; height: 100vh; }
-        .project-panel { width: 100vw; height: 100vh; display: flex; align-items: center; padding: 0 10%; gap: 80px; flex-shrink: 0; }
-        .pj-img { flex: 1.5; height: 75%; border-radius: 30px; overflow: hidden; border: 1px solid var(--border); position: relative; }
-        .pj-img img { width: 100%; height: 100%; object-fit: cover; }
-        .pj-content h2 { font-family: 'Bebas Neue'; font-size: 100px; color: var(--primary); }
+        /* Mega Horizontal Scroll Project Gallery */
+        .horizontal-wrap { height: 100vh; background: #000; overflow: hidden; }
+        .horizontal-inner { display: flex; height: 100vh; width: 800vw; will-change: transform; }
+        .panel { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; align-items: center; padding: 0 8%; gap: 100px; }
+        .panel-img { flex: 1.5; height: 70%; border-radius: 40px; overflow: hidden; border: 1px solid var(--primary-glow); position: relative; }
+        .panel-img img { width: 100%; height: 100%; object-fit: cover; transition: 2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .panel-img:hover img { transform: scale(1.1); filter: contrast(1.2); }
+        .panel-txt h2 { font-family: 'Bebas Neue'; font-size: 12vw; line-height: 0.9; }
 
-        /* Neon Heartbeat Contact */
-        .contact-mega { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; }
-        .gmail-heartbeat { 
-            font-family: 'Syncopate'; font-size: 5.5vw; font-weight: 700; color: var(--primary); 
-            text-decoration: none; text-shadow: 0 0 20px var(--primary-glow);
-            animation: pulse 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
+        /* The Heartbeat v3 (Ultimate) */
+        .contact-core { height: 120vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: radial-gradient(circle, #1a0000 0%, #000 80%); }
+        .gmail-mega { font-family: 'Syncopate'; font-size: 6vw; font-weight: 700; color: var(--primary); text-decoration: none; position: relative; animation: heartbeat-v12 1.5s infinite alternate ease-in-out; }
+        @keyframes heartbeat-v12 {
+            0% { transform: scale(1); filter: drop-shadow(0 0 20px var(--primary)); }
+            100% { transform: scale(1.08); filter: drop-shadow(0 0 80px var(--primary)); }
         }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); text-shadow: 0 0 20px var(--primary-glow); }
-            50% { transform: scale(1.08); text-shadow: 0 0 60px var(--primary), 0 0 100px var(--primary); }
-        }
 
-        /* Tech Background */
+        /* Tech Background Layer */
         #bg-canvas { position: fixed; inset: 0; z-index: -1; }
-        .scanlines { position: fixed; inset: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)); z-index: 50000; background-size: 100% 2px, 3px 100%; pointer-events: none; }
+        .vignette { position: fixed; inset: 0; background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.9) 100%); pointer-events: none; z-index: 1; }
 
-        footer { padding: 40px 8%; display: flex; justify-content: space-between; font-size: 10px; font-family: 'Syncopate'; color: #333; border-top: 1px solid var(--border); }
-
+        footer { padding: 60px 8%; border-top: 1px solid rgba(255,0,0,0.1); display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 9px; color: #333; }
     </style>
 </head>
 <body data-scroll-container>
 
-    <div id="loader">
-        <div class="loader-brand">RAJ_RIJON</div>
-        <div class="loader-line"><div class="loader-fill"></div></div>
+    <!-- Multi-Layer Cursor -->
+    <div id="c-dot"></div>
+    <div id="c-ring"></div>
+    <div id="c-glow"></div>
+
+    <!-- Huge System Loader -->
+    <div id="heavy-loader">
+        <div class="loader-h1">RAJ_RIJON</div>
+        <div class="loading-data" id="log-console"></div>
+        <div class="progress-mega"><div class="progress-fill"></div></div>
     </div>
 
-    <div id="c-main"></div>
-    <div id="c-aura"></div>
-    <div class="scanlines"></div>
+    <!-- Tech HUD -->
+    <div class="terminal-side" id="tech-hud">
+        SYSTEM: ONLINE<br>
+        LOCATION: 24.7471° N<br>
+        SECURITY: AES_256<br>
+        CORE: ZENITH_V12<br>
+        STABILITY: 100%
+    </div>
+
+    <div class="vignette"></div>
     <canvas id="bg-canvas"></canvas>
 
-    <nav>
-        <!-- Fix based on SS: Underline replaced with underscore as per your instruction -->
-        <a href="#" class="logo">RAJ<span>_</span>RIJON</a>
-        <div style="display: flex; gap: 30px;">
-            <a href="#work" style="text-decoration: none; color: #fff; font-size: 10px; font-family: 'Syncopate';">ARCHIVES_001</a>
-            <a href="#contact" style="text-decoration: none; color: var(--primary); font-size: 10px; font-family: 'Syncopate';">CONNECT_CORE</a>
+    <header>
+        <div class="logo-block">
+            <div class="circle-fx"></div>
+            <!-- Fixed Brand Name -->
+            <a href="#" class="nav-logo">RAJ<span>_</span>RIJON</a>
         </div>
-    </nav>
+        <div style="display: flex; gap: 40px; font-family: var(--font-mono); font-size: 10px;">
+            <a href="#projects" style="color: #fff; text-decoration: none;">[ ARCHIVES ]</a>
+            <a href="#expertise" style="color: #fff; text-decoration: none;">[ EXPERTISE ]</a>
+            <a href="#contact" style="color: var(--primary); text-decoration: none;">[ CONTACT ]</a>
+        </div>
+    </header>
 
     <main>
-        <!-- HERO -->
-        <section class="hero" id="hero">
-            <div data-scroll data-scroll-speed="-3">
-                <p style="font-family: 'Michroma'; font-size: 10px; letter-spacing: 10px; color: var(--primary); margin-bottom: 20px;">[ INDEPENDENT_CREATIVE_LEAD ]</p>
-                <h1 class="hero-title">RAJOUN_<br><span>RIJON</span></h1>
-                <p style="max-width: 450px; color: var(--text-dim); margin-top: 30px; line-height: 1.8;">
-                    Digital architect specializing in high-performance web environments. Creating visual symphonies with code and mathematics.
-                </p>
-            </div>
-            <div class="profile-container" data-scroll data-scroll-speed="2">
-                <img src="IMG_20250914_191146 (1).jpg" alt="rajoun_rijon">
+        <!-- HERO V12 -->
+        <section class="hero" data-scroll-section>
+            <div class="hero-title-wrap" data-scroll data-scroll-speed="-4">
+                <p style="font-family: var(--font-mono); color: var(--primary); font-size: 10px; margin-bottom: 20px;">[ INITIALIZING CREATIVE DRIVE ]</p>
+                <h1 class="hero-big">RAJOUN_<br><span>RIJON</span></h1>
+                <div class="hero-sub">Creative Engineer & System Architect</div>
             </div>
         </section>
 
-        <!-- MARQUEE -->
-        <div class="marquee">
-            <div class="marquee-inner">
-                RAJOUN_RIJON — CREATIVE ENGINEERING — UI/UX ARCHITECT — MYMENSINGH — RAJOUN_RIJON — CREATIVE ENGINEERING — UI/UX ARCHITECT — MYMENSINGH — 
+        <!-- EXPERTISE GRID (THE HUGE MODULE) -->
+        <section class="matrix-section" id="expertise" data-scroll-section>
+            <div class="card-expert wide">
+                <i class="fas fa-code-branch"></i>
+                <h3>SYSTEMS_ARCHITECT</h3>
+                <p>Designing decentralized server structures and high-load backend pipelines with Node.js and Rust environments.</p>
             </div>
-        </div>
-
-        <!-- BENTO MATRIX -->
-        <section class="grid-section">
-            <div class="bento-card large tall">
-                <i class="fas fa-fingerprint"></i>
-                <div class="bio-txt">Operational base: <b>Mymensingh, BD</b>. Building the future of <b>Visual Interfaces</b> with zero compromises.</div>
+            <div class="card-expert">
+                <i class="fas fa-bezier-curve"></i>
+                <h3>MOTION_MATH</h3>
+                <p>Developing physics-based UI interactions using mathematical Euler integration.</p>
             </div>
-            <div class="bento-card">
+            <div class="card-expert">
+                <i class="fas fa-cube"></i>
+                <h3>WEBGL_3D</h3>
+                <p>Crafting immersive browser simulations with custom GLSL shaders and Three.js.</p>
+            </div>
+            <div class="card-expert full">
+                <div style="flex: 1;"><i class="fas fa-shield-alt" style="font-size: 80px;"></i></div>
+                <div style="flex: 4;">
+                    <h3 style="font-size: 24px;">CYBER_SECURITY_EXPERT</h3>
+                    <p>Implementing military-grade encryption protocols and secure-tunnel communication layers for enterprise-level web applications. My systems are built for 99.9% uptime and zero-vulnerability deployment.</p>
+                </div>
+            </div>
+            <div class="card-expert">
                 <i class="fab fa-react"></i>
-                <h3>REACT CORE</h3>
+                <h3>REACT_MASTERY</h3>
+                <p>Building complex state-driven SPAs with redundant rendering logic.</p>
             </div>
-            <div class="bento-card">
+            <div class="card-expert">
+                <i class="fas fa-database"></i>
+                <h3>DATABASE_OPS</h3>
+                <p>Optimizing SQL/NoSQL clusters for micro-second query responses.</p>
+            </div>
+            <div class="card-expert wide">
                 <i class="fas fa-terminal"></i>
-                <h3>NODE.JS</h3>
-            </div>
-            <div class="bento-card large">
-                <i class="fas fa- ड्राफ्टing-compass"></i>
-                <h3>3D MOTION DESIGN</h3>
-            </div>
-            <div class="bento-card">
-                <i class="fas fa-shield-alt"></i>
-                <h3>SECURE OPS</h3>
+                <h3>LINUX_OPS</h3>
+                <p>Mastering Debian/CentOS kernel management and automated CI/CD pipeline deployment.</p>
             </div>
         </section>
 
-        <!-- HORIZONTAL WORK PIN -->
-        <section id="work" style="padding: 0;">
-            <div class="pin-wrapper" id="pin-target">
-                <div class="project-panel">
-                    <div class="pj-img"><img src="IMG_20260503_135526.jpg" alt="P1"></div>
-                    <div class="pj-content">
-                        <h2>CYBER_DASH</h2>
-                        <p style="color: var(--text-dim); letter-spacing: 2px;">NEURAL INTERFACE V1</p>
+        <!-- HUGE HORIZONTAL GALLERY -->
+        <section class="horizontal-wrap" id="projects">
+            <div class="horizontal-inner" id="pin-target">
+                <div class="panel">
+                    <div class="panel-img"><img src="IMG_20260503_135526.jpg"></div>
+                    <div class="panel-txt">
+                        <span style="color: var(--primary);">001_DATA</span>
+                        <h2>VOID_DASH</h2>
+                        <p style="color: #444; margin-top: 30px; font-family: var(--font-mono);">REAL-TIME NEURAL ANALYTICS INTERFACE</p>
                     </div>
                 </div>
-                <div class="project-panel">
-                    <div class="pj-img"><img src="Screenshot_20260503_131940.jpg" alt="P2"></div>
-                    <div class="pj-content">
-                        <h2>VOID_OS</h2>
-                        <p style="color: var(--text-dim); letter-spacing: 2px;">SYSTEM ARCHITECTURE</p>
+                <div class="panel">
+                    <div class="panel-img"><img src="Screenshot_20260503_131940.jpg"></div>
+                    <div class="panel-txt">
+                        <span style="color: var(--primary);">002_CORE</span>
+                        <h2>OMEGA_OS</h2>
+                        <p style="color: #444; margin-top: 30px; font-family: var(--font-mono);">VIRTUALIZED BROWSER OPERATING SYSTEM</p>
                     </div>
                 </div>
-                <div class="project-panel">
-                    <div class="pj-img"><img src="Screenshot_20260503_132301.jpg" alt="P3"></div>
-                    <div class="pj-content">
+                <div class="panel">
+                    <div class="panel-img"><img src="Screenshot_20260503_132301.jpg"></div>
+                    <div class="panel-txt">
+                        <span style="color: var(--primary);">003_GRAPH</span>
                         <h2>QUANTUM_X</h2>
-                        <p style="color: var(--text-dim); letter-spacing: 2px;">BRAND IDENTITY</p>
+                        <p style="color: #444; margin-top: 30px; font-family: var(--font-mono);">BRAND IDENTITY FOR QUANTUM LABS</p>
                     </div>
                 </div>
-                <div class="project-panel">
-                    <div class="pj-img"><img src="cool-wallpaper (1).jpg" alt="P4"></div>
-                    <div class="pj-content">
-                        <h2>DREAM_ENV</h2>
-                        <p style="color: var(--text-dim); letter-spacing: 2px;">3D SIMULATION</p>
+                <div class="panel">
+                    <div class="panel-img"><img src="cool-wallpaper (1).jpg"></div>
+                    <div class="panel-txt">
+                        <span style="color: var(--primary);">004_ENV</span>
+                        <h2>MARS_GEN</h2>
+                        <p style="color: #444; margin-top: 30px; font-family: var(--font-mono);">3D PLANETARY SIMULATION ENGINE</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CONTACT -->
-        <section class="contact-mega" id="contact">
-            <p style="font-family: 'Syncopate'; font-size: 10px; letter-spacing: 15px; color: var(--text-dim); margin-bottom: 50px;">LAUNCH_COMMUNICATION</p>
-            <a href="mailto:rajounahmedrijon@gmail.com" class="gmail-heartbeat">rajounahmedrijon@gmail.com</a>
-            
-            <div style="margin-top: 120px; display: flex; gap: 40px;">
-                <a href="#" style="color: #fff; font-size: 25px;"><i class="fab fa-github"></i></a>
-                <a href="#" style="color: #fff; font-size: 25px;"><i class="fab fa-linkedin"></i></a>
-                <a href="#" style="color: #fff; font-size: 25px;"><i class="fab fa-instagram"></i></a>
-            </div>
+        <!-- THE FINAL HEARTBEAT -->
+        <section class="contact-core" id="contact" data-scroll-section>
+            <p style="font-family: var(--font-mono); color: #333; margin-bottom: 50px; letter-spacing: 15px;">ESTABLISHING_LINK</p>
+            <a href="mailto:rajounahmedrijon@gmail.com" class="gmail-mega">rajounahmedrijon@gmail.com</a>
         </section>
 
-        <footer>
-            <div>RAJOUN_RIJON // CORE_BUILD_9.0.2</div>
-            <div style="color: var(--primary);">24.7471° N, 90.4203° E</div>
-            <div>© 2026 ALL RIGHTS ENCRYPTED</div>
+        <footer data-scroll-section>
+            <div>© 2026 RAJOUN_RIJON // CORE_STABLE</div>
+            <div style="color: var(--primary);">MYMENSINGH // 90.4203° E</div>
+            <div>[ CODE_STATUS: ZENITH_V12_HUGE ]</div>
         </footer>
     </main>
 
     <script>
-        // 1. Locomotive & ScrollTrigger Init
+        // 1. Loader Logic (Simulation of Huge Asset Loading)
+        const logBox = document.getElementById('log-console');
+        const logs = [
+            "Compiling Neural Shaders...", "Mounting WebGL Drivers...",
+            "Initializing Locomotive Scroll...", "Decrypting Identity Matrix...",
+            "Syncing Time (Mymensingh/GMT+6)...", "Security Protocols Established.",
+            "Rajoun_Rijon Interface Ready."
+        ];
+        let progress = 0;
+        const int = setInterval(() => {
+            progress += Math.random() * 8;
+            if(progress >= 100) {
+                progress = 100;
+                clearInterval(int);
+                gsap.to("#heavy-loader", { y: "-100%", duration: 1.5, ease: "expo.inOut", delay: 0.5 });
+            }
+            document.querySelector('.progress-fill').style.width = progress + "%";
+            const newLog = document.createElement('div');
+            newLog.innerText = `> ${logs[Math.floor(progress/15)] || "Optimizing Core..."}`;
+            logBox.appendChild(newLog);
+            logBox.scrollTop = logBox.scrollHeight;
+        }, 150);
+
+        // 2. Locomotive & ScrollTrigger Bridge
         gsap.registerPlugin(ScrollTrigger);
-        const scroll = new LocomotiveScroll({
+        const scroller = new LocomotiveScroll({
             el: document.querySelector('[data-scroll-container]'),
             smooth: true,
-            multiplier: 1.1
+            multiplier: 1.1,
+            lerp: 0.07
         });
-        scroll.on('scroll', ScrollTrigger.update);
+        scroller.on('scroll', ScrollTrigger.update);
         ScrollTrigger.scrollerProxy('[data-scroll-container]', {
-            scrollTop(v) { return arguments.length ? scroll.scrollTo(v, 0, 0) : scroll.scroll.instance.scroll.y; },
+            scrollTop(v) { return arguments.length ? scroller.scrollTo(v, 0, 0) : scroller.scroll.instance.scroll.y; },
             getBoundingClientRect() { return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight}; }
         });
 
-        // 2. Custom Cursor Logic
-        const cm = document.getElementById('c-main'), ca = document.getElementById('c-aura');
+        // 3. Triple Cursor Physics
+        const dot = document.getElementById('c-dot'), ring = document.getElementById('c-ring'), glow = document.getElementById('c-glow');
         window.addEventListener('mousemove', (e) => {
-            gsap.to(cm, { x: e.clientX, y: e.clientY, duration: 0 });
-            gsap.to(ca, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.15 });
+            gsap.to(dot, { x: e.clientX, y: e.clientY, duration: 0 });
+            gsap.to(ring, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.2 });
+            gsap.to(glow, { x: e.clientX, y: e.clientY, duration: 0.8 });
         });
 
-        // 3. Three.js Nebula Background
+        // 4. Three.js Background Shader Engine
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
 
-        const starGeo = new THREE.BufferGeometry();
-        const starCount = 5000;
-        const posArr = new Float32Array(starCount * 3);
-        for(let i=0; i<starCount*3; i++) { posArr[i] = (Math.random() - 0.5) * 10; }
-        starGeo.setAttribute('position', new THREE.BufferAttribute(posArr, 3));
-        const starMat = new THREE.PointsMaterial({ size: 0.004, color: 0xff0000 });
-        const stars = new THREE.Points(starGeo, starMat);
-        scene.add(stars);
-        camera.position.z = 3;
+        const pointGeo = new THREE.BufferGeometry();
+        const pointsCount = 4000;
+        const posArr = new Float32Array(pointsCount * 3);
+        for(let i=0; i<pointsCount*3; i++) { posArr[i] = (Math.random() - 0.5) * 15; }
+        pointGeo.setAttribute('position', new THREE.BufferAttribute(posArr, 3));
+        const pointMat = new THREE.PointsMaterial({ size: 0.005, color: 0xff0000 });
+        const points = new THREE.Points(pointGeo, pointMat);
+        scene.add(points);
+        camera.position.z = 5;
 
-        function animate() {
+        function animate(t) {
             requestAnimationFrame(animate);
-            stars.rotation.y += 0.0005;
+            points.rotation.y = t * 0.0001;
+            points.rotation.x = t * 0.00005;
             renderer.render(scene, camera);
         }
         animate();
 
-        // 4. Horizontal Pinning
+        // 5. Horizontal Pinning (800vw Movement)
         gsap.to("#pin-target", {
-            xPercent: -75,
+            xPercent: -87.5,
             ease: "none",
             scrollTrigger: {
-                trigger: "#work",
+                trigger: ".horizontal-wrap",
                 scroller: "[data-scroll-container]",
                 pin: true,
                 scrub: 1,
@@ -269,21 +316,19 @@
             }
         });
 
-        // 5. Preloader
-        let progress = 0;
-        const fill = document.querySelector('.loader-fill');
-        const interval = setInterval(() => {
-            progress += Math.random() * 20;
-            if(progress >= 100) {
-                progress = 100;
-                clearInterval(interval);
-                gsap.to("#loader", { y: "-100%", duration: 1.5, ease: "expo.inOut", delay: 0.5 });
-            }
-            fill.style.width = progress + "%";
-        }, 150);
+        // 6. HUD Real-time Logic
+        setInterval(() => {
+            document.getElementById('tech-hud').innerHTML = `
+                SYSTEM: ONLINE<br>
+                CPU_LOAD: ${Math.floor(Math.random()*20)}%<br>
+                FPS: 60.0<br>
+                TEMP: 32°C<br>
+                IDENTITY: RAJOUN_RIJON
+            `;
+        }, 2000);
 
-        ScrollTrigger.addEventListener('refresh', () => scroll.update());
+        ScrollTrigger.addEventListener('refresh', () => scroller.update());
         ScrollTrigger.refresh();
     </script>
 </body>
-                </html>
+                                                  </html>
