@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RAJOUN ELITE AI PORTFOLIO V9</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RAJOUN ELITE AI CINEMATIC PORTFOLIO V10</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
@@ -12,21 +12,84 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <style>
+
+/* =========================
+   GLOBAL THEME SYSTEM
+========================= */
+
 :root{
 --bg:#050505;
 --red:#ff1e1e;
 --card:rgba(255,255,255,.05);
 --border:rgba(255,255,255,.1);
 --muted:#aaa;
+--glow:rgba(255,0,0,.4);
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Outfit;}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Outfit;
+scroll-behavior:smooth;
+}
 
 body{
 background:var(--bg);
 color:white;
 overflow-x:hidden;
 }
+
+/* =========================
+   BACKGROUND SYSTEMS
+========================= */
+
+#particles{
+position:fixed;
+inset:0;
+z-index:-3;
+}
+
+.glow-bg{
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at top right, rgba(255,0,0,.2), transparent 40%),
+radial-gradient(circle at bottom left, rgba(255,0,0,.1), transparent 40%);
+z-index:-2;
+}
+
+/* =========================
+   LOADER SYSTEM
+========================= */
+
+.loader{
+position:fixed;
+inset:0;
+background:black;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+.loader h1{
+font-size:70px;
+color:var(--red);
+letter-spacing:10px;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{text-shadow:0 0 0 var(--red);}
+50%{text-shadow:0 0 40px var(--red);}
+100%{text-shadow:0 0 0 var(--red);}
+}
+
+/* =========================
+   NAV SYSTEM
+========================= */
 
 nav{
 position:fixed;
@@ -40,23 +103,35 @@ border-bottom:1px solid var(--border);
 z-index:999;
 }
 
-.logo{font-weight:800;}
+.logo{
+font-weight:900;
+letter-spacing:3px;
+}
+
 .logo span{color:var(--red);}
-nav a{color:white;margin:0 10px;text-decoration:none;font-size:13px;}
 
-section{padding:120px 7%;}
+nav a{
+color:white;
+margin:0 10px;
+text-decoration:none;
+font-size:13px;
+}
 
-/* HERO */
+/* =========================
+   HERO SYSTEM
+========================= */
+
 .hero{
 min-height:100vh;
 display:grid;
 grid-template-columns:1.2fr .8fr;
 align-items:center;
+padding:120px 7%;
 gap:60px;
 }
 
 .hero h1{
-font-size:75px;
+font-size:80px;
 line-height:1;
 }
 
@@ -65,7 +140,23 @@ color:transparent;
 -webkit-text-stroke:1px var(--red);
 }
 
-.hero p{color:var(--muted);margin-top:20px;}
+.hero p{
+margin-top:20px;
+color:var(--muted);
+line-height:1.8;
+}
+
+/* profile image */
+.hero-img img{
+width:100%;
+border-radius:25px;
+border:1px solid var(--border);
+box-shadow:0 0 60px var(--glow);
+}
+
+/* =========================
+   BUTTON SYSTEM
+========================= */
 
 .btn{
 padding:14px 30px;
@@ -73,39 +164,151 @@ border-radius:40px;
 display:inline-block;
 margin-top:20px;
 cursor:pointer;
+transition:.3s;
 }
 
 .primary{background:var(--red);color:white;}
-.outline{border:1px solid var(--border);color:white;}
+.outline{border:1px solid var(--border);}
 
-.hero-img img{
-width:100%;
-border-radius:25px;
-border:1px solid var(--border);
+/* =========================
+   SECTION TITLE
+========================= */
+
+.title{
+font-size:55px;
+margin-bottom:40px;
 }
 
-/* loader */
-.loader{
-position:fixed;inset:0;
-background:black;
+.title span{
+color:transparent;
+-webkit-text-stroke:1px var(--red);
+}
+
+/* =========================
+   FEATURE GRID
+========================= */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+}
+
+.card{
+background:var(--card);
+padding:25px;
+border-radius:20px;
+border:1px solid var(--border);
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+border-color:var(--red);
+}
+
+/* =========================
+   FEATURE SYSTEM ADVANCED
+========================= */
+
+.feature-badge{
+padding:10px 15px;
+border-radius:20px;
+background:#111;
+display:inline-block;
+margin:5px;
+font-size:12px;
+border:1px solid #222;
+}
+
+/* =========================
+   FLOAT SYSTEMS
+========================= */
+
+.float-ai{
+position:fixed;
+bottom:20px;
+right:20px;
+width:70px;
+height:70px;
+border-radius:50%;
+background:var(--red);
 display:flex;
-flex-direction:column;
 align-items:center;
 justify-content:center;
+cursor:pointer;
 z-index:9999;
 }
-.loader h1{color:var(--red);font-size:60px;}
 
-/* glow */
-.glow{
-position:absolute;
-width:400px;
-height:400px;
-background:rgba(255,0,0,.2);
-filter:blur(120px);
-border-radius:50%;
-z-index:-1;
+/* AI BOX */
+.ai-box{
+position:fixed;
+bottom:110px;
+right:20px;
+width:350px;
+height:420px;
+background:#111;
+border:1px solid #333;
+border-radius:20px;
+padding:15px;
+display:none;
+z-index:9999;
 }
+
+/* TERMINAL */
+.terminal{
+position:fixed;
+left:20px;
+bottom:100px;
+width:420px;
+height:300px;
+background:black;
+color:#00ff66;
+font-family:monospace;
+padding:10px;
+overflow:auto;
+display:none;
+}
+
+/* THEME */
+.theme{
+position:fixed;
+top:120px;
+right:20px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.theme div{
+width:20px;height:20px;border-radius:50%;
+cursor:pointer;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact{
+text-align:center;
+padding:100px 7%;
+}
+
+.email{
+font-size:40px;
+color:var(--red);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+.hero{grid-template-columns:1fr;}
+.hero h1{font-size:50px;}
+.grid{grid-template-columns:1fr;}
+}
+
 </style>
 </head>
 
@@ -113,30 +316,36 @@ z-index:-1;
 
 <div class="loader">
 <h1>RAJOUN AI</h1>
-<p>BOOTING SYSTEM...</p>
+<p>LOADING CINEMATIC SYSTEM...</p>
 </div>
 
+<div class="glow-bg"></div>
+<canvas id="particles"></canvas>
+
+<!-- NAV -->
 <nav>
 <div class="logo">RAJOUN<span>.</span></div>
 <div>
 <a href="#home">HOME</a>
 <a href="#about">ABOUT</a>
+<a href="#features">FEATURES</a>
 <a href="#projects">PROJECTS</a>
 <a href="#contact">CONTACT</a>
 </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero" id="home">
 
 <div>
 <h1>RAJOUN<br>AHMED<br><span>RIJON</span></h1>
 
 <p>
-AI powered cinematic portfolio system with 3D UI, voice commands, terminal, CMS hooks, Firebase ready architecture and advanced motion design.
+Ultra cinematic AI-powered portfolio system with 3D engine, voice control, terminal OS, CMS architecture, Firebase-ready backend structure, and futuristic UI/UX systems.
 </p>
 
-<div class="btn primary">View Projects</div>
-<div class="btn outline">Contact</div>
+<div class="btn primary">Explore Projects</div>
+<div class="btn outline">Hire Me</div>
 </div>
 
 <div class="hero-img">
@@ -144,87 +353,98 @@ AI powered cinematic portfolio system with 3D UI, voice commands, terminal, CMS 
 </div>
 
 </section>
-<section id="about">
-<h1 style="font-size:50px;">ABOUT <span style="-webkit-text-stroke:1px red;color:transparent;">ME</span></h1>
 
-<p style="color:#aaa;max-width:700px;line-height:1.8">
-I build futuristic AI-based frontend systems, immersive UI, WebGL experiences and cinematic motion websites.
-</p>
-</section>
+<!-- FEATURES -->
+<section id="features">
 
-<section>
-<h1 style="font-size:50px;">FEATURE SYSTEM</h1>
+<h1 class="title">SYSTEM <span>FEATURES</span></h1>
 
-<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+<div class="grid">
 
-<div style="background:#111;padding:20px;border-radius:20px;">AI Chat Assistant</div>
-<div style="background:#111;padding:20px;border-radius:20px;">Voice Command System</div>
-<div style="background:#111;padding:20px;border-radius:20px;">3D Room (Three.js)</div>
-<div style="background:#111;padding:20px;border-radius:20px;">Terminal OS UI</div>
-<div style="background:#111;padding:20px;border-radius:20px;">Firebase CMS Hook</div>
-<div style="background:#111;padding:20px;border-radius:20px;">GitHub API Live Data</div>
-<div style="background:#111;padding:20px;border-radius:20px;">Theme Engine</div>
-<div style="background:#111;padding:20px;border-radius:20px;">Music System</div>
-<div style="background:#111;padding:20px;border-radius:20px;">Particle Cursor</div>
-<div style="background:#111;padding:20px;border-radius:20px;">WebGPU Ready Layer</div>
+<div class="card">AI Chat Assistant Engine</div>
+<div class="card">Voice Command Navigation</div>
+<div class="card">3D Room (Three.js World)</div>
+<div class="card">Hologram Cursor Effect</div>
+<div class="card">Interactive Terminal OS</div>
+<div class="card">Dynamic Theme Engine</div>
+<div class="card">Firebase CMS Hook</div>
+<div class="card">GitHub API Sync</div>
+<div class="card">Live Visitor Counter UI</div>
+<div class="card">WebGPU Placeholder Engine</div>
+<div class="card">Motion Scroll System</div>
+<div class="card">Audio Background System</div>
+<div class="card">Matrix Rain Effect</div>
+<div class="card">Particle Cursor Trail</div>
 
 </div>
+
 </section>
 
+<!-- PROJECTS -->
 <section id="projects">
-<h1 style="font-size:50px;">PROJECTS</h1>
 
-<div style="display:grid;gap:20px;">
+<h1 class="title">PROJECTS <span>SHOWCASE</span></h1>
 
-<div style="background:#111;padding:20px;border-radius:20px;">
+<div class="card">
 <h2>CYBER CORE AI</h2>
-<p style="color:#aaa">Advanced dashboard system UI</p>
+<p>Advanced futuristic dashboard system</p>
 </div>
 
-<div style="background:#111;padding:20px;border-radius:20px;">
+<div class="card">
 <h2>NEURAL OS UI</h2>
-<p style="color:#aaa">Futuristic operating system concept</p>
+<p>Glassmorphism AI operating system concept</p>
 </div>
 
-<div style="background:#111;padding:20px;border-radius:20px;">
+<div class="card">
 <h2>QUANTUM BRAND</h2>
-<p style="color:#aaa">Digital identity system</p>
+<p>Next-gen identity system architecture</p>
 </div>
 
-</div>
 </section>
-<section id="contact">
-<h1 style="font-size:50px;">CONTACT</h1>
-<h2 style="color:red;">rajounahmedrijon@gmail.com</h2>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+
+<h1 class="title">CONTACT <span>ME</span></h1>
+
+<div class="email">rajounahmedrijon@gmail.com</div>
+
 </section>
 
 <!-- FLOAT SYSTEMS -->
-<button onclick="toggleAI()" style="position:fixed;bottom:20px;right:20px;padding:20px;border-radius:50%;background:red;color:white;border:none;cursor:pointer;">AI</button>
+<div class="float-ai" onclick="toggleAI()">AI</div>
 
-<div id="ai" style="display:none;position:fixed;bottom:100px;right:20px;width:320px;height:400px;background:#111;border-radius:20px;padding:15px;">
-<h3 style="color:red">AI SYSTEM</h3>
-<p style="color:#aaa">Hello Rajoun, system active.</p>
-<input placeholder="Ask..." style="width:100%;margin-top:10px;padding:10px;">
+<div class="ai-box" id="aiBox">
+<h3 style="color:red">AI SYSTEM ONLINE</h3>
+<p style="color:#aaa">Hello Rajoun, all systems active.</p>
+<input style="width:100%;margin-top:10px;padding:10px;">
 </div>
 
-<div id="terminal" style="position:fixed;left:20px;bottom:100px;width:400px;height:300px;background:black;color:#00ff66;padding:10px;font-family:monospace;display:none;">
-> SYSTEM ONLINE<br>
+<div class="terminal" id="terminal">
+> SYSTEM BOOTED<br>
 > AI MODULE READY<br>
-> VOICE SYSTEM ACTIVE
+> VOICE ACTIVE<br>
+> CMS READY
+</div>
+
+<div class="theme">
+<div style="background:red" onclick="theme('#ff1e1e')"></div>
+<div style="background:cyan" onclick="theme('#00ffff')"></div>
+<div style="background:lime" onclick="theme('#00ff66')"></div>
 </div>
 
 <script>
 
-// loader
-setTimeout(()=>document.querySelector(".loader").style.display="none",1500);
+/* LOADER */
+setTimeout(()=>document.querySelector(".loader").style.display="none",2000);
 
-// AI toggle
+/* AI */
 function toggleAI(){
-let a=document.getElementById("ai");
+let a=document.getElementById("aiBox");
 a.style.display=a.style.display==="block"?"none":"block";
 }
 
-// terminal toggle
+/* TERMINAL */
 document.addEventListener("keydown",(e)=>{
 if(e.key==="t"){
 let t=document.getElementById("terminal");
@@ -232,22 +452,52 @@ t.style.display=t.style.display==="block"?"none":"block";
 }
 });
 
-// simple voice system
+/* THEME */
+function theme(c){
+document.documentElement.style.setProperty('--red',c);
+}
+
+/* VOICE */
 if('webkitSpeechRecognition' in window){
 let rec=new webkitSpeechRecognition();
 rec.continuous=true;
 rec.onresult=(e)=>{
-let text=e.results[e.results.length-1][0].transcript;
-if(text.includes("projects")) location="#projects";
-if(text.includes("contact")) location="#contact";
+let t=e.results[e.results.length-1][0].transcript;
+if(t.includes("projects")) location="#projects";
+if(t.includes("contact")) location="#contact";
 };
 rec.start();
 }
 
-// animation
-gsap.from(".hero h1",{y:50,opacity:0,duration:1});
+/* THREE JS */
+let scene=new THREE.Scene();
+let camera=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,1000);
+let renderer=new THREE.WebGLRenderer({canvas:document.getElementById('particles'),alpha:true});
+renderer.setSize(innerWidth,innerHeight);
+
+let geo=new THREE.BufferGeometry();
+let pos=[];
+for(let i=0;i<5000;i++){
+pos.push((Math.random()-0.5)*1000);
+pos.push((Math.random()-0.5)*1000);
+pos.push((Math.random()-0.5)*1000);
+}
+geo.setAttribute("position",new THREE.Float32BufferAttribute(pos,3));
+
+let mat=new THREE.PointsMaterial({color:0xff1e1e,size:1.5});
+let points=new THREE.Points(geo,mat);
+scene.add(points);
+
+camera.position.z=400;
+
+function animate(){
+requestAnimationFrame(animate);
+points.rotation.y+=0.001;
+renderer.render(scene,camera);
+}
+animate();
 
 </script>
 
 </body>
-</html>
+  </html>
