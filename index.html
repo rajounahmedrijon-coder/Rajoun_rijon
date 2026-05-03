@@ -5,107 +5,139 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Rajoun Ahmed Rijon | Elite Portfolio</title>
 
-<!-- External Libraries -->
+<!-- External Libraries for Animations -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ================= GLOBAL SETTINGS ================= */
+/* ================= GLOBAL & THEME ================= */
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Space Grotesk', sans-serif; }
-body { background:#000; color:#fff; overflow-x:hidden; }
+body { background:#000; color:#fff; overflow-x:hidden; scroll-behavior: smooth; }
 
-/* Cinematic Grid Background */
+/* Elite Grid Background */
 .bg {
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), 
+    position: fixed; inset: 0;
+    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.9)), 
                 url('geometric-black-red-grid-background_944420-102352.jpg');
-    background-size: cover;
-    background-position: center;
-    z-index: -2;
+    background-size: cover; background-position: center; z-index: -2;
 }
 
-/* Elite Loader */
+/* Hacker Loader */
 #loader {
     position: fixed; inset: 0; background: #000;
     display: flex; justify-content: center; align-items: center; z-index: 9999;
 }
 .loader-content { text-align: center; color: #ff1e1e; }
-.progress-container { width: 250px; height: 1px; background: #222; margin: 15px auto; }
+.progress-container { width: 300px; height: 1px; background: #222; margin: 15px auto; }
 .progress-bar { width: 0%; height: 100%; background: #ff1e1e; box-shadow: 0 0 15px #ff1e1e; }
-
-/* ================= HERO SECTION ================= */
-.hero { min-height:100vh; display:flex; justify-content:space-between; align-items:center; padding:0 8%; gap:40px; }
-
-/* Premium Name Glow */
-.hero-text h1 { font-size: 70px; line-height: 1; }
-.hero-text h1 span { 
-    color: #ff1e1e; 
-    text-shadow: 0 0 15px rgba(255, 30, 30, 0.7), 0 0 30px rgba(255, 30, 30, 0.4);
-    animation: glow-pulse 2s infinite alternate;
-}
-@keyframes glow-pulse {
-    from { text-shadow: 0 0 10px #ff1e1e; }
-    to { text-shadow: 0 0 25px #ff1e1e, 0 0 45px #ff1e1e; }
-}
-
-/* 3D Profile Card */
-.tilt-card {
-    width: 380px; padding: 15px; background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,30,30,0.3); border-radius: 25px;
-    backdrop-filter: blur(20px); transform-style: preserve-3d;
-}
-.tilt-card img { width: 100%; height: 400px; object-fit: cover; border-radius: 18px; }
 
 /* ================= NAVIGATION ================= */
 nav {
-    position:fixed; top:0; width:100%; padding:25px 8%;
+    position:fixed; top:0; width:100%; padding:20px 8%;
     display:flex; justify-content:space-between; align-items:center;
-    background:rgba(0,0,0,0.8); backdrop-filter:blur(10px); z-index:1000;
+    background:rgba(0,0,0,0.7); backdrop-filter:blur(15px); z-index:1000;
+    border-bottom: 1px solid rgba(255,0,0,0.1);
 }
-.logo { font-weight:700; font-size:22px; color:#fff; }
+.logo { font-size:22px; font-weight:700; letter-spacing:1px; }
 .logo span { color:#ff1e1e; }
 nav ul { display:flex; gap:30px; list-style:none; }
-nav a { text-decoration:none; color:#777; font-size:12px; transition:0.3s; }
-nav a:hover { color:#ff1e1e; }
+nav a { text-decoration:none; color:#777; font-size:12px; transition:0.3s; font-weight: 500; }
+nav a:hover { color:#ff1e1e; text-shadow: 0 0 10px #ff1e1e; }
 
-/* ================= TERMINAL & GRID ================= */
+/* ================= HERO SECTION ================= */
+.hero { min-height:100vh; display:flex; justify-content:space-between; align-items:center; padding:120px 8%; gap:50px; }
+.hero-text h1 { font-size: clamp(45px, 8vw, 85px); line-height:0.9; font-weight:700; }
+
+/* Fixed Name Glow - No Side Aura */
+.hero-text h1 span { 
+    color:#ff1e1e; 
+    text-shadow: 0 0 15px rgba(255, 30, 30, 0.6);
+    animation: simple-glow 2s infinite alternate;
+}
+@keyframes simple-glow {
+    from { text-shadow: 0 0 10px #ff1e1e; }
+    to { text-shadow: 0 0 25px #ff1e1e; }
+}
+
+.hero-text p { color:#888; margin: 25px 0; max-width: 500px; font-size: 17px; line-height: 1.6; }
+
+/* 3D Profile Card */
+.tilt-card {
+    width:360px; background:rgba(20,20,20,0.4);
+    border:1px solid rgba(255,30,30,0.2); border-radius:25px; padding:15px;
+    backdrop-filter:blur(15px); transform-style: preserve-3d; transition: transform 0.1s;
+}
+.tilt-card img { width:100%; height:400px; object-fit:cover; border-radius:20px; }
+.tilt-card h2 { margin-top:15px; text-align:center; font-size:20px; }
+.tilt-card p { color:#ff1e1e; text-align:center; font-size:12px; letter-spacing:2px; font-weight:700; margin-top:5px;}
+
+/* ================= TERMINAL (ABOUT) ================= */
 .terminal-window {
-    background: #050505; border: 1px solid #ff1e1e;
-    max-width: 800px; margin: 50px auto; border-radius: 10px; overflow: hidden;
+    background: rgba(5,5,5,0.95); border: 1px solid #ff1e1e;
+    border-radius: 12px; overflow: hidden; max-width: 900px; margin: 50px auto;
+    box-shadow: 0 0 40px rgba(255,0,0,0.1);
 }
-.terminal-header { background: #111; padding: 10px 20px; display: flex; gap: 8px; }
-.dot { width: 10px; height: 10px; border-radius: 50%; }
-.terminal-body { padding: 25px; font-family: monospace; color: #888; }
+.terminal-header { background: #111; padding: 12px 20px; display: flex; align-items:center; }
+.dot { width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; }
+.terminal-body { padding: 30px; font-family: monospace; font-size: 15px; color: #aaa; line-height: 1.7; }
+.prompt { color: #ff1e1e; font-weight: bold; }
+.cursor { display: inline-block; width: 10px; height: 18px; background: #ff1e1e; animation: blink 1s infinite; }
+@keyframes blink { 50% { opacity: 0; } }
 
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+/* ================= SKILLS SECTION ================= */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 40px; }
+.skill-card {
+    background: #0a0a0a; border: 1px solid #1a1a1a; padding: 30px; border-radius: 20px;
+    transition: 0.4s; position: relative; overflow: hidden;
+}
+.skill-card:hover { border-color: #ff1e1e; transform: translateY(-10px); box-shadow: 0 10px 30px rgba(255,0,0,0.1); }
+.tag { 
+    display: inline-block; padding: 6px 12px; background: #111; border: 1px solid #333;
+    border-radius: 20px; font-size: 11px; margin: 5px 3px 0 0; transition: 0.3s;
+}
+.skill-card:hover .tag { border-color: #ff1e1e; color: #fff; }
+
+/* ================= WORK SECTION ================= */
 .project-card { 
-    background: #0a0a0a; border: 1px solid #1a1a1a; 
-    border-radius: 20px; overflow: hidden; transition: 0.4s;
+    background: #0a0a0a; border: 1px solid #111; border-radius: 20px; overflow: hidden; transition: 0.5s;
 }
-.project-card:hover { border-color: #ff1e1e; transform: translateY(-10px); }
-.project-img { width: 100%; height: 220px; object-fit: cover; opacity: 0.7; transition: 0.5s; }
-.project-card:hover .project-img { opacity: 1; transform: scale(1.05); }
+.project-card:hover { border-color: #ff1e1e; }
+.project-img-container { width: 100%; height: 220px; overflow: hidden; }
+.project-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.7s; }
+.project-card:hover .project-img { opacity: 1; transform: scale(1.1); }
+.project-info { padding: 25px; }
+.view-btn { color: #ff1e1e; text-decoration: none; font-weight: 700; font-size: 13px; letter-spacing: 1px; }
 
-.btn { padding:15px 35px; border-radius:50px; text-decoration:none; font-weight:700; display:inline-block; transition: 0.3s; }
-.primary { background:#ff1e1e; color:#fff; box-shadow: 0 10px 20px rgba(255,30,30,0.2); }
-.secondary { border:1px solid #333; color:#fff; margin-left:15px; }
+/* ================= COMMON ================= */
+section { padding: 120px 8%; }
+.title { font-size: 45px; text-align: center; margin-bottom: 15px; font-weight: 700; }
+.subtitle { text-align: center; color: #666; margin-bottom: 50px; font-size: 16px; }
+.btn { padding: 16px 35px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 14px; transition: 0.3s; display: inline-block; }
+.primary { background: #ff1e1e; color: #fff; box-shadow: 0 10px 25px rgba(255,30,30,0.3); }
+.secondary { border: 1px solid #333; color: #fff; margin-left: 15px; }
+.btn:hover { transform: translateY(-5px); opacity: 0.9; }
 
-.fade { opacity: 0; transform: translateY(30px); }
-footer { text-align: center; padding: 50px; color: #333; border-top: 1px solid #111; }
+/* Fade Animation Classes */
+.fade { opacity: 0; transform: translateY(40px); }
 
+/* ================= CONTACT ================= */
+.contact { text-align: center; background: rgba(255,30,30,0.02); }
+.contact a { color: #fff; font-size: clamp(25px, 6vw, 45px); text-decoration: none; font-weight: 700; transition: 0.4s; }
+.contact a:hover { color: #ff1e1e; text-shadow: 0 0 30px #ff1e1e; }
+
+footer { text-align: center; padding: 60px; color: #444; border-top: 1px solid #111; font-size: 13px; }
 </style>
 </head>
 
 <body>
 
-<!-- SYSTEM LOADER -->
+<!-- SYSTEM BOOT LOADER -->
 <div id="loader">
     <div class="loader-content">
-        <h2 style="letter-spacing:10px">LOADING...</h2>
+        <h2 style="letter-spacing:12px; font-weight:300;">INITIALIZING_SYSTEM</h2>
         <div class="progress-container"><div class="progress-bar"></div></div>
-        <p><span id="percent">0%</span> COMPLETE</p>
+        <p style="font-family:monospace; font-size:12px;">DECRYPTING_DATA: <span id="percent">0%</span></p>
     </div>
 </div>
 
@@ -116,77 +148,139 @@ footer { text-align: center; padding: 50px; color: #333; border-top: 1px solid #
     <ul>
         <li><a href="#hero">HOME</a></li>
         <li><a href="#about">SYSTEM</a></li>
+        <li><a href="#skills">SKILLS</a></li>
         <li><a href="#projects">PROJECTS</a></li>
+        <li><a href="#contact">CONTACT</a></li>
     </ul>
 </nav>
 
+<!-- HERO SECTION -->
 <section id="hero" class="hero">
     <div class="hero-text fade">
-        <p style="color:#ff1e1e; font-weight:700; margin-bottom:10px;">> ACCESS GRANTED</p>
+        <p style="color:#ff1e1e; font-weight:700; margin-bottom:15px; letter-spacing:3px;">> ENCRYPTED ACCESS</p>
         <h1>Rajoun Ahmed <br><span>Rijon</span></h1>
-        <p style="color:#666; margin: 20px 0 30px; max-width:450px; line-height:1.6;">
-            A high-end UI/UX Designer and Developer specializing in elite, nostalgic digital experiences.
+        <p>
+            An elite Digital Designer and Creative Developer crafting premium interfaces with a touch of nostalgic 3D aesthetics and high-performance code.
         </p>
         <div class="buttons">
-            <a href="mailto:rajounahmedrijon@gmail.com" class="btn primary">HIRE ME</a>
+            <a href="mailto:rajounahmedrijon@gmail.com" class="btn primary">HIRE MISSION</a>
             <a href="#projects" class="btn secondary">VIEW LOGS</a>
         </div>
     </div>
 
     <!-- 3D Profile Card -->
     <div class="tilt-card fade">
-        <!-- ছবির নাম এখানে ফিক্স করা হয়েছে -->
-        <img src="IMG_20250914_191146 (1).jpg" alt="Rajoun Profile">
-        <h2 style="text-align:center; margin-top:15px;">Rajoun Ahmed Rijon</h2>
-        <p style="text-align:center; color:#ff1e1e; font-size:12px; letter-spacing:2px;">UI/UX ARCHITECT</p>
+        <img src="IMG_20250914_191146 (1).jpg" alt="Rajoun Ahmed Rijon">
+        <h2>Rajoun Ahmed Rijon</h2>
+        <p>UI/UX ARCHITECT • DEVELOPER</p>
     </div>
 </section>
 
+<!-- ABOUT (TERMINAL) SECTION -->
 <section id="about">
-    <h2 style="text-align:center; font-size:30px;" class="fade">WHO_AM_I</h2>
+    <h2 class="title fade">System_Information</h2>
+    <p class="subtitle fade">Accessing core user identity and vision.</p>
     <div class="terminal-window fade">
         <div class="terminal-header">
             <div class="dot" style="background:#ff5f56"></div>
             <div class="dot" style="background:#ffbd2e"></div>
             <div class="dot" style="background:#27c93f"></div>
+            <p style="margin-left:15px; font-size:11px; color:#555;">bash — rajoun@rijon — 80×24</p>
         </div>
         <div class="terminal-body">
-            <p><span style="color:#ff1e1e">user@matrix:~$</span> whoami</p>
-            <p style="color:#fff; margin:10px 0 20px;">> Rajoun Ahmed Rijon: A visionary designer dedicated to premium quality.</p>
-            <p><span style="color:#ff1e1e">user@matrix:~$</span> ls expertise/</p>
-            <p style="margin-left:15px;">- Visual_Design.bin <br> - Frontend_Eng.exe <br> - 3D_Aesthetics.sys</p>
+            <p><span class="prompt">user@matrix:~$</span> whoami</p>
+            <p style="color:#fff; margin:10px 0 25px 20px;">> RAJOUN AHMED RIJON: A visionary designer dedicated to creating high-end, immersive digital products.</p>
+            
+            <p><span class="prompt">user@matrix:~$</span> ls credentials/skills</p>
+            <p style="color:#666; margin:10px 0 25px 20px;">> Visual_Design.sys, User_Experience.exe, React_Dev.bin, Branding.sys</p>
+            
+            <p><span class="prompt">user@matrix:~$</span> cat vision_statement.txt</p>
+            <p style="color:#fff; margin:10px 0 0 20px;">> To bridge the gap between complex technology and premium aesthetics through elite design systems.</p>
+            <p><span class="prompt">user@matrix:~$</span> <span class="cursor">_</span></p>
         </div>
     </div>
 </section>
 
-<section id="projects">
-    <h2 style="margin-bottom:40px;" class="fade">MISSION_LOGS</h2>
+<!-- SKILLS SECTION -->
+<section id="skills">
+    <h2 class="title fade">Core_Capabilities</h2>
     <div class="grid">
-        <div class="project-card fade">
-            <img src="abstract-black-3d-blocks-background-260nw-2099546248.jpg" class="project-img">
-            <div style="padding:20px;">
-                <h3>3D Architecture</h3>
-                <p style="color:#555; font-size:13px; margin:10px 0;">Elite 3D layout project.</p>
-                <a href="#" style="color:#ff1e1e; text-decoration:none; font-size:12px; font-weight:700;">INITIALIZE _</a>
+        <div class="skill-card fade">
+            <h3>Visual Design</h3>
+            <p style="color:#555; font-size:14px; margin:15px 0;">Creating stunning, clean, and modern interfaces.</p>
+            <div class="tags">
+                <span class="tag">Figma</span><span class="tag">Photoshop</span><span class="tag">UI/UX</span>
             </div>
         </div>
-        <div class="project-card fade">
-            <img src="Screenshot_20260503_131940.jpg" class="project-img">
-            <div style="padding:20px;">
-                <h3>System UI</h3>
-                <p style="color:#555; font-size:13px; margin:10px 0;">Hacker-style dashboard design.</p>
-                <a href="#" style="color:#ff1e1e; text-decoration:none; font-size:12px; font-weight:700;">INITIALIZE _</a>
+        <div class="skill-card fade">
+            <h3>Development</h3>
+            <p style="color:#555; font-size:14px; margin:15px 0;">Building high-performance, responsive websites.</p>
+            <div class="tags">
+                <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span>
             </div>
         </div>
-        <div class="project-card fade">
-            <img src="cool-wallpaper (1).jpg" class="project-img">
-            <div style="padding:20px;">
-                <h3>Cyber Workspace</h3>
-                <p style="color:#555; font-size:13px; margin:10px 0;">Modern tech-focused visuals.</p>
-                <a href="#" style="color:#ff1e1e; text-decoration:none; font-size:12px; font-weight:700;">INITIALIZE _</a>
+        <div class="skill-card fade">
+            <h3>Strategy</h3>
+            <p style="color:#555; font-size:14px; margin:15px 0;">Defining brand identity and user flow architecture.</p>
+            <div class="tags">
+                <span class="tag">Mentoring</span><span class="tag">Branding</span><span class="tag">Logic</span>
             </div>
         </div>
     </div>
+</section>
+
+<!-- WORK/PROJECTS SECTION -->
+<section id="projects">
+    <h2 class="title fade">Mission_Logs</h2>
+    <p class="subtitle fade">Selected works and successful operations.</p>
+    <div class="grid">
+        <div class="project-card fade">
+            <div class="project-img-container">
+                <img src="IMG_20260503_135526.jpg" class="project-img">
+            </div>
+            <div class="project-info">
+                <h3>Elite Brand Portal</h3>
+                <p style="color:#555; font-size:13px; margin:10px 0;">Premium corporate interface with high security.</p>
+                <a href="#" class="view-btn">INITIALIZE _</a>
+            </div>
+        </div>
+        <div class="project-card fade">
+            <div class="project-img-container">
+                <img src="Screenshot_20260503_131940.jpg" class="project-img">
+            </div>
+            <div class="project-info">
+                <h3>Cyber Dashboard</h3>
+                <p style="color:#555; font-size:13px; margin:10px 0;">Data-heavy interface with nostalgic hacker vibes.</p>
+                <a href="#" class="view-btn">INITIALIZE _</a>
+            </div>
+        </div>
+        <div class="project-card fade">
+            <div class="project-img-container">
+                <img src="Screenshot_20260503_132301.jpg" class="project-img">
+            </div>
+            <div class="project-info">
+                <h3>System Console</h3>
+                <p style="color:#555; font-size:13px; margin:10px 0;">Interactive UI system for digital operations.</p>
+                <a href="#" class="view-btn">INITIALIZE _</a>
+            </div>
+        </div>
+        <div class="project-card fade">
+            <div class="project-img-container">
+                <img src="cool-wallpaper (1).jpg" class="project-img">
+            </div>
+            <div class="project-info">
+                <h3>Nostalgic Hub</h3>
+                <p style="color:#555; font-size:13px; margin:10px 0;">A creative space for elite visual storytelling.</p>
+                <a href="#" class="view-btn">INITIALIZE _</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="contact fade">
+    <p style="color:#ff1e1e; font-weight:700; margin-bottom:20px; letter-spacing:4px;">ESTABLISH CONNECTION</p>
+    <a href="mailto:rajounahmedrijon@gmail.com">rajounahmedrijon@gmail.com</a>
 </section>
 
 <footer>
@@ -194,38 +288,47 @@ footer { text-align: center; padding: 50px; color: #333; border-top: 1px solid #
 </footer>
 
 <script>
-// Loader Logic
+// 1. Loader Logic
 let count = 0;
 let loaderInterval = setInterval(() => {
-    count += Math.floor(Math.random() * 10) + 1;
+    count += Math.floor(Math.random() * 12) + 1;
     if(count >= 100) {
         count = 100;
         clearInterval(loaderInterval);
-        gsap.to("#loader", { opacity:0, duration:1, onComplete: () => document.getElementById('loader').style.display='none' });
+        gsap.to("#loader", { opacity: 0, duration: 1.2, ease: "power4.inOut", onComplete: () => {
+            document.getElementById('loader').style.display = 'none';
+        }});
     }
     document.getElementById('percent').innerText = count + "%";
     document.querySelector('.progress-bar').style.width = count + "%";
 }, 60);
 
-// GSAP Scroll
+// 2. GSAP Animations for Scroll
 gsap.registerPlugin(ScrollTrigger);
 gsap.utils.toArray(".fade").forEach(el => {
-    gsap.to(el, { opacity:1, y:0, duration:1, scrollTrigger: { trigger: el, start: "top 90%" } });
+    gsap.to(el, {
+        opacity: 1, y: 0, duration: 1.5, ease: "power4.out",
+        scrollTrigger: { trigger: el, start: "top 92%" }
+    });
 });
 
-// 3D Tilt
+// 3. 3D Tilt Logic
 const card = document.querySelector('.tilt-card');
 document.addEventListener('mousemove', (e) => {
-    let x = (window.innerWidth / 2 - e.pageX) / 15;
-    let y = (window.innerHeight / 2 - e.pageY) / 15;
-    if(card) card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    let xAxis = (window.innerWidth / 2 - e.pageX) / 20;
+    let yAxis = (window.innerHeight / 2 - e.pageY) / 20;
+    if(card) {
+        card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+    }
 });
 document.addEventListener('mouseleave', () => {
-    card.style.transition = "0.5s";
-    card.style.transform = `rotateY(0) rotateX(0)`;
+    card.style.transition = "0.6s ease";
+    card.style.transform = `rotateY(0deg) rotateX(0deg)`;
 });
-document.addEventListener('mouseenter', () => card.style.transition = "0s");
+document.addEventListener('mouseenter', () => {
+    card.style.transition = "none";
+});
 </script>
 
 </body>
-            </html>
+    </html>
