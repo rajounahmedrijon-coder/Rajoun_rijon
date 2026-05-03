@@ -90,6 +90,32 @@ body {
     display: inline-block; margin-right: 8px;
     box-shadow: 0 0 10px #00ff00;
 }
+  .right-side-panel {
+    position: fixed;
+    top: 30px; /* স্ক্রিনের ওপর থেকে ৩০ পিক্সেল নিচে */
+    right: 20px; /* ডান পাশ থেকে ২০ পিক্সেল ভেতরে */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.6); /* হালকা কালো স্বচ্ছ ব্যাকগ্রাউন্ড */
+    backdrop-filter: blur(10px);
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.panel-item { color: #00ff00; font-family: monospace; font-size: 13px; }
+.panel-icons { display: flex; gap: 15px; font-size: 22px; }
+.panel-icons a { text-decoration: none; }
+
+/* সবুজ বাতি অ্যানিমেশন */
+.status-dot {
+    width: 8px; height: 8px; background: #00ff00; border-radius: 50%;
+    display: inline-block; margin-right: 5px;
+    box-shadow: 0 0 10px #00ff00;
+    }
 /* Architecture Line Effect */
 .glass-card::before {
     content: '';
@@ -842,41 +868,6 @@ perspective:1000px;
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
-      <!-- ১০. লটি (Lottie) অ্যানিমেশন (একটি সুন্দর অ্যানিমেটেড আইকন) -->
-<div style="width: 150px; margin: auto;">
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_m6cuL6.json" background="transparent" speed="1" loop autoplay></lottie-player>
-</div>
-
-<!-- ১৪. লাইভ ঘড়ি এবং ১৯. স্ট্যাটাস ডট -->
-<div class="status-container">
-    <div class="status-dot"></div>
-    <span>Available for Work | Local Time: <span id="live-clock"></span></span>
-</div>
-
-<!-- ১৮. সার্টিফিকেশন গ্যালারি (লাইটবক্স ইফেক্ট সহ) -->
-<section id="certificates">
-    <h3>My Certifications</h3>
-    <div class="cert-grid">
-        <img src="your-cert1.jpg" alt="Cert 1" onclick="openCert(this.src)">
-        <img src="your-cert2.jpg" alt="Cert 2" onclick="openCert(this.src)">
-    </div>
-</section>
-
-<!-- ১৮ (অংশ). লাইটবক্স মোডাল -->
-<div id="certModal" class="modal" onclick="this.style.display='none'">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="img01">
-</div>
-
-<!-- ২২. কুইক ইমেইল ও ৩০. ভয়েস মেসেজ বাটন -->
-<div class="contact-buttons">
-    <a href="mailto:yourname@gmail.com" class="btn-email">📧 Quick Email</a>
-    <button onclick="voiceMessage()" class="btn-voice">🎤 Send Voice Note</button>
-</div>
-
-<!-- ৪৬. পপ-আপ নোটিফিকেশন -->
-<div id="pop-up-notif" class="notif">New Project Uploaded! 🚀</div>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto gap-4">
                 <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
@@ -891,25 +882,7 @@ perspective:1000px;
 </nav>
 <section class="hero" id="home">
 
-<div>
-<div class="hero-sub">ELITE FRONTEND ENGINEER</div>
-<!-- নামের উপরের ফাঁকা জায়গায় এই ড্যাশবোর্ডটি থাকবে -->
-<div class="info-dashboard">
-    <!-- সময় এবং স্ট্যাটাস -->
-    <div class="info-item">
-        <div class="status-dot"></div>
-        <span id="live-clock">00:00:00</span>
-    </div>
 
-    <!-- ছোট আইকন হিসেবে ইমেইল ও সার্টিফিকেট -->
-    <div class="info-item">
-        <a href="mailto:rajounahmedrijon@gmail.com" title="Send Email" style="text-decoration:none; margin-right:10px;">📧</a>
-        <span title="Certificates" style="cursor:pointer;" onclick="document.getElementById('certificates').scrollIntoView({behavior: 'smooth'})">📜</span>
-    </div>
-</div>
-
-<!-- নোটিফিকেশন পপ-আপ (এটি বডির একদম শেষে </body> এর উপরে দিলেও হবে) -->
-<div id="pop-up-notif" class="notif">New Project Uploaded! 🚀</div>
 <h1>
 RAJOUN <br>
 AHMED <br>
@@ -1566,5 +1539,22 @@ window.onload = function() {
         }, 5000);
     }, 3000);
 };</script>
+  <!-- এই বক্সটি অটোমেটিক ডান পাশে চলে যাবে -->
+<div class="right-side-panel">
+    <div class="panel-item">
+        <span class="status-dot"></span>
+        <span id="live-clock" style="font-weight: bold;"></span>
+    </div>
+
+    <div class="panel-icons">
+        <!-- সার্টিফিকেট সেকশনে যাওয়ার জন্য শর্টকাট -->
+        <span title="Certificates" style="cursor:pointer;" onclick="document.getElementById('certificates').scrollIntoView({behavior: 'smooth'})">📜</span>
+        <a href="mailto:rajounahmedrijon@gmail.com" title="Email Me">📧</a>
+        <button onclick="voiceMessage()" style="background:none; border:none; cursor:pointer; font-size: 20px;">🎤</button>
+    </div>
+</div>
+  <div
+<!-- নোটিফিকেশন পপ-আপ (এটি বডির একদম শেষে </body> এর উপরে দিলেও হবে) -->
+<div id="pop-up-notif" class="notif">New Project Uploaded! 🚀</div>
 </body>
   </html>
