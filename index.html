@@ -5,133 +5,107 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Rajoun Ahmed Rijon | Elite Portfolio</title>
 
-<!-- Fonts & GSAP Libraries -->
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- External Libraries -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
 
 <style>
-/* ================= GLOBAL & THEME ================= */
+/* ================= GLOBAL SETTINGS ================= */
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Space Grotesk', sans-serif; }
 body { background:#000; color:#fff; overflow-x:hidden; }
 
-/* Cinematic Background */
+/* Cinematic Grid Background */
 .bg {
     position: fixed;
     inset: 0;
-    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), 
                 url('geometric-black-red-grid-background_944420-102352.jpg');
     background-size: cover;
     background-position: center;
     z-index: -2;
 }
 
-/* Initializing System Loader */
+/* Elite Loader */
 #loader {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
+    position: fixed; inset: 0; background: #000;
+    display: flex; justify-content: center; align-items: center; z-index: 9999;
 }
 .loader-content { text-align: center; color: #ff1e1e; }
-.hacker-text { font-family: monospace; letter-spacing: 5px; margin-bottom: 20px; }
-.progress-container { width: 280px; height: 2px; background: #222; margin: 0 auto 10px; }
+.progress-container { width: 250px; height: 1px; background: #222; margin: 15px auto; }
 .progress-bar { width: 0%; height: 100%; background: #ff1e1e; box-shadow: 0 0 15px #ff1e1e; }
+
+/* ================= HERO SECTION ================= */
+.hero { min-height:100vh; display:flex; justify-content:space-between; align-items:center; padding:0 8%; gap:40px; }
+
+/* Premium Name Glow */
+.hero-text h1 { font-size: 70px; line-height: 1; }
+.hero-text h1 span { 
+    color: #ff1e1e; 
+    text-shadow: 0 0 15px rgba(255, 30, 30, 0.7), 0 0 30px rgba(255, 30, 30, 0.4);
+    animation: glow-pulse 2s infinite alternate;
+}
+@keyframes glow-pulse {
+    from { text-shadow: 0 0 10px #ff1e1e; }
+    to { text-shadow: 0 0 25px #ff1e1e, 0 0 45px #ff1e1e; }
+}
+
+/* 3D Profile Card */
+.tilt-card {
+    width: 380px; padding: 15px; background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,30,30,0.3); border-radius: 25px;
+    backdrop-filter: blur(20px); transform-style: preserve-3d;
+}
+.tilt-card img { width: 100%; height: 400px; object-fit: cover; border-radius: 18px; }
 
 /* ================= NAVIGATION ================= */
 nav {
-    position:fixed; top:0; width:100%; padding:20px 8%;
+    position:fixed; top:0; width:100%; padding:25px 8%;
     display:flex; justify-content:space-between; align-items:center;
-    backdrop-filter:blur(10px); background:rgba(0,0,0,0.6); z-index:1000;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    background:rgba(0,0,0,0.8); backdrop-filter:blur(10px); z-index:1000;
 }
-.logo { font-size:20px; font-weight:700; }
+.logo { font-weight:700; font-size:22px; color:#fff; }
 .logo span { color:#ff1e1e; }
 nav ul { display:flex; gap:30px; list-style:none; }
-nav a { text-decoration:none; color:#888; font-size:13px; transition:0.3s; }
+nav a { text-decoration:none; color:#777; font-size:12px; transition:0.3s; }
 nav a:hover { color:#ff1e1e; }
 
-/* ================= HERO SECTION ================= */
-.hero { min-height:100vh; display:flex; justify-content:space-between; align-items:center; padding:120px 8%; gap:50px; }
-.hero-text h1 { font-size:clamp(40px, 8vw, 75px); line-height:0.9; font-weight:700; }
-.hero-text h1 span { color:#ff1e1e; animation: neon-flicker 3s infinite; }
-
-@keyframes neon-flicker {
-    0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; text-shadow: 0 0 10px #ff1e1e; }
-    20%, 24%, 55% { opacity: 0.7; text-shadow: none; }
-}
-
-/* Profile Card with 3D Tilt */
-.tilt-card {
-    width:350px; background:rgba(20,20,20,0.6);
-    border:1px solid rgba(255,30,30,0.2);
-    border-radius:20px; padding:15px;
-    backdrop-filter:blur(15px);
-    transition: transform 0.1s ease-out;
-    transform-style: preserve-3d;
-}
-.tilt-card img { width:100%; height:380px; object-fit:cover; border-radius:15px; }
-.tilt-card h2 { margin-top:15px; font-size:20px; text-align:center; }
-.tilt-card p { color:#ff1e1e; font-size:13px; text-align:center; margin-top:5px; font-weight: 500; }
-
-/* ================= TERMINAL (ABOUT) ================= */
+/* ================= TERMINAL & GRID ================= */
 .terminal-window {
-    background: rgba(5, 5, 5, 0.95);
-    border: 1px solid #333;
-    border-radius: 10px;
-    box-shadow: 0 15px 50px rgba(0,0,0,0.5);
-    max-width: 850px; margin: 40px auto; overflow: hidden;
+    background: #050505; border: 1px solid #ff1e1e;
+    max-width: 800px; margin: 50px auto; border-radius: 10px; overflow: hidden;
 }
-.terminal-header { background: #1a1a1a; padding: 12px 20px; display: flex; align-items: center; }
-.dots { display: flex; gap: 8px; }
-.dot { width: 12px; height: 12px; border-radius: 50%; }
-.red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
-.terminal-body { padding: 25px; font-family: monospace; font-size: 14px; color: #aaa; line-height: 1.6; }
-.prompt { color: #ff1e1e; margin-right: 10px; }
-.command { color: #fff; }
-.cursor { display: inline-block; width: 8px; height: 15px; background: #ff1e1e; animation: blink 1s infinite; }
-@keyframes blink { 50% { opacity: 0; } }
+.terminal-header { background: #111; padding: 10px 20px; display: flex; gap: 8px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.terminal-body { padding: 25px; font-family: monospace; color: #888; }
 
-/* ================= PROJECT CARDS ================= */
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px; margin-top:40px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 .project-card { 
-    background:#0a0a0a !important; border:1px solid #1a1a1a !important; 
-    border-radius: 15px; overflow:hidden; transition: 0.4s;
+    background: #0a0a0a; border: 1px solid #1a1a1a; 
+    border-radius: 20px; overflow: hidden; transition: 0.4s;
 }
-.project-card:hover { border-color: #ff1e1e !important; transform: translateY(-10px); }
-.project-img-container { width: 100%; height: 200px; overflow: hidden; }
-.project-img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-.project-card:hover .project-img { transform: scale(1.1); }
-.project-info { padding: 20px; }
-.view-btn { color: #ff1e1e; text-decoration: none; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+.project-card:hover { border-color: #ff1e1e; transform: translateY(-10px); }
+.project-img { width: 100%; height: 220px; object-fit: cover; opacity: 0.7; transition: 0.5s; }
+.project-card:hover .project-img { opacity: 1; transform: scale(1.05); }
 
-/* ================= BUTTONS & TITLES ================= */
-.btn { padding:14px 30px; border-radius:30px; text-decoration:none; font-size:14px; font-weight:600; transition:0.3s; display:inline-block; }
-.primary { background:#ff1e1e; color:#fff; box-shadow: 0 5px 15px rgba(255,30,30,0.3); }
-.secondary { border:1px solid #333; color:#fff; margin-left:10px; }
-.btn:hover { transform: translateY(-3px); opacity: 0.9; }
-.title { font-size: 35px; text-align: center; margin-bottom: 10px; }
-section { padding: 100px 8%; }
+.btn { padding:15px 35px; border-radius:50px; text-decoration:none; font-weight:700; display:inline-block; transition: 0.3s; }
+.primary { background:#ff1e1e; color:#fff; box-shadow: 0 10px 20px rgba(255,30,30,0.2); }
+.secondary { border:1px solid #333; color:#fff; margin-left:15px; }
+
 .fade { opacity: 0; transform: translateY(30px); }
+footer { text-align: center; padding: 50px; color: #333; border-top: 1px solid #111; }
 
-/* ================= CONTACT ================= */
-.contact { text-align: center; background: rgba(255,30,30,0.03); border-top: 1px solid rgba(255,30,30,0.1); }
-.contact a { color: #fff; font-size: clamp(20px, 5vw, 35px); text-decoration: none; font-weight: 700; transition: 0.4s; }
-.contact a:hover { color: #ff1e1e; text-shadow: 0 0 20px #ff1e1e; }
-footer { text-align: center; padding: 40px; color: #444; font-size: 13px; }
 </style>
 </head>
 
 <body>
 
+<!-- SYSTEM LOADER -->
 <div id="loader">
     <div class="loader-content">
-        <h2 class="hacker-text">RUNNING_SYSTEM_V3</h2>
+        <h2 style="letter-spacing:10px">LOADING...</h2>
         <div class="progress-container"><div class="progress-bar"></div></div>
-        <p style="font-size: 12px; letter-spacing: 2px;">AUTHENTICATING: <span id="percent">0%</span></p>
+        <p><span id="percent">0%</span> COMPLETE</p>
     </div>
 </div>
 
@@ -141,86 +115,78 @@ footer { text-align: center; padding: 40px; color: #444; font-size: 13px; }
     <div class="logo">RAJOUN<span>_</span>RIJON</div>
     <ul>
         <li><a href="#hero">HOME</a></li>
-        <li><a href="#about">ABOUT</a></li>
-        <li><a href="#projects">WORK</a></li>
-        <li><a href="#contact">CONTACT</a></li>
+        <li><a href="#about">SYSTEM</a></li>
+        <li><a href="#projects">PROJECTS</a></li>
     </ul>
 </nav>
 
 <section id="hero" class="hero">
     <div class="hero-text fade">
+        <p style="color:#ff1e1e; font-weight:700; margin-bottom:10px;">> ACCESS GRANTED</p>
         <h1>Rajoun Ahmed <br><span>Rijon</span></h1>
-        <p style="max-width: 500px; margin: 25px 0; color: #888; font-size: 16px;">
-            Crafting elite digital interfaces with a focus on premium aesthetics and nostalgic 3D experiences.
+        <p style="color:#666; margin: 20px 0 30px; max-width:450px; line-height:1.6;">
+            A high-end UI/UX Designer and Developer specializing in elite, nostalgic digital experiences.
         </p>
         <div class="buttons">
-            <a href="#contact" class="btn primary">HIRE MISSION</a>
+            <a href="mailto:rajounahmedrijon@gmail.com" class="btn primary">HIRE ME</a>
             <a href="#projects" class="btn secondary">VIEW LOGS</a>
         </div>
     </div>
 
     <!-- 3D Profile Card -->
     <div class="tilt-card fade">
-        <img src="IMG_20250914_191146 (1).jpg" alt="Profile">
-        <h2>Rajoun Ahmed Rijon</h2>
-        <p>ELITE DESIGNER • DEVELOPER</p>
+        <!-- ছবির নাম এখানে ফিক্স করা হয়েছে -->
+        <img src="IMG_20250914_191146 (1).jpg" alt="Rajoun Profile">
+        <h2 style="text-align:center; margin-top:15px;">Rajoun Ahmed Rijon</h2>
+        <p style="text-align:center; color:#ff1e1e; font-size:12px; letter-spacing:2px;">UI/UX ARCHITECT</p>
     </div>
 </section>
 
 <section id="about">
-    <h2 class="title fade">System_Information</h2>
+    <h2 style="text-align:center; font-size:30px;" class="fade">WHO_AM_I</h2>
     <div class="terminal-window fade">
         <div class="terminal-header">
-            <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-            <p style="margin-left: 20px; font-size: 12px; color: #666;">bash — rajoun@rijon — 80×24</p>
+            <div class="dot" style="background:#ff5f56"></div>
+            <div class="dot" style="background:#ffbd2e"></div>
+            <div class="dot" style="background:#27c93f"></div>
         </div>
         <div class="terminal-body">
-            <p><span class="prompt">user@matrix:~$</span><span class="command">whoami</span></p>
-            <p style="margin: 10px 0 20px 20px;">> RAJOUN AHMED RIJON: Digital Architect specialized in High-End UI/UX and Interactive Development.</p>
-            
-            <p><span class="prompt">user@matrix:~$</span><span class="command">ls credentials/core</span></p>
-            <p style="margin: 10px 0 20px 20px; color: #666;">> UI_Design.sys, 3D_Animation.exe, Branding_Strategy.bin</p>
-            
-            <p><span class="prompt">user@matrix:~$</span><span class="command">cat objective.txt</span></p>
-            <p style="margin: 10px 0 0 20px;">> Building digital products that leave a lasting nostalgic impact on a global scale.</p>
-            <p><span class="prompt">user@matrix:~$</span><span class="cursor">_</span></p>
+            <p><span style="color:#ff1e1e">user@matrix:~$</span> whoami</p>
+            <p style="color:#fff; margin:10px 0 20px;">> Rajoun Ahmed Rijon: A visionary designer dedicated to premium quality.</p>
+            <p><span style="color:#ff1e1e">user@matrix:~$</span> ls expertise/</p>
+            <p style="margin-left:15px;">- Visual_Design.bin <br> - Frontend_Eng.exe <br> - 3D_Aesthetics.sys</p>
         </div>
     </div>
 </section>
 
 <section id="projects">
-    <h2 class="title fade">Mission_Logs</h2>
+    <h2 style="margin-bottom:40px;" class="fade">MISSION_LOGS</h2>
     <div class="grid">
-        <div class="box fade project-card">
-            <div class="project-img-container"><img src="abstract-black-3d-blocks-background-260nw-2099546248.jpg" class="project-img"></div>
-            <div class="project-info">
-                <h3>3D Block Architecture</h3>
-                <p>Experimental UI layout with deep shadows.</p>
-                <a href="#" class="view-btn">INITIALIZE _</a>
+        <div class="project-card fade">
+            <img src="abstract-black-3d-blocks-background-260nw-2099546248.jpg" class="project-img">
+            <div style="padding:20px;">
+                <h3>3D Architecture</h3>
+                <p style="color:#555; font-size:13px; margin:10px 0;">Elite 3D layout project.</p>
+                <a href="#" style="color:#ff1e1e; text-decoration:none; font-size:12px; font-weight:700;">INITIALIZE _</a>
             </div>
         </div>
-        <div class="box fade project-card">
-            <div class="project-img-container"><img src="IMG_20260503_135526.jpg" class="project-img"></div>
-            <div class="project-info">
-                <h3>Elite Brand Portal</h3>
-                <p>Clean, minimal interface for corporate clients.</p>
-                <a href="#" class="view-btn">INITIALIZE _</a>
+        <div class="project-card fade">
+            <img src="Screenshot_20260503_131940.jpg" class="project-img">
+            <div style="padding:20px;">
+                <h3>System UI</h3>
+                <p style="color:#555; font-size:13px; margin:10px 0;">Hacker-style dashboard design.</p>
+                <a href="#" style="color:#ff1e1e; text-decoration:none; font-size:12px; font-weight:700;">INITIALIZE _</a>
             </div>
         </div>
-        <div class="box fade project-card">
-            <div class="project-img-container"><img src="Screenshot_20260503_131940.jpg" class="project-img"></div>
-            <div class="project-info">
-                <h3>System Dashboard</h3>
-                <p>Data visualization with red neon aesthetics.</p>
-                <a href="#" class="view-btn">INITIALIZE _</a>
+        <div class="project-card fade">
+            <img src="cool-wallpaper (1).jpg" class="project-img">
+            <div style="padding:20px;">
+                <h3>Cyber Workspace</h3>
+                <p style="color:#555; font-size:13px; margin:10px 0;">Modern tech-focused visuals.</p>
+                <a href="#" style="color:#ff1e1e; text-decoration:none; font-size:12px; font-weight:700;">INITIALIZE _</a>
             </div>
         </div>
     </div>
-</section>
-
-<section id="contact" class="contact fade">
-    <p style="color: #ff1e1e; font-weight: 700; margin-bottom: 15px; letter-spacing: 2px;">ESTABLISH CONNECTION</p>
-    <a href="mailto:rajounahmedrijon@gmail.com">rajounahmedrijon@gmail.com</a>
 </section>
 
 <footer>
@@ -230,40 +196,35 @@ footer { text-align: center; padding: 40px; color: #444; font-size: 13px; }
 <script>
 // Loader Logic
 let count = 0;
-let loadingInterval = setInterval(() => {
-    count += Math.floor(Math.random() * 8) + 1;
-    if (count >= 100) {
+let loaderInterval = setInterval(() => {
+    count += Math.floor(Math.random() * 10) + 1;
+    if(count >= 100) {
         count = 100;
-        clearInterval(loadingInterval);
-        gsap.to("#loader", { opacity: 0, duration: 1, delay: 0.5, onComplete: () => document.getElementById('loader').style.display = 'none' });
+        clearInterval(loaderInterval);
+        gsap.to("#loader", { opacity:0, duration:1, onComplete: () => document.getElementById('loader').style.display='none' });
     }
     document.getElementById('percent').innerText = count + "%";
     document.querySelector('.progress-bar').style.width = count + "%";
-}, 50);
+}, 60);
 
-// GSAP Scroll Animations
+// GSAP Scroll
 gsap.registerPlugin(ScrollTrigger);
 gsap.utils.toArray(".fade").forEach(el => {
-    gsap.to(el, {
-        opacity: 1, y: 0, duration: 1.2, ease: "power4.out",
-        scrollTrigger: { trigger: el, start: "top 90%" }
-    });
+    gsap.to(el, { opacity:1, y:0, duration:1, scrollTrigger: { trigger: el, start: "top 90%" } });
 });
 
-// 3D Tilt Logic
+// 3D Tilt
 const card = document.querySelector('.tilt-card');
 document.addEventListener('mousemove', (e) => {
-    let xAxis = (window.innerWidth / 2 - e.pageX) / 20;
-    let yAxis = (window.innerHeight / 2 - e.pageY) / 20;
-    if(card) {
-        card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-    }
+    let x = (window.innerWidth / 2 - e.pageX) / 15;
+    let y = (window.innerHeight / 2 - e.pageY) / 15;
+    if(card) card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
 });
 document.addEventListener('mouseleave', () => {
-    card.style.transform = `rotateY(0deg) rotateX(0deg)`;
-    card.style.transition = "all 0.5s ease";
+    card.style.transition = "0.5s";
+    card.style.transform = `rotateY(0) rotateX(0)`;
 });
-document.addEventListener('mouseenter', () => { card.style.transition = "none"; });
+document.addEventListener('mouseenter', () => card.style.transition = "0s");
 </script>
 
 </body>
