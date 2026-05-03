@@ -72,7 +72,39 @@ width:0%;
 z-index:99999;
 box-shadow:0 0 20px var(--red);
 }
-
+.ai-panel{
+position:fixed;
+right:30px;
+bottom:30px;
+width:340px;
+height:500px;
+background:rgba(0,0,0,.6);
+backdrop-filter:blur(25px);
+border:1px solid rgba(255,0,0,.2);
+border-radius:30px;
+z-index:9999;
+box-shadow:0 0 50px rgba(255,0,0,.15);
+  }
+  .cursor-light{
+position:fixed;
+width:500px;
+height:500px;
+border-radius:50%;
+background:radial-gradient(circle, rgba(255,0,0,.18), transparent 70%);
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:-1;
+filter:blur(40px);
+  }
+  .project-modal{
+position:fixed;
+inset:0;
+background:black;
+z-index:99999;
+display:none;
+align-items:center;
+justify-content:center;
+  }
 .loader{
 position:fixed;
 inset:0;
@@ -96,6 +128,13 @@ margin-top:20px;
 letter-spacing:6px;
 color:#666;
 }
+  .matrix{
+position:fixed;
+inset:0;
+pointer-events:none;
+opacity:.08;
+mix-blend-mode:screen;
+  }
 
 nav{
 position:fixed;
@@ -583,6 +622,8 @@ display:none;
 }
 
 }
+  transform-style:preserve-3d;
+perspective:1000px;
 
 </style>
 </head>
@@ -658,6 +699,14 @@ I create futuristic premium websites with cinematic animations, immersive UI sys
 </div>
 
 </section>
+  <section class="terminal-system">
+<pre>
+> booting rajoun_ai.exe
+> neural systems online
+> holographic interface initialized
+> welcome commander
+</pre>
+  </section>
 
 <section id="about">
 
@@ -752,7 +801,13 @@ Immersive WebGL and Three.js experiences for ultra-premium digital products.
 <div class="project-img">
 <img src="IMG_20260503_135526.jpg">
 </div>
+  <div class="terminal">
+> initialize_portfolio.exe
+  </div>
 
+  <audio autoplay loop>
+<source src="ambient.mp3">
+  </audio>
 <div class="project-info">
 <span>PROJECT 01</span>
 <h2>CYBER CORE</h2>
@@ -769,6 +824,11 @@ A futuristic AI dashboard system with animated neural network interface and adva
 <div class="project-img">
 <img src="Screenshot_20260503_131940.jpg">
 </div>
+  <div class="ai-panel">
+  <div class="ai-header">AI ASSISTANT</div>
+  <div class="ai-messages"></div>
+  <input type="text" placeholder="Ask me anything...">
+  </div>
 
 <div class="project-info">
 <span>PROJECT 02</span>
@@ -846,7 +906,11 @@ const totalHeight=document.body.scrollHeight-window.innerHeight;
 const progress=(window.pageYOffset/totalHeight)*100;
 progressBar.style.width=progress+'%';
 })
-
+const recognition = new(window.SpeechRecognition || window.webkitSpeechRecognition)();
+recognition.onresult = function(event){
+const command = event.results[0][0].transcript;
+console.log(command)
+  }
 const observer=new IntersectionObserver((entries)=>{
 entries.forEach(entry=>{
 if(entry.isIntersecting){
@@ -919,7 +983,16 @@ particles.rotation.y+=0.0005
 particles.rotation.x+=0.0002
 renderer.render(scene,camera)
 }
-
+  let count=0;
+setInterval(()=>{
+count++;
+},30)
+function switchTheme(){
+document.body.classList.toggle('light-mode')
+}
+  fetch('https://api.github.com/users/YOUR_USERNAME')
+.then(res=>res.json())
+.then(data=>console.log(data))
 animate()
 
 window.addEventListener('resize',()=>{
@@ -956,6 +1029,63 @@ opacity:0,
 duration:1,
 delay:.8
 })
+  const canvas = document.createElement('canvas');
+document.body.appendChild(canvas);
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const letters = '01RAJOUNAI';
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+
+const drops = [];
+for(let x = 0; x < columns; x++){
+ drops[x] = 1;
+}
+
+function draw(){
+ ctx.fillStyle = 'rgba(0,0,0,0.05)';
+ ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ ctx.fillStyle = '#ff1e1e';
+ ctx.font = fontSize + 'px monospace';
+
+ for(let i=0;i<drops.length;i++){
+  const text = letters[Math.floor(Math.random()*letters.length)];
+  ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+  if(drops[i]*fontSize > canvas.height && Math.random() > 0.975){
+   drops[i] = 0;
+  }
+
+  drops[i]++;
+ }
+}
+
+setInterval(draw,35);
+  barba.init({
+ transitions:[{
+  leave(data){
+   return gsap.to(data.current.container,{opacity:0})
+  },
+  enter(data){
+   return gsap.from(data.next.container,{opacity:0})
+  }
+ }]
+})
+  const lenis = new Lenis({
+ duration:1.2,
+ smooth:true
+})
+
+function raf(time){
+ lenis.raf(time)
+ requestAnimationFrame(raf)
+}
+
+requestAnimationFrame(raf)
 
 </script>
 
