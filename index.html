@@ -26,13 +26,45 @@ color:#fff;
 overflow-x:hidden;
 }
 /* subtle premium background */
-.bg{
-position:fixed;
-inset:0;
-background:
-radial-gradient(circle at 20% 20%, rgba(255,0,0,0.14), transparent 40%),
-radial-gradient(circle at 80% 70%, rgba(90,0,0,0.12), transparent 50%);
-z-index:-2;
+/* Hacker Loader Styles */
+#loader {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    color: #ff1e1e;
+}
+
+.loader-content { text-align: center; }
+.hacker-text { font-family: 'Courier New', Courier, monospace; letter-spacing: 5px; margin-bottom: 20px; }
+.progress-container { width: 300px; height: 2px; background: #222; margin-bottom: 10px; position: relative; }
+.progress-bar { width: 0%; height: 100%; background: #ff1e1e; box-shadow: 0 0 15px #ff1e1e; transition: 0.1s; }
+
+/* Background Update with your Grid Image */
+.bg {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                url('geometric-black-red-grid-background_944420-102352.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+    filter: brightness(0.4); /* background e image thakbe kintu halka dark hobe */
+}
+
+/* Custom Red Neon Glow for Name */
+.hero-text h1 span {
+    color: #ff1e1e;
+    text-shadow: 0 0 10px #ff1e1e, 0 0 30px #ff1e1e;
+    animation: neon-flicker 2s infinite;
+}
+
+@keyframes neon-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+    20%, 22%, 24%, 55% { opacity: 0.5; }
 }
 
 /* ================= NAV ================= */
