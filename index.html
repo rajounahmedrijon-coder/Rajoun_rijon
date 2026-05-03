@@ -412,19 +412,39 @@ rajounahmedrijon@gmail.com
 </footer>
 
 <script>
+   // Loader Logic
+let percent = document.getElementById('percent');
+let bar = document.querySelector('.progress-bar');
+let count = 0;
 
-gsap.utils.toArray(".fade").forEach(el=>{
-gsap.to(el,{
-opacity:1,
-y:0,
-duration:1,
-scrollTrigger:{
-trigger:el,
-start:"top 85%"
-}
-});
-});
+let loadingInterval = setInterval(() => {
+    count += Math.floor(Math.random() * 5) + 1;
+    if (count >= 100) {
+        count = 100;
+        clearInterval(loadingInterval);
+        gsap.to("#loader", {
+            opacity: 0,
+            duration: 1,
+            delay: 0.5,
+            onComplete: () => document.getElementById('loader').style.display = 'none'
+        });
+    }
+    percent.innerText = count + "%";
+    bar.style.width = count + "%";
+}, 40);
 
+// GSAP Animations for sections
+gsap.utils.toArray(".fade").forEach(el => {
+    gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        scrollTrigger: {
+            trigger: el,
+            start: "top 85%"
+        }
+    });
+}); 
 </script>
 
 </body>
