@@ -45,43 +45,51 @@ body {
     box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
     transform: translateY(-5px);
 }
-  /* ৭. কাস্টম টুলটিপ */
-[data-tooltip] { position: relative; cursor: help; }
-[data-tooltip]:hover::before {
-    content: attr(data-tooltip);
-    position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%);
-    background: #333; color: #fff; padding: 5px 10px; border-radius: 5px; font-size: 12px;
+ /* উইজেটগুলোকে এক লাইনে সাজানোর জন্য */
+.info-dashboard {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05); /* হালকা ঝাপসা ব্যাকগ্রাউন্ড */
+    backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    border-radius: 30px;
+    width: fit-content;
+    margin-bottom: 25px; /* নাম থেকে দূরত্ব তৈরি করবে */
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* ১৯. স্ট্যাটাস ডট অ্যানিমেশন */
-.status-dot {
-    width: 10px; height: 10px; background: #2ecc71; border-radius: 50%;
-    display: inline-block; margin-right: 5px;
-    box-shadow: 0 0 0 rgba(46, 204, 113, 0.4);
-    animation: pulse 2s infinite;
-}
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+/* সময় এবং আইকনের স্টাইল */
+.info-item {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
 }
 
-/* ১৮. গ্যালারি ও মোডাল */
-.cert-grid img { width: 150px; cursor: pointer; transition: 0.3s; border-radius: 8px; }
-.cert-grid img:hover { transform: scale(1.05); }
-.modal { display: none; position: fixed; z-index: 10000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); }
-.modal-content { margin: auto; display: block; width: 80%; max-width: 700px; padding-top: 100px; }
-
-/* ৪৬. পপ-আপ */
+/* পপ-আপ নোটিফিকেশনকে ডান কোণায় সেট করা */
 .notif {
-    position: fixed; bottom: -100px; left: 20px; background: #ff4d4d; color: white;
-    padding: 15px 25px; border-radius: 50px; transition: 0.5s; z-index: 999;
+    position: fixed;
+    top: 30px;
+    right: -350px; /* শুরুতে স্ক্রিনের বাইরে থাকবে */
+    background: #ff4d4d;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 10000;
 }
-.notif.show { bottom: 20px; }
 
-/* ৪১. গ্লাস কার্ড টিল্ট ইফেক্ট (আপনার কার্ড ক্লাসে এটা অ্যাড করুন) */
-.glass-card { transition: transform 0.2s ease-out; }
+.notif.show {
+    right: 30px; /* যখন দেখাবে তখন ভেতরে আসবে */
+}
 
+/* স্ট্যাটাস ডট (সবুজ বাতি) */
+.status-dot {
+    width: 8px; height: 8px; background: #00ff00; border-radius: 50%;
+    display: inline-block; margin-right: 8px;
+    box-shadow: 0 0 10px #00ff00;
+}
 /* Architecture Line Effect */
 .glass-card::before {
     content: '';
@@ -885,7 +893,23 @@ perspective:1000px;
 
 <div>
 <div class="hero-sub">ELITE FRONTEND ENGINEER</div>
+<!-- নামের উপরের ফাঁকা জায়গায় এই ড্যাশবোর্ডটি থাকবে -->
+<div class="info-dashboard">
+    <!-- সময় এবং স্ট্যাটাস -->
+    <div class="info-item">
+        <div class="status-dot"></div>
+        <span id="live-clock">00:00:00</span>
+    </div>
 
+    <!-- ছোট আইকন হিসেবে ইমেইল ও সার্টিফিকেট -->
+    <div class="info-item">
+        <a href="mailto:rajounahmedrijon@gmail.com" title="Send Email" style="text-decoration:none; margin-right:10px;">📧</a>
+        <span title="Certificates" style="cursor:pointer;" onclick="document.getElementById('certificates').scrollIntoView({behavior: 'smooth'})">📜</span>
+    </div>
+</div>
+
+<!-- নোটিফিকেশন পপ-আপ (এটি বডির একদম শেষে </body> এর উপরে দিলেও হবে) -->
+<div id="pop-up-notif" class="notif">New Project Uploaded! 🚀</div>
 <h1>
 RAJOUN <br>
 AHMED <br>
@@ -1523,5 +1547,24 @@ window.addEventListener('online', () => alert("You are back online!"));
         observer.observe(section);
     });
   </script>
+  <script>// ১. ঘড়ি ঠিক রাখা
+function updateClock() {
+    const now = new Date();
+    document.getElementById('live-clock').innerText = now.toLocaleTimeString();
+}
+setInterval(updateClock, 1000);
+
+// ২. নোটিফিকেশন অ্যানিমেশন (সাইট লোড হওয়ার ৩ সেকেন্ড পর আসবে)
+window.onload = function() {
+    setTimeout(() => {
+        const notification = document.getElementById('pop-up-notif');
+        notification.classList.add('show');
+        
+        // ৫ সেকেন্ড পর আবার চলে যাবে
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 5000);
+    }, 3000);
+};</script>
 </body>
   </html>
