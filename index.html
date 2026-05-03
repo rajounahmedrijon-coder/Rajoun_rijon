@@ -811,14 +811,7 @@ if (SpeechRecognition) {
     if (text.includes('contact')) window.location = '#contact';
     if (text.includes('about')) window.location = '#about';
   };
-
-  recognition.start();
-  }
-const SpeechRecognition=
-window.SpeechRecognition || window.webkitSpeechRecognition
-
-if(SpeechRecognition){
-
+  
 const recognition=new SpeechRecognition()
 recognition.continuous=true
 
@@ -870,10 +863,6 @@ opacity:0,
 duration:1,
 delay:.8
 })
-window.addEventListener('resize', () => {
-  matrix.width = window.innerWidth;
-  matrix.height = window.innerHeight;
-});
 </script></body>
 
 </html> 
