@@ -2,19 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>RAJOUN AI CINEMATIC PORTFOLIO</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 <style>
+
 :root{
 --bg:#040404;
 --card:rgba(255,255,255,.05);
@@ -24,7 +27,12 @@
 --red:#ff1e1e;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
 
 body{
 font-family:'Outfit',sans-serif;
@@ -33,6 +41,7 @@ color:white;
 overflow-x:hidden;
 }
 
+/* background glow */
 body::before{
 content:'';
 position:fixed;
@@ -40,154 +49,353 @@ inset:0;
 background:
 radial-gradient(circle at top right, rgba(255,0,0,.15), transparent 30%),
 radial-gradient(circle at bottom left, rgba(255,0,0,.1), transparent 30%);
+pointer-events:none;
 z-index:-1;
 }
 
-/* extra cinematic glow layer */
-body::after{
-content:'';
-position:fixed;
-inset:0;
-background:linear-gradient(120deg,transparent,rgba(255,0,0,.03),transparent);
-animation:moveGlow 8s linear infinite;
-pointer-events:none;
-}
-@keyframes moveGlow{
-0%{transform:translateX(-10%)}
-100%{transform:translateX(10%)}
-}
-
-/* canvas */
 #particles,.matrix{
 position:fixed;
 inset:0;
 z-index:-3;
+opacity:.6;
 }
 
-.matrix{opacity:.08;z-index:-2;}
+.matrix{
+z-index:-2;
+opacity:.08;
+}
 
 /* loader */
 .loader{
-position:fixed;inset:0;background:#000;
-display:flex;flex-direction:column;
-align-items:center;justify-content:center;
+position:fixed;
+inset:0;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
 z-index:999999;
 }
 
 .loader h1{
-font-size:7vw;
+font-size:6vw;
 color:var(--red);
 letter-spacing:10px;
 }
 
+.loader p{
+margin-top:20px;
+letter-spacing:5px;
+color:#777;
+}
+
 /* cursor */
 .cursor{
-width:18px;height:18px;
+width:18px;
+height:18px;
 background:var(--red);
 position:fixed;
 border-radius:50%;
 pointer-events:none;
 z-index:999999;
+box-shadow:0 0 30px var(--red);
 transform:translate(-50%,-50%);
-box-shadow:0 0 25px var(--red);
 }
 
 /* progress */
 .progress{
-position:fixed;top:0;left:0;
-height:3px;width:0%;
+position:fixed;
+top:0;
+left:0;
+height:3px;
 background:var(--red);
+width:0%;
 z-index:99999;
+box-shadow:0 0 20px var(--red);
 }
 
 /* nav */
 nav{
-position:fixed;top:0;left:0;width:100%;
-display:flex;justify-content:space-between;
+position:fixed;
+top:0;
+left:0;
+width:100%;
 padding:22px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
 backdrop-filter:blur(20px);
 background:rgba(0,0,0,.4);
 border-bottom:1px solid var(--border);
 z-index:9999;
 }
 
-.logo{font-weight:900;font-size:24px;}
+.logo{
+font-size:24px;
+font-weight:900;
+letter-spacing:3px;
+}
+
 .logo span{color:var(--red);}
 
-nav ul{display:flex;gap:30px;list-style:none;}
-nav a{color:white;text-decoration:none;font-size:13px}
+nav ul{
+display:flex;
+gap:35px;
+list-style:none;
+}
 
-/* hero */
+nav a{
+text-decoration:none;
+color:white;
+font-size:13px;
+letter-spacing:3px;
+font-weight:600;
+transition:.4s;
+}
+
+nav a:hover{color:var(--red);}
+
+/* sections */
+section{padding:120px 7%;}
+
 .hero{
 min-height:100vh;
 display:grid;
 grid-template-columns:1.2fr .8fr;
 align-items:center;
-gap:60px;
+gap:70px;
 }
 
-.hero h1{font-size:7vw;font-weight:900;}
-.hero h1 span{-webkit-text-stroke:1px var(--red);color:transparent;}
-
-.hero-img img{
-width:100%;height:100%;
-object-fit:cover;
-border-radius:30px;
+.hero-sub{
+color:var(--red);
+letter-spacing:6px;
+font-weight:700;
+margin-bottom:20px;
 }
 
-/* profile pic FIXED */
-.hero-img{
-width:420px;height:560px;
-overflow:hidden;
-border-radius:30px;
-border:1px solid rgba(255,0,0,.3);
-box-shadow:0 0 60px rgba(255,0,0,.25);
-}
-
-/* image UPDATED */
-.hero-img img{
-content:"";
-}
-
-/* buttons */
-.btn{padding:16px 30px;border-radius:50px;text-decoration:none;}
-.primary{background:var(--red);color:white;}
-.outline{border:1px solid var(--border);}
-
-/* cards */
-.card,.service,.project{
-background:var(--card);
-border:1px solid var(--border);
-backdrop-filter:blur(12px);
-border-radius:25px;
-}
-
-/* glitch title */
-.title{
-font-size:4vw;
+.hero h1{
+font-size:7vw;
+line-height:.9;
 font-weight:900;
 text-transform:uppercase;
 }
 
-/* EXTRA SECTION */
-.architecture-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:25px;
-margin-top:50px;
+.hero h1 span{
+color:transparent;
+-webkit-text-stroke:1px var(--red);
 }
 
-.arch-card{
-padding:30px;
-background:rgba(255,255,255,.03);
-border:1px solid var(--border);
-border-radius:25px;
+.hero p{
+margin-top:30px;
+font-size:18px;
+line-height:1.8;
+max-width:700px;
+color:var(--muted);
+}
+
+/* buttons */
+.buttons{display:flex;gap:20px;margin-top:40px;flex-wrap:wrap;}
+
+.btn{
+padding:18px 35px;
+border-radius:60px;
+text-decoration:none;
+font-weight:700;
 transition:.4s;
 }
 
-.arch-card:hover{
-transform:translateY(-10px);
-border-color:var(--red);
+.primary{
+background:var(--red);
+color:white;
+box-shadow:0 0 30px rgba(255,0,0,.4);
+}
+
+.primary:hover{transform:translateY(-5px);}
+
+.outline{
+border:1px solid var(--border);
+background:rgba(255,255,255,.04);
+color:white;
+}
+
+/* image */
+.hero-img-wrap{
+position:relative;
+display:flex;
+justify-content:center;
+}
+
+.hero-img{
+width:420px;
+height:560px;
+border-radius:35px;
+overflow:hidden;
+border:1px solid rgba(255,0,0,.3);
+box-shadow:0 0 50px rgba(255,0,0,.2);
+}
+
+.hero-img img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.glow-circle{
+position:absolute;
+width:500px;
+height:500px;
+background:rgba(255,0,0,.15);
+filter:blur(120px);
+border-radius:50%;
+z-index:-1;
+}
+
+/* title */
+.title{
+font-size:4vw;
+font-weight:900;
+margin-bottom:60px;
+text-transform:uppercase;
+}
+
+.title span{
+color:transparent;
+-webkit-text-stroke:1px var(--red);
+}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;}
+
+.card{
+background:var(--card);
+border:1px solid var(--border);
+padding:35px;
+border-radius:30px;
+backdrop-filter:blur(12px);
+transition:.5s;
+}
+
+.card:hover{transform:translateY(-10px);}
+
+/* services */
+.services{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+}
+
+.service{
+background:var(--card);
+padding:40px;
+border-radius:30px;
+border:1px solid var(--border);
+transition:.5s;
+}
+
+.service:hover{
+transform:translateY(-12px);
+background:rgba(255,0,0,.05);
+}
+
+.service i{font-size:42px;margin-bottom:25px;color:var(--red);}
+
+/* projects */
+.projects{display:flex;flex-direction:column;gap:50px;}
+
+.project{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:35px;
+background:var(--card);
+border:1px solid var(--border);
+padding:30px;
+border-radius:35px;
+align-items:center;
+}
+
+.project img{
+width:100%;
+height:420px;
+object-fit:cover;
+border-radius:25px;
+}
+
+/* contact */
+.contact{text-align:center;}
+
+.email{
+font-size:4vw;
+font-weight:900;
+color:var(--red);
+text-decoration:none;
+display:inline-block;
+margin:40px 0;
+}
+
+/* socials */
+.socials{
+display:flex;
+justify-content:center;
+gap:20px;
+}
+
+.socials a{
+width:65px;height:65px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:var(--card);
+border:1px solid var(--border);
+color:white;
+transition:.4s;
+}
+
+.socials a:hover{
+background:var(--red);
+transform:translateY(-8px);
+}
+
+/* buttons floating */
+.chat-btn,.terminal-btn,.music-btn{
+position:fixed;
+z-index:9999;
+border:none;
+background:var(--red);
+color:white;
+font-weight:700;
+cursor:pointer;
+}
+
+.chat-btn{right:25px;bottom:25px;width:70px;height:70px;border-radius:50%;}
+.terminal-btn{left:25px;bottom:25px;padding:16px 24px;border-radius:40px;}
+.music-btn{left:25px;top:100px;padding:16px 24px;border-radius:40px;}
+
+.chat-box,.terminal{
+position:fixed;
+background:rgba(0,0,0,.8);
+backdrop-filter:blur(20px);
+border:1px solid var(--border);
+border-radius:30px;
+padding:25px;
+z-index:99999;
+display:none;
+}
+
+.chat-box{right:25px;bottom:110px;width:360px;height:500px;}
+
+.terminal{
+left:25px;bottom:100px;width:500px;height:400px;
+color:#00ff66;
+font-family:monospace;
+overflow:auto;
+}
+
+@media(max-width:900px){
+.hero{grid-template-columns:1fr;}
+.hero h1{font-size:14vw;}
+.project{grid-template-columns:1fr;}
+.services{grid-template-columns:1fr;}
 }
 
 </style>
@@ -197,7 +405,7 @@ border-color:var(--red);
 
 <div class="loader">
 <h1>RAJOUN</h1>
-<p>INITIALIZING SYSTEM...</p>
+<p>INITIALIZING SYSTEM</p>
 </div>
 
 <div class="cursor"></div>
@@ -207,7 +415,7 @@ border-color:var(--red);
 <canvas class="matrix"></canvas>
 
 <nav>
-<div class="logo">RAJOUN<span>.</span></div>
+<div class="logo">RAJOUN<span>.</span>RIJON</div>
 <ul>
 <li><a href="#home">HOME</a></li>
 <li><a href="#about">ABOUT</a></li>
@@ -218,107 +426,147 @@ border-color:var(--red);
 </nav>
 
 <section class="hero" id="home">
-
 <div>
-<h1>RAJOUN<br>AHMED<br><span>RIJON</span></h1>
+<div class="hero-sub">AI FRONTEND ENGINEER</div>
 
-<p>Futuristic AI cinematic frontend architect. Building immersive digital systems.</p>
+<h1>
+RAJOUN<br>
+AHMED<br>
+<span>RIJON</span>
+</h1>
 
-<div>
+<p>
+Cinematic AI-powered frontend systems, futuristic UI, and digital architecture experiences.
+</p>
+
+<div class="buttons">
 <a class="btn primary">VIEW PROJECTS</a>
 <a class="btn outline">CONTACT</a>
 </div>
 </div>
 
+<div class="hero-img-wrap">
+<div class="glow-circle"></div>
 <div class="hero-img" id="tilt">
-<img src="IMG_20250914_191146 (1).jpg" alt="profile">
+<!-- IMAGE UPDATED -->
+<img src="IMG_20250914_191146 (1).jpg">
 </div>
-
-</section>
-
-<!-- EXTRA ARCHITECTURE SECTION -->
-<section>
-<h1 class="title">DIGITAL <span>ARCHITECTURE</span></h1>
-
-<div class="architecture-grid">
-
-<div class="arch-card">
-<h3>Neural UI System</h3>
-<p>AI driven interface architecture layer.</p>
-</div>
-
-<div class="arch-card">
-<h3>3D Motion Engine</h3>
-<p>Real-time rendering & motion physics.</p>
-</div>
-
-<div class="arch-card">
-<h3>Cinematic Grid</h3>
-<p>Adaptive layout based UI intelligence.</p>
-</div>
-
 </div>
 </section>
+
+<section id="about">
+<h1 class="title">ABOUT <span>ME</span></h1>
+<div class="grid">
+<div class="card">
+<h2>DIGITAL ARCHITECT</h2>
+<p>AI + UI + Motion design + futuristic systems builder.</p>
+</div>
+<div class="card">
+<h2>VISION</h2>
+<p>Minimal structure, cinematic output, high impact digital experiences.</p>
+</div>
+</div>
+</section>
+
+<section id="services">
+<h1 class="title">MY <span>SERVICES</span></h1>
+<div class="services">
+<div class="service"><i class="fa fa-code"></i><h2>Web Dev</h2></div>
+<div class="service"><i class="fa fa-cube"></i><h2>3D UI</h2></div>
+<div class="service"><i class="fa fa-layer-group"></i><h2>UI Design</h2></div>
+</div>
+</section>
+
+<section id="projects">
+<h1 class="title">PROJECTS</h1>
+<div class="projects">
+<div class="project">
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3">
+<div><h2>CYBER CORE</h2></div>
+</div>
+</div>
+</section>
+
+<section id="contact">
+<h1 class="title">CONTACT</h1>
+<a class="email">rajounahmedrijon@gmail.com</a>
+
+<div class="socials">
+<a><i class="fab fa-github"></i></a>
+<a><i class="fab fa-facebook"></i></a>
+<a><i class="fab fa-instagram"></i></a>
+</div>
+</section>
+
+<footer style="text-align:center;padding:40px;color:#666;">
+© 2026 RAJOUN AI SYSTEM
+</footer>
 
 <script>
 
 /* loader */
 setTimeout(()=>{
-gsap.to('.loader',{opacity:0,duration:1,onComplete:()=>{
-document.querySelector('.loader').style.display="none"
-}})
-},1500)
+document.querySelector('.loader').style.display='none'
+},2000)
 
 /* cursor */
-const cursor=document.querySelector('.cursor');
-window.addEventListener('mousemove',(e)=>{
-cursor.style.left=e.clientX+'px';
-cursor.style.top=e.clientY+'px';
-});
+const cursor=document.querySelector('.cursor')
+window.addEventListener('mousemove',e=>{
+cursor.style.left=e.clientX+'px'
+cursor.style.top=e.clientY+'px'
+})
 
-/* FIXED tilt bug */
-const tilt=document.getElementById('tilt');
+/* progress */
+window.addEventListener('scroll',()=>{
+let total=document.body.scrollHeight-window.innerHeight
+let current=(window.scrollY/total)*100
+document.querySelector('.progress').style.width=current+'%'
+})
 
-window.addEventListener('mousemove',(e)=>{
-const x=(window.innerWidth/2-e.pageX)/40;
-const y=(window.innerHeight/2-e.pageY)/40;
+/* FIXED TILT */
+const tilt=document.getElementById('tilt')
 
-tilt.style.transform=`rotateY(${x}deg) rotateX(${-y}deg)`;
-});
+window.addEventListener('mousemove',e=>{
+let x=(window.innerWidth/2 - e.clientX)/30
+let y=(window.innerHeight/2 - e.clientY)/30
+
+tilt.style.transform=`rotateY(${x}deg) rotateX(${-y}deg)`
+})
 
 /* particles */
-const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,1000);
-const renderer=new THREE.WebGLRenderer({canvas:document.getElementById('particles'),alpha:true});
-renderer.setSize(innerWidth,innerHeight);
+const canvas=document.getElementById('particles')
+const ctx=canvas.getContext('2d')
 
-const geo=new THREE.BufferGeometry();
-const arr=[];
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
 
-for(let i=0;i<5000;i++){
-arr.push(
-THREE.MathUtils.randFloatSpread(2000),
-THREE.MathUtils.randFloatSpread(2000),
-THREE.MathUtils.randFloatSpread(2000)
-);
+let letters="RAJOUNAI101010"
+let size=14
+let columns=canvas.width/size
+let drops=[]
+
+for(let i=0;i<columns;i++) drops[i]=1
+
+function draw(){
+ctx.fillStyle="rgba(0,0,0,0.05)"
+ctx.fillRect(0,0,canvas.width,canvas.height)
+
+ctx.fillStyle="red"
+ctx.font=size+"px monospace"
+
+for(let i=0;i<drops.length;i++){
+let text=letters[Math.floor(Math.random()*letters.length)]
+ctx.fillText(text,i*size,drops[i]*size)
+
+if(drops[i]*size>canvas.height && Math.random()>0.975)
+drops[i]=0
+
+drops[i]++
 }
-
-geo.setAttribute('position',new THREE.Float32BufferAttribute(arr,3));
-
-const mat=new THREE.PointsMaterial({color:0xff1e1e,size:1.2});
-const points=new THREE.Points(geo,mat);
-scene.add(points);
-
-camera.position.z=500;
-
-function animate(){
-requestAnimationFrame(animate);
-points.rotation.y+=0.0006;
-renderer.render(scene,camera);
 }
-animate();
+setInterval(draw,35)
 
 </script>
 
 </body>
-  </html>
+</html>
