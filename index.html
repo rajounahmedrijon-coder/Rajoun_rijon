@@ -1,35 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<title>RAJOUN AI CINEMATIC PORTFOLIO</title>
-
-<meta name="description" content="Rajoun Ahmed Rijon - Elite Cinematic Frontend Developer Portfolio">
-<meta name="theme-color" content="#ff1e1e">
+<title>Rajoun Ahmed Rijon | Elite Portfolio V6</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <style>
 
 :root{
---bg:#040404;
---card:rgba(255,255,255,.05);
---border:rgba(255,255,255,.08);
---text:#fff;
---muted:#a5a5a5;
+--bg:#050505;
+--bg2:#0b0b0b;
 --red:#ff1e1e;
+--red2:#ff4b4b;
+--text:#ffffff;
+--muted:#8d8d8d;
+--card:rgba(255,255,255,0.03);
+--border:rgba(255,255,255,0.07);
 }
 
 *{
@@ -42,67 +37,32 @@ scroll-behavior:smooth;
 body{
 font-family:'Outfit',sans-serif;
 background:var(--bg);
-color:white;
+color:var(--text);
 overflow-x:hidden;
 }
 
-/* smooth glow background */
 body::before{
 content:'';
 position:fixed;
 inset:0;
 background:
-radial-gradient(circle at top right, rgba(255,0,0,.15), transparent 40%),
-radial-gradient(circle at bottom left, rgba(255,0,0,.1), transparent 40%);
-z-index:-1;
+radial-gradient(circle at top right, rgba(255,0,0,0.14), transparent 30%),
+radial-gradient(circle at bottom left, rgba(255,0,0,0.10), transparent 25%);
+pointer-events:none;
+z-index:-2;
 }
 
-/* particles */
 #particles{
 position:fixed;
-inset:0;
+top:0;
+left:0;
+width:100%;
+height:100%;
 z-index:-3;
-opacity:.7;
+opacity:.5;
 }
 
-.matrix{
-position:fixed;
-inset:0;
-z-index:-2;
-opacity:.06;
-}
-
-/* loader */
-.loader{
-position:fixed;
-inset:0;
-background:black;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-z-index:999999;
-}
-
-.loader h1{
-font-size:6vw;
-color:var(--red);
-letter-spacing:10px;
-}
-
-.cursor{
-width:16px;
-height:16px;
-background:var(--red);
-position:fixed;
-border-radius:50%;
-pointer-events:none;
-z-index:999999;
-box-shadow:0 0 20px var(--red);
-transform:translate(-50%,-50%);
-}
-
-.progress{
+.progress-bar{
 position:fixed;
 top:0;
 left:0;
@@ -113,30 +73,114 @@ z-index:99999;
 box-shadow:0 0 20px var(--red);
 }
 
-/* NAV */
-nav{
+.loader{
 position:fixed;
-top:0;
-left:0;
-width:100%;
-padding:22px 7%;
+inset:0;
+background:#000;
 display:flex;
-justify-content:space-between;
 align-items:center;
-backdrop-filter:blur(20px);
-background:rgba(0,0,0,.4);
-z-index:9999;
+justify-content:center;
+flex-direction:column;
+z-index:999999;
 }
 
-nav a.active{
+.loader h1{
+font-size:5vw;
+font-family:'Syncopate',sans-serif;
+letter-spacing:8px;
 color:var(--red);
 }
 
-/* HERO FIX */
+.loader p{
+margin-top:20px;
+letter-spacing:6px;
+color:#666;
+}
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:24px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+backdrop-filter:blur(18px);
+background:rgba(0,0,0,0.35);
+border-bottom:1px solid var(--border);
+z-index:9999;
+}
+
+.logo{
+font-family:'Syncopate',sans-serif;
+font-size:22px;
+font-weight:700;
+}
+
+.logo span{
+color:var(--red);
+}
+
+nav ul{
+display:flex;
+gap:35px;
+list-style:none;
+}
+
+nav a{
+text-decoration:none;
+color:white;
+font-size:13px;
+font-weight:600;
+letter-spacing:2px;
+transition:.4s;
+position:relative;
+}
+
+nav a::after{
+content:'';
+position:absolute;
+left:0;
+bottom:-8px;
+width:0%;
+height:2px;
+background:var(--red);
+transition:.4s;
+}
+
+nav a:hover::after{
+width:100%;
+}
+
+nav a:hover{
+color:var(--red);
+}
+
+section{
+padding:120px 7%;
+}
+
+.hero{
+min-height:100vh;
+display:grid;
+grid-template-columns:1.2fr .8fr;
+align-items:center;
+gap:80px;
+}
+
+.hero-sub{
+color:var(--red);
+letter-spacing:5px;
+margin-bottom:20px;
+font-weight:700;
+}
+
 .hero h1{
 font-size:8vw;
 line-height:.9;
 font-weight:900;
+text-transform:uppercase;
+margin-bottom:25px;
 }
 
 .hero h1 span{
@@ -144,177 +188,776 @@ color:transparent;
 -webkit-text-stroke:1px var(--red);
 }
 
-/* button hover upgrade */
-.btn:hover{
-transform:translateY(-6px) scale(1.02);
+.hero p{
+max-width:650px;
+font-size:19px;
+line-height:1.8;
+color:var(--muted);
+margin-bottom:40px;
 }
 
-/* scroll top */
-#topBtn{
-position:fixed;
-bottom:25px;
-right:25px;
-width:50px;
-height:50px;
-border-radius:50%;
+.hero-btns{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:18px 38px;
+border-radius:60px;
+text-decoration:none;
+font-weight:700;
+letter-spacing:1px;
+transition:.4s;
+position:relative;
+overflow:hidden;
+}
+
+.btn-primary{
 background:var(--red);
-border:none;
 color:white;
-display:none;
-z-index:9999;
+box-shadow:0 0 30px rgba(255,0,0,.3);
 }
 
-/* mobile fix */
-@media(max-width:900px){
-.hero{grid-template-columns:1fr;}
-.hero h1{font-size:14vw;}
+.btn-primary:hover{
+transform:translateY(-5px);
+box-shadow:0 0 40px rgba(255,0,0,.7);
+}
+
+.btn-outline{
+border:1px solid var(--border);
+color:white;
+background:rgba(255,255,255,.03);
+}
+
+.btn-outline:hover{
+background:var(--red);
+}
+
+.hero-img-wrap{
+position:relative;
+display:flex;
+justify-content:center;
+}
+
+.hero-img{
+width:420px;
+height:560px;
+border-radius:30px;
+overflow:hidden;
+position:relative;
+border:1px solid rgba(255,0,0,.4);
+box-shadow:
+0 0 40px rgba(255,0,0,.15),
+0 0 120px rgba(255,0,0,.08);
+}
+
+.hero-img::before{
+content:'';
+position:absolute;
+inset:-2px;
+background:linear-gradient(45deg,var(--red),transparent,var(--red));
+z-index:-1;
+filter:blur(30px);
+opacity:.6;
+}
+
+.hero-img img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.float-card{
+position:absolute;
+padding:16px 20px;
+background:rgba(0,0,0,.5);
+backdrop-filter:blur(15px);
+border:1px solid var(--border);
+border-radius:20px;
+}
+
+.float1{
+top:10%;
+left:-10%;
+}
+
+.float2{
+bottom:8%;
+right:-10%;
+}
+
+.float-card h4{
+font-size:26px;
+color:var(--red);
+}
+
+.section-title{
+font-size:4vw;
+font-weight:900;
+margin-bottom:70px;
+text-transform:uppercase;
+}
+
+.section-title span{
+color:transparent;
+-webkit-text-stroke:1px var(--red);
+}
+
+.about-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+}
+
+.about-card{
+background:var(--card);
+border:1px solid var(--border);
+padding:40px;
+border-radius:30px;
+backdrop-filter:blur(10px);
+transition:.4s;
+}
+
+.about-card:hover{
+transform:translateY(-10px);
+border-color:rgba(255,0,0,.3);
+}
+
+.about-card p{
+line-height:1.8;
+color:var(--muted);
+}
+
+.skills{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:25px;
+margin-top:30px;
+}
+
+.skill-box{
+background:var(--card);
+padding:25px;
+border-radius:20px;
+border:1px solid var(--border);
+}
+
+.skill-box h4{
+margin-bottom:15px;
+}
+
+.bar{
+height:8px;
+background:#141414;
+border-radius:30px;
+overflow:hidden;
+}
+
+.bar span{
+display:block;
+height:100%;
+background:linear-gradient(to right,var(--red),#ff6b6b);
+border-radius:30px;
+}
+
+.services-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+}
+
+.service-card{
+background:var(--card);
+padding:40px;
+border-radius:28px;
+border:1px solid var(--border);
+transition:.4s;
+position:relative;
+overflow:hidden;
+}
+
+.service-card::before{
+content:'';
+position:absolute;
+width:200px;
+height:200px;
+background:rgba(255,0,0,.15);
+border-radius:50%;
+filter:blur(60px);
+right:-60px;
+top:-60px;
+opacity:0;
+transition:.4s;
+}
+
+.service-card:hover::before{
+opacity:1;
+}
+
+.service-card:hover{
+transform:translateY(-12px);
+border-color:rgba(255,0,0,.4);
+}
+
+.service-card i{
+font-size:42px;
+margin-bottom:25px;
+color:var(--red);
+}
+
+.service-card h3{
+margin-bottom:15px;
+font-size:24px;
+}
+
+.service-card p{
+line-height:1.8;
+color:var(--muted);
+}
+
+.projects{
+display:flex;
+flex-direction:column;
+gap:60px;
+}
+
+.project-card{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
+background:var(--card);
+padding:30px;
+border-radius:35px;
+border:1px solid var(--border);
+transition:.4s;
+}
+
+.project-card:hover{
+transform:scale(1.01);
+border-color:rgba(255,0,0,.3);
+}
+
+.project-img{
+height:420px;
+overflow:hidden;
+border-radius:24px;
+}
+
+.project-img img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:1s;
+}
+
+.project-card:hover img{
+transform:scale(1.08);
+}
+
+.project-info span{
+color:var(--red);
+letter-spacing:4px;
+font-size:13px;
+}
+
+.project-info h2{
+font-size:42px;
+margin:18px 0;
+}
+
+.project-info p{
+line-height:1.8;
+color:var(--muted);
+margin-bottom:30px;
+}
+
+.tech-stack{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+margin-top:25px;
+}
+
+.tech-stack div{
+padding:10px 18px;
+background:#111;
+border-radius:40px;
+font-size:13px;
+border:1px solid var(--border);
+}
+
+.contact{
+text-align:center;
+}
+
+.big-email{
+font-size:5vw;
+font-weight:900;
+color:var(--red);
+text-decoration:none;
+display:inline-block;
+margin:40px 0;
+text-shadow:0 0 30px rgba(255,0,0,.5);
+}
+
+.socials{
+display:flex;
+justify-content:center;
+gap:25px;
+margin-top:30px;
+flex-wrap:wrap;
+}
+
+.socials a{
+width:65px;
+height:65px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:var(--card);
+border:1px solid var(--border);
+color:white;
+text-decoration:none;
+font-size:20px;
+transition:.4s;
+}
+
+.socials a:hover{
+background:var(--red);
+transform:translateY(-10px) rotate(10deg);
+}
+
+footer{
+padding:50px 7%;
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:20px;
+border-top:1px solid var(--border);
+color:#666;
+}
+
+.reveal{
+opacity:0;
+transform:translateY(80px);
+transition:1s;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+@media(max-width:1100px){
+
+.hero,
+.about-grid,
+.project-card,
+.services-grid{
+grid-template-columns:1fr;
+}
+
+.hero h1{
+font-size:15vw;
+}
+
+.section-title{
+font-size:12vw;
+}
+
+.hero-img{
+width:100%;
+height:500px;
+}
+
+.big-email{
+font-size:10vw;
+word-break:break-all;
+}
+
+nav ul{
+display:none;
+}
+
 }
 
 </style>
-
 </head>
-
 <body>
 
 <div class="loader">
 <h1>RAJOUN</h1>
-<p>LOADING ELITE SYSTEM</p>
+<p>INITIALIZING SYSTEM</p>
 </div>
 
-<div class="cursor"></div>
-<div class="progress"></div>
-
+<div class="progress-bar"></div>
 <canvas id="particles"></canvas>
-<canvas class="matrix"></canvas>
 
-<button id="topBtn">↑</button>
-
-<!-- NAV -->
 <nav>
 <div class="logo">RAJOUN<span>.</span>RIJON</div>
+
+<ul>
+<li><a href="#home">HOME</a></li>
+<li><a href="#about">ABOUT</a></li>
+<li><a href="#services">SERVICES</a></li>
+<li><a href="#projects">PROJECTS</a></li>
+<li><a href="#contact">CONTACT</a></li>
+</ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="home">
 
 <div>
-<h1>RAJOUN<br>AHMED<br><span>RIJON</span></h1>
-<p>Next-gen cinematic developer building immersive digital experiences.</p>
+<div class="hero-sub">ELITE FRONTEND ENGINEER</div>
+
+<h1>
+RAJOUN <br>
+AHMED <br>
+<span>RIJON</span>
+</h1>
+
+<p>
+I create futuristic premium websites with cinematic animations, immersive UI systems, advanced frontend architecture and next-level user experiences.
+</p>
+
+<div class="hero-btns">
+<a href="#projects" class="btn btn-primary">VIEW PROJECTS</a>
+<a href="#contact" class="btn btn-outline">CONTACT ME</a>
+</div>
+
+<div class="tech-stack">
+<div>REACT</div>
+<div>THREE.JS</div>
+<div>GSAP</div>
+<div>FIGMA</div>
+<div>UI/UX</div>
+<div>FRAMER</div>
+</div>
+
+</div>
+
+<div class="hero-img-wrap">
+
+<div class="float-card float1">
+<h4>05+</h4>
+<p>Years Experience</p>
+</div>
+
+<div class="hero-img" id="tilt-card">
+<img src="IMG_20250914_191146 (1).jpg">
+</div>
+
+<div class="float-card float2">
+<h4>50+</h4>
+<p>Projects Completed</p>
+</div>
+
 </div>
 
 </section>
 
+<section id="about">
+
+<h1 class="section-title reveal">ABOUT <span>ME</span></h1>
+
+<div class="about-grid">
+
+<div class="about-card reveal">
+<h2 style="margin-bottom:20px;">The Digital Architect</h2>
+<p>
+My goal is to transform ordinary interfaces into unforgettable premium experiences. I focus on motion design, immersive interactions, frontend engineering and futuristic visual systems.
+</p>
+</div>
+
+<div class="about-card reveal">
+<h2 style="margin-bottom:20px;">Core Philosophy</h2>
+<p>
+Minimal structure. Maximum impact. Every pixel, every animation and every interaction is carefully designed to feel cinematic and elite.
+</p>
+</div>
+
+</div>
+
+<div class="skills">
+
+<div class="skill-box reveal">
+<h4>Frontend Development</h4>
+<div class="bar"><span style="width:95%"></span></div>
+</div>
+
+<div class="skill-box reveal">
+<h4>UI / UX Design</h4>
+<div class="bar"><span style="width:92%"></span></div>
+</div>
+
+<div class="skill-box reveal">
+<h4>Three.js / WebGL</h4>
+<div class="bar"><span style="width:85%"></span></div>
+</div>
+
+<div class="skill-box reveal">
+<h4>Creative Animation</h4>
+<div class="bar"><span style="width:98%"></span></div>
+</div>
+
+</div>
+
+</section>
+
+<section id="services">
+
+<h1 class="section-title reveal">MY <span>SERVICES</span></h1>
+
+<div class="services-grid">
+
+<div class="service-card reveal">
+<i class="fa-solid fa-layer-group"></i>
+<h3>Premium UI Design</h3>
+<p>
+Modern futuristic interface systems with cinematic layouts and advanced visual hierarchy.
+</p>
+</div>
+
+<div class="service-card reveal">
+<i class="fa-solid fa-code"></i>
+<h3>Creative Development</h3>
+<p>
+Advanced frontend engineering using modern frameworks and optimized architecture.
+</p>
+</div>
+
+<div class="service-card reveal">
+<i class="fa-solid fa-cube"></i>
+<h3>3D Web Experience</h3>
+<p>
+Immersive WebGL and Three.js experiences for ultra-premium digital products.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="projects">
+
+<h1 class="section-title reveal">FEATURED <span>PROJECTS</span></h1>
+
+<div class="projects">
+
+<div class="project-card reveal">
+
+<div class="project-img">
+<img src="IMG_20260503_135526.jpg">
+</div>
+
+<div class="project-info">
+<span>PROJECT 01</span>
+<h2>CYBER CORE</h2>
+<p>
+A futuristic AI dashboard system with animated neural network interface and advanced dark-mode architecture.
+</p>
+<a href="#" class="btn btn-primary">VIEW CASE STUDY</a>
+</div>
+
+</div>
+
+<div class="project-card reveal">
+
+<div class="project-img">
+<img src="Screenshot_20260503_131940.jpg">
+</div>
+
+<div class="project-info">
+<span>PROJECT 02</span>
+<h2>NEURAL UI</h2>
+<p>
+Glassmorphism based operating system concept with futuristic interaction system.
+</p>
+<a href="#" class="btn btn-primary">VIEW CASE STUDY</a>
+</div>
+
+</div>
+
+<div class="project-card reveal">
+
+<div class="project-img">
+<img src="Screenshot_20260503_132301.jpg">
+</div>
+
+<div class="project-info">
+<span>PROJECT 03</span>
+<h2>QUANTUM BRAND</h2>
+<p>
+Complete digital identity system for futuristic infrastructure and quantum computing solutions.
+</p>
+<a href="#" class="btn btn-primary">VIEW CASE STUDY</a>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="contact" id="contact">
+
+<h1 class="section-title reveal">LET'S BUILD <span>THE FUTURE</span></h1>
+
+<a href="mailto:rajounahmedrijon@gmail.com" class="big-email reveal">
+rajounahmedrijon@gmail.com
+</a>
+
+<div class="socials reveal">
+<a href="#"><i class="fab fa-github"></i></a>
+<a href="#"><i class="fab fa-linkedin"></i></a>
+<a href="#"><i class="fab fa-facebook"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+</div>
+
+</section>
+
+<footer>
+<div>© 2026 RAJOUN AHMED RIJON</div>
+<div>MYMENSINGH / BANGLADESH</div>
+<div>ELITE PORTFOLIO SYSTEM V6.0</div>
+</footer>
+
 <script>
 
-/* loader */
+window.addEventListener('load',()=>{
 setTimeout(()=>{
+gsap.to('.loader',{
+opacity:0,
+duration:1,
+onComplete:()=>{
 document.querySelector('.loader').style.display='none';
-},1500);
-
-/* cursor */
-const cursor=document.querySelector('.cursor');
-window.addEventListener('mousemove',e=>{
-cursor.style.left=e.clientX+'px';
-cursor.style.top=e.clientY+'px';
-});
-
-/* FIXED tilt bug */
-const tilt=document.getElementById('tilt');
-if(tilt){
-window.addEventListener('mousemove',e=>{
-const x=(window.innerWidth/2-e.pageX)/40;
-const y=(window.innerHeight/2-e.pageY)/40;
-tilt.style.transform=`rotateY(${x}deg) rotateX(${-y}deg)`;
-});
 }
+})
+},1200)
+})
 
-/* progress bar */
+const progressBar=document.querySelector('.progress-bar');
+
 window.addEventListener('scroll',()=>{
-const total=document.body.scrollHeight-window.innerHeight;
-document.querySelector('.progress').style.width=
-(window.pageYOffset/total)*100+'%';
-});
+const totalHeight=document.body.scrollHeight-window.innerHeight;
+const progress=(window.pageYOffset/totalHeight)*100;
+progressBar.style.width=progress+'%';
+})
 
-/* scroll top */
-const topBtn=document.getElementById("topBtn");
+const observer=new IntersectionObserver((entries)=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('active');
+}
+})
+},{threshold:0.15})
 
-window.addEventListener("scroll",()=>{
-topBtn.style.display=window.scrollY>300?"block":"none";
-});
 
-topBtn.onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
+document.querySelectorAll('.reveal').forEach(el=>{
+observer.observe(el)
+})
 
-/* THREE FIXED */
+const tilt=document.getElementById('tilt-card');
+
+window.addEventListener('mousemove',(e)=>{
+const x=(window.innerWidth/2-e.pageX)/35;
+const y=(window.innerHeight/2-e.pageY)/35;
+
+tilt.style.transform=`rotateY(${x}deg) rotateX(${-y}deg)`;
+})
+
+// THREE JS PARTICLES
+
 const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,1000);
-const renderer=new THREE.WebGLRenderer({canvas:document.getElementById('particles'),alpha:true});
 
-renderer.setSize(innerWidth,innerHeight);
+const camera=new THREE.PerspectiveCamera(
+75,
+window.innerWidth/window.innerHeight,
+0.1,
+1000
+)
 
-const geo=new THREE.BufferGeometry();
+const renderer=new THREE.WebGLRenderer({
+canvas:document.getElementById('particles'),
+alpha:true
+})
+
+renderer.setSize(window.innerWidth,window.innerHeight)
+
+const geometry=new THREE.BufferGeometry();
 const vertices=[];
 
-for(let i=0;i<4000;i++){
+for(let i=0;i<5000;i++){
 vertices.push(
 THREE.MathUtils.randFloatSpread(2000),
 THREE.MathUtils.randFloatSpread(2000),
 THREE.MathUtils.randFloatSpread(2000)
-);
+)
 }
 
-geo.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
+geometry.setAttribute(
+'position',
+new THREE.Float32BufferAttribute(vertices,3)
+)
 
-const mat=new THREE.PointsMaterial({color:0xff1e1e,size:1.5});
-const points=new THREE.Points(geo,mat);
-scene.add(points);
+const material=new THREE.PointsMaterial({
+color:0xff1e1e,
+size:1.5
+})
 
-camera.position.z=500;
+const particles=new THREE.Points(geometry,material)
+scene.add(particles)
+
+camera.position.z=500
 
 function animate(){
-requestAnimationFrame(animate);
-points.rotation.y+=0.0005;
-renderer.render(scene,camera);
+requestAnimationFrame(animate)
+particles.rotation.y+=0.0005
+particles.rotation.x+=0.0002
+renderer.render(scene,camera)
 }
-animate();
+
+animate()
 
 window.addEventListener('resize',()=>{
-camera.aspect=innerWidth/innerHeight;
-camera.updateProjectionMatrix();
-renderer.setSize(innerWidth,innerHeight);
-});
+camera.aspect=window.innerWidth/window.innerHeight
+camera.updateProjectionMatrix()
+renderer.setSize(window.innerWidth,window.innerHeight)
+})
 
-/* matrix optimized */
-const canvas=document.querySelector('.matrix');
-const ctx=canvas.getContext('2d');
+// GSAP ANIMATIONS
 
-canvas.width=innerWidth;
-canvas.height=innerHeight;
+gsap.from('.hero-sub',{
+y:50,
+opacity:0,
+duration:1
+})
 
-const letters="RAJOUN01AI";
-const size=14;
-const cols=Math.floor(canvas.width/size);
-const drops=new Array(cols).fill(1);
+gsap.from('.hero h1',{
+y:80,
+opacity:0,
+duration:1.2,
+delay:.2
+})
 
-function draw(){
-ctx.fillStyle="rgba(0,0,0,.05)";
-ctx.fillRect(0,0,canvas.width,canvas.height);
+gsap.from('.hero p',{
+y:50,
+opacity:0,
+duration:1,
+delay:.5
+})
 
-ctx.fillStyle="red";
-ctx.font=size+"px monospace";
-
-for(let i=0;i<drops.length;i++){
-const text=letters[Math.floor(Math.random()*letters.length)];
-ctx.fillText(text,i*size,drops[i]*size);
-
-if(drops[i]*size>canvas.height && Math.random()>0.975){
-drops[i]=0;
-}
-drops[i]++;
-}
-}
-setInterval(draw,40);
+gsap.from('.hero-btns',{
+y:50,
+opacity:0,
+duration:1,
+delay:.8
+})
 
 </script>
 
 </body>
-</html>
+  </html>
