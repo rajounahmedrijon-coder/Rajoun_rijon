@@ -1345,6 +1345,20 @@ function raf(time){
 requestAnimationFrame(raf)
 
 </script>
+  <script>
+// Scroll Reveal Animation
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+});
+
+document.querySelectorAll('section').forEach((section) => {
+    observer.observe(section);
+});
+  </script>
 
 </body>
   </html>
