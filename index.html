@@ -62,7 +62,113 @@ body {
     gap: 20px;
     padding: 20px 0;
 }
+/* --- 20 PREMIUM FEATURES & VIBES --- */
+:root {
+    --primary-red: #ff0000;
+    --dark-black: #050505;
+    --glass-red: rgba(255, 0, 0, 0.1);
+}
 
+/* 1. Smooth Scrolling */
+html { scroll-behavior: smooth; }
+
+/* 2. Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--dark-black); }
+::-webkit-scrollbar-thumb { background: var(--primary-red); border-radius: 10px; }
+
+/* 3. Glass Navbar Effect */
+.glass-nav {
+    background: rgba(5, 5, 5, 0.8) !important;
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+/* 4. Background Grid Architecture */
+body {
+    background-color: var(--dark-black);
+    background-image: radial-gradient(circle at 2px 2px, rgba(255, 0, 0, 0.05) 1px, transparent 0);
+    background-size: 32px 32px;
+    color: white;
+}
+
+/* 5. Glowing Text Effect */
+.text-glow { text-shadow: 0 0 10px var(--primary-red); }
+
+/* 6. Hover Scale Animation */
+.nav-link { transition: 0.3s; position: relative; }
+.nav-link:hover { color: var(--primary-red) !important; transform: scale(1.1); }
+
+/* 7. Hover Underline Animation */
+.nav-link::after {
+    content: ''; position: absolute; width: 0; height: 2px;
+    bottom: 0; left: 0; background: var(--primary-red); transition: 0.3s;
+}
+.nav-link:hover::after { width: 100%; }
+
+/* 8. Digital Card Glow */
+.glass-card {
+    background: rgba(15, 15, 15, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: 0.5s;
+}
+.glass-card:hover {
+    border-color: var(--primary-red);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+}
+
+/* 9. Image Masking Effect */
+.profile-img { border: 5px solid var(--primary-red); box-shadow: 0 0 20px var(--primary-red); }
+
+/* 10. Digital Logic Border */
+.logic-box { border-left: 4px solid var(--primary-red); padding-left: 15px; margin: 15px 0; }
+
+/* 11. Button Pulse Animation */
+.btn-joss {
+    background: var(--primary-red); color: white; border: none;
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 0, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+}
+
+/* 12. Floating Animation */
+.float-element { animation: float 3s ease-in-out infinite; }
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* 13. Neon Badge */
+.badge-neon {
+    background: transparent; border: 1px solid var(--primary-red);
+    color: var(--primary-red); box-shadow: 0 0 5px var(--primary-red);
+}
+
+/* 14. Section Transition */
+section { padding: 80px 0; opacity: 0; transform: translateY(20px); transition: 1s; }
+section.visible { opacity: 1; transform: translateY(0); }
+
+/* 15. Logic Gradient */
+.logic-gradient { background: linear-gradient(45deg, #000, #200); }
+
+/* 16. Typography Focus */
+h1, h2 { font-family: 'Orbitron', sans-serif; letter-spacing: 2px; }
+
+/* 17. Social Icon Glow */
+.social-icon:hover { color: var(--primary-red) !important; filter: drop-shadow(0 0 8px var(--primary-red)); }
+
+/* 18. Card Blur Background */
+.blur-bg { filter: blur(50px); position: absolute; z-index: -1; }
+
+/* 19. Project Card Overlay */
+.project-overlay { transition: 0.5s; opacity: 0; }
+.glass-card:hover .project-overlay { opacity: 1; }
+
+/* 20. Code Font Style */
+.code-font { font-family: 'Courier New', Courier, monospace; color: #ff5555; }
 .logic-badge {
     background: #1a1b23;
     padding: 10px 15px;
@@ -680,16 +786,24 @@ perspective:1000px;
 <div class="progress-bar"></div>
 <canvas id="particles"></canvas>
 
-<nav>
-<div class="logo">RAJOUN<span>_</span>RIJON</div>
-
-<ul>
-<li><a href="#home">HOME</a></li>
-<li><a href="#about">ABOUT</a></li>
-<li><a href="#services">SERVICES</a></li>
-<li><a href="#projects">PROJECTS</a></li>
-<li><a href="#contact">CONTACT</a></li>
-</ul>
+<!-- Modern Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top glass-nav">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-3" href="#">RAJOUN<span class="text-danger">_RIJON</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto gap-4">
+                <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                <li class="nav-item"><a class="nav-link" href="#logics">Logics</a></li>
+                <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
 </nav>
 <section class="hero" id="home">
 
@@ -928,6 +1042,33 @@ Complete digital identity system for futuristic infrastructure and quantum compu
 
 </div>
 
+</section>
+  <!-- Logic & Skill Architecture Section -->
+<section id="logics" class="container mt-5">
+    <div class="row align-items-center">
+        <div class="col-md-6 mb-4">
+            <h2 class="text-glow mb-4">Programming <span class="text-danger">Logics</span></h2>
+            <div class="logic-box">
+                <h5 class="code-font">01 // Problem Identification</h5>
+                <p class="text-muted">Digging deep into complex problems to find their causes</p>
+            </div>
+            <div class="logic-box">
+                <h5 class="code-font">02 // Architectural Design</h5>
+                <p class="text-muted">Building a strong framework before coding</p>
+            </div>
+            <div class="logic-box">
+                <h5 class="code-font">03 // Execution & Efficiency</h5>
+                <p class="text-muted">Ensuring clean code and maximum speed</p>
+            </div>
+        </div>
+        <div class="col-md-6 text-center">
+            <div class="glass-card p-5 float-element">
+                <i class="fas fa-microchip fa-5x text-danger mb-3"></i>
+                <h3>Digital Brain</h3>
+                <p>My strengths are a combination of meticulous analysis as an engineering student and technical execution as a developer.</p>
+            </div>
+        </div>
+    </div>
 </section>
   <!-- Architecture & Digital Skills Section -->
 <section id="advanced-skills" class="container my-5 py-5">
