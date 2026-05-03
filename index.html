@@ -3,299 +3,205 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Rajoun Rijon | Ultra AI Portfolio V7.5</title>
+<title>RAJOUN ELITE PORTFOLIO SYSTEM</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600;800;900&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
 <style>
-body{
-margin:0;
-font-family:Outfit;
-background:#050505;
-color:white;
-overflow-x:hidden;
+:root{
+--bg:#050505;
+--red:#ff1e1e;
+--card:rgba(255,255,255,.05);
+--border:rgba(255,255,255,.1);
+--muted:#aaa;
 }
 
-/* NAV */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Outfit;}
+body{background:var(--bg);color:white;overflow-x:hidden;}
+
 nav{
-position:fixed;
-top:0;
-width:100%;
-display:flex;
-justify-content:space-between;
-padding:15px 40px;
-background:rgba(0,0,0,.6);
-backdrop-filter:blur(12px);
+position:fixed;top:0;width:100%;
+display:flex;justify-content:space-between;
+padding:20px 7%;
+backdrop-filter:blur(20px);
+border-bottom:1px solid var(--border);
 z-index:999;
 }
 
-nav a{
-color:white;
-text-decoration:none;
-margin:0 10px;
-font-size:13px;
-}
+.logo{font-weight:800;}
+.logo span{color:var(--red);}
+nav a{color:white;margin:0 10px;text-decoration:none;font-size:13px;}
 
-/* HERO */
+section{padding:120px 7%;}
+
 .hero{
 min-height:100vh;
-display:flex;
-justify-content:space-between;
+display:grid;
+grid-template-columns:1.2fr .8fr;
 align-items:center;
-padding:120px;
+gap:60px;
 }
 
 .hero h1{
-font-size:80px;
+font-size:70px;
 line-height:1;
 }
 
-.hero span{color:#ff2a2a}
+.hero h1 span{
+color:transparent;
+-webkit-text-stroke:1px var(--red);
+}
 
-.profile{
-width:320px;
-height:420px;
+.hero p{color:var(--muted);margin-top:20px;}
+
+.btn{
+padding:14px 30px;
+border-radius:40px;
+margin-top:20px;
+display:inline-block;
+}
+
+.primary{background:var(--red);color:white;}
+.outline{border:1px solid var(--border);color:white;}
+
+.hero-img img{
+width:100%;
 border-radius:20px;
-overflow:hidden;
-border:2px solid #ff2a2a;
-box-shadow:0 0 40px rgba(255,0,0,.3);
+border:1px solid var(--border);
 }
 
-.profile img{
-width:100%;
-height:100%;
-object-fit:cover;
+.title{
+font-size:50px;
+margin-bottom:40px;
 }
 
-/* SECTIONS */
-section{
-padding:80px;
-}
-
-/* GRID */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
-
-.card{
-background:rgba(255,255,255,0.05);
-padding:20px;
-border-radius:15px;
-border:1px solid rgba(255,255,255,.1);
-}
-
-/* CHAT */
-#chatBox{
-position:fixed;
-right:20px;
-bottom:20px;
-width:260px;
-background:#111;
-padding:10px;
-border-radius:10px;
-display:none;
-}
-
-/* TERMINAL */
-#terminal{
-position:fixed;
-bottom:0;
-width:100%;
-height:220px;
-background:black;
-color:lime;
-font-family:monospace;
-display:none;
-padding:10px;
-overflow:auto;
-}
-
-/* BUTTONS */
-button{
-background:#ff2a2a;
-border:none;
-padding:8px 12px;
-color:white;
-border-radius:8px;
-cursor:pointer;
-margin:5px;
-}
-
-/* MATRIX BACKGROUND */
-canvas{
-position:fixed;
-top:0;
-left:0;
-z-index:-1;
-}
+.title span{color:transparent;-webkit-text-stroke:1px var(--red);}
 </style>
 </head>
 
 <body>
 
-<canvas id="matrix"></canvas>
-
 <nav>
-<div><b>RAJOUN AI</b></div>
+<div class="logo">RAJOUN<span>.</span></div>
 <div>
-<a href="#features">Features</a>
+<a href="#home">Home</a>
+<a href="#about">About</a>
 <a href="#projects">Projects</a>
-<a onclick="toggleChat()">AI Chat</a>
-<a onclick="toggleTerminal()">Terminal</a>
+<a href="#contact">Contact</a>
 </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
+<section class="hero" id="home">
 
 <div>
-<h1>RAJOUN <br><span>RIJON</span></h1>
+<h1>RAJOUN<br>AHMED<br><span>RIJON</span></h1>
 
-<p>Ultra AI Cinematic Developer Portfolio System</p>
+<p>
+AI + 3D + Cinematic Portfolio System with advanced frontend architecture, motion design and futuristic UI.
+</p>
 
-<button onclick="toggleTheme()">Theme</button>
-<button onclick="startVoice()">Voice</button>
-<button onclick="githubLoad()">GitHub</button>
+<a class="btn primary" href="#projects">View Projects</a>
+<a class="btn outline" href="#contact">Contact</a>
 </div>
 
-<div class="profile">
-<img src="IMG_20250914_191146 (1).jpg">
+<div class="hero-img">
+<!-- তোমার profile picture -->
+<img src="IMG_20250914_191146 (1).jpg"/>
 </div>
 
+</section>
+<section id="about">
+<h1 class="title">ABOUT <span>ME</span></h1>
+
+<p style="color:#aaa;max-width:700px;line-height:1.8">
+I build futuristic cinematic web experiences using AI UI systems, 3D visuals, motion design, and advanced frontend engineering.
+</p>
+</section>
+
+<section>
+<h1 class="title">FEATURES <span>SYSTEM</span></h1>
+
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+
+<div style="background:rgba(255,255,255,.05);padding:20px;border:1px solid #222;border-radius:20px;">
+AI Chat Assistant (System Ready)
 </div>
 
-<!-- FEATURES -->
-<section id="features">
-<h2>Features System</h2>
+<div style="background:rgba(255,255,255,.05);padding:20px;border:1px solid #222;border-radius:20px;">
+Voice Command Navigation
+</div>
 
-<div class="grid">
-<div class="card">AI Chat Assistant</div>
-<div class="card">Voice Command System</div>
-<div class="card">Full Terminal OS UI</div>
-<div class="card">Dynamic Theme Engine</div>
-<div class="card">GitHub API Integration</div>
-<div class="card">Visitor Counter: <span id="visits"></span></div>
-<div class="card">Admin Dashboard UI</div>
-<div class="card">Particle + Matrix Engine</div>
-<div class="card">3D WebGL Scene (Three.js)</div>
-<div class="card">CMS Ready System</div>
-<div class="card">Motion Scroll Engine</div>
-<div class="card">Hologram UI Effects</div>
-<div class="card">Mobile App Style UI</div>
-<div class="card">Loader Cinematic System</div>
+<div style="background:rgba(255,255,255,.05);padding:20px;border:1px solid #222;border-radius:20px;">
+3D Room / WebGL System
+</div>
+
+<div style="background:rgba(255,255,255,.05);padding:20px;border:1px solid #222;border-radius:20px;">
+Firebase CMS Hook Ready
+</div>
+
+<div style="background:rgba(255,255,255,.05);padding:20px;border:1px solid #222;border-radius:20px;">
+GitHub API Integration Ready
+</div>
+
+<div style="background:rgba(255,255,255,.05);padding:20px;border:1px solid #222;border-radius:20px;">
+Terminal + Theme System
+</div>
+
 </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
-<h2>Projects</h2>
+<h1 class="title">PROJECTS <span>SHOWCASE</span></h1>
 
-<div class="grid">
-<div class="card">Cyber Core AI Dashboard</div>
-<div class="card">Neural Glass UI System</div>
-<div class="card">Quantum Web Engine</div>
+<div style="display:grid;gap:30px;">
+
+<div style="background:#111;padding:20px;border-radius:20px;">
+<h2>CYBER CORE</h2>
+<p style="color:#aaa">AI dashboard futuristic system</p>
+</div>
+
+<div style="background:#111;padding:20px;border-radius:20px;">
+<h2>NEURAL UI</h2>
+<p style="color:#aaa">Glassmorphism OS concept</p>
+</div>
+
 </div>
 </section>
+<section id="contact">
+<h1 class="title">CONTACT <span>ME</span></h1>
 
-<!-- CHAT -->
-<div id="chatBox">
-<p>AI: Hello Rajoun 👋</p>
-<input id="input" placeholder="Ask AI..." />
-<button onclick="send()">Send</button>
+<h2 style="color:var(--red)">rajounahmedrijon@gmail.com</h2>
+</section>
+
+<!-- AI BUTTON -->
+<button onclick="toggleAI()" style="position:fixed;bottom:20px;right:20px;padding:20px;border-radius:50%;background:var(--red);color:white;border:none;cursor:pointer;">
+AI
+</button>
+
+<!-- AI BOX -->
+<div id="aiBox" style="display:none;position:fixed;bottom:100px;right:20px;width:300px;height:350px;background:#111;border:1px solid #333;padding:15px;border-radius:20px;">
+<h3 style="color:var(--red)">AI SYSTEM</h3>
+<p style="color:#aaa">Hello Rajoun system active.</p>
+<input placeholder="Ask..." style="width:100%;margin-top:10px;padding:10px;background:#000;color:white;border:none;">
 </div>
-
-<!-- TERMINAL -->
-<div id="terminal">> system booting...</div>
 
 <script>
 
-/* VISITOR */
-let v = localStorage.getItem("visits") || 0;
-v++;
-localStorage.setItem("visits", v);
-document.getElementById("visits").innerText = v;
-
-/* CHAT */
-function toggleChat(){
-chatBox.style.display = chatBox.style.display=="block"?"none":"block";
+// AI toggle
+function toggleAI(){
+let box=document.getElementById("aiBox");
+box.style.display=box.style.display==="block"?"none":"block";
 }
 
-function send(){
-let val = input.value;
-chatBox.querySelector("p").innerText = "AI: "+val;
-}
-
-/* TERMINAL */
-function toggleTerminal(){
-terminal.style.display = terminal.style.display=="block"?"none":"block";
-}
-
-/* THEME */
-function toggleTheme(){
-document.body.style.background =
-document.body.style.background=="black"?"#050505":"black";
-}
-
-/* VOICE */
-function startVoice(){
-let rec = new (window.SpeechRecognition||webkitSpeechRecognition)();
-rec.onresult=e=>{
-alert("Voice: "+e.results[0][0].transcript);
-}
-rec.start();
-}
-
-/* GITHUB API */
-function githubLoad(){
-fetch("https://api.github.com/users/octocat")
-.then(res=>res.json())
-.then(data=>{
-alert("GitHub User: "+data.login);
-});
-}
-
-/* MATRIX EFFECT */
-const c=document.getElementById("matrix");
-const ctx=c.getContext("2d");
-c.height=window.innerHeight;
-c.width=window.innerWidth;
-
-let letters="01RAJOUNAI";
-letters=letters.split("");
-
-let font=14;
-let cols=c.width/font;
-let drops=[];
-for(let x=0;x<cols;x++) drops[x]=1;
-
-function draw(){
-ctx.fillStyle="rgba(0,0,0,0.05)";
-ctx.fillRect(0,0,c.width,c.height);
-
-ctx.fillStyle="#ff2a2a";
-ctx.font=font+"px monospace";
-
-for(let i=0;i<drops.length;i++){
-let text=letters[Math.floor(Math.random()*letters.length)];
-ctx.fillText(text,i*font,drops[i]*font);
-
-if(drops[i]*font>c.height && Math.random()>0.975)
-drops[i]=0;
-
-drops[i]++;
-}
-}
-
-setInterval(draw,33);
-
-/* GSAP */
-gsap.from(".hero h1",{y:60,opacity:0,duration:1});
+// simple animation
+gsap.from(".hero h1",{y:50,opacity:0,duration:1});
+gsap.from(".hero p",{y:50,opacity:0,duration:1,delay:.3});
 
 </script>
 
 </body>
-  </html>
+</html>
