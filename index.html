@@ -563,7 +563,7 @@ clear - clear terminal
 <ul>            
 <li><a href="#home">HOME</a></li>  
 <li><a href="#about">ABOUT</a></li>   
-<li><a href="#home">SKILL</a></li>
+<li><a href="#about">SKILL</a></li>
 <li><a href="#services">SERVICES</a></li>            
 <li><a href="#projects">PROJECTS</a></li>            
 <li><a href="#contact">CONTACT</a></li>            
@@ -798,7 +798,22 @@ terminal.style.display==='block' ? 'none' : 'block'
 function theme(color){
 document.documentElement.style.setProperty('--red',color)
 }
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
+if (SpeechRecognition) {
+  const recognition = new SpeechRecognition();
+  recognition.continuous = true;
+
+  recognition.onresult = (e) => {
+    const text = e.results[e.results.length - 1][0].transcript.toLowerCase();
+
+    if (text.includes('projects')) window.location = '#projects';
+    if (text.includes('contact')) window.location = '#contact';
+    if (text.includes('about')) window.location = '#about';
+  };
+
+  recognition.start();
+  }
 const SpeechRecognition=
 window.SpeechRecognition || window.webkitSpeechRecognition
 
@@ -855,7 +870,10 @@ opacity:0,
 duration:1,
 delay:.8
 })
-
+window.addEventListener('resize', () => {
+  matrix.width = window.innerWidth;
+  matrix.height = window.innerHeight;
+});
 </script></body>
 
 </html> 
